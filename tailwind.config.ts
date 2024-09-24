@@ -9,8 +9,58 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        primary: '#000',
+        secondary: '#fff',
+
+        purple_60: '#7A00FF',
+        purple_65: '#641AFF',
+        purple_70: '#9533FF',
+        purple_75: '#CA99FF',
+        purple_90: '#E4CCFF',
+        purple_95: '#ECE4FF',
+        purple_97: '#FFF0F7',
+        purple_99: '#FFFCFA',
+
+        white_90: '#E4E4E7',
+        white_95: '#F1F1F3',
+        white_97: '#F7F7F8',
+        white_99: '#FCFCFD',
+
+        gray_08: '#141414',
+        gray_10: '#1A1A1A',
+        gray_15: '#262626',
+        gray_20: '#333333',
+        gray_30: '#4D4D4D',
+        gray_40: '#666666',
+        gray_50: '#808080',
+        gray_60: '#999999'
+      },
+      fontFamily: {
+        sans: 'var(--font-urbanist)',
+      },
+      backdropBlur: {
+        '2px': '2px',
+      },
+      boxShadow: {
+        custom: '0 8px 32px 0 rgba(31, 38, 135, 0.37)',
+      },
+      backgroundImage: {
+        home_bg: "url(../../public/assets/background.png)",
+      },
+      screens: {
+        notebook_13p: { max: "1367px" },
+
+        desktop: { max: "1279px" },
+
+        laptop: { max: "1023px" },
+
+        ipad: { max: "767px" },
+
+        tablet: { max: "639px" },
+        //mobo2
+        mobile_1: { max: "415px" },
+        //mobo
+        mobile_2: { max: "376px" },
       },
     },
   },
