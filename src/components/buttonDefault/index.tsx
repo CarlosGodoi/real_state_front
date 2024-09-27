@@ -13,9 +13,9 @@ interface IButtonProps {
 
 const colorsVariants = {
     transparent: 'bg-white border-fup-blue font-[400] text-fup-blue',
-    primary: `bg-purple_60 text-[#fff] text-lg font-semibold rounded-lg hover:bg-purple_75 transition-transform`,
+    primary: `bg-purple_60 text-[#fff] text-lg font-semibold rounded-lg hover:bg-purple_70 transition-transform`,
     cancel: `bg-fup-red hover:bg-fup-red/90 text-[#FFFFFF]`,
-    secondary: 'bg-gray_08 text-[#fff] text-lg font-medium border border-zinc-700 rounded-md hover:bg-gray_15',
+    secondary: 'bg-gray_08 text-[#fff] text-lg font-medium border border-zinc-700 rounded-md hover:bg-gray_10',
 };
 
 export const ButtonDeafult = ({ children, type, variant = 'secondary', onClick, className }: IButtonProps) => {

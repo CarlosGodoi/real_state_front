@@ -9,11 +9,11 @@ export const Header = () => {
             <Logo width={40} height={40} textSize={"text-2xl"} />
 
             <div className="flex justify-center items-center w-[60%] ipad:hidden">
-                <nav className="flex items-center gap-6">
-                    <Link href='#' className="text-secondary text-lg font-medium">Home</Link>
-                    <Link href='#' className="text-secondary text-lg font-medium">Sobre nós</Link>
-                    <Link href='#' className="text-secondary text-lg font-medium">Propriedades</Link>
-                    <Link href='#' className="text-secondary text-lg font-medium">Serviços</Link>
+                <nav className="flex items-center gap-8">
+                    <Link href='#' className="text-secondary text-lg font-medium hover:border-b-2 border-purple_60">Home</Link>
+                    <Link href='#' className="text-secondary text-lg font-medium hover:border-b-2 border-purple_60">Sobre nós</Link>
+                    <Link href='#' className="text-secondary text-lg font-medium hover:border-b-2 border-purple_60">Propriedades</Link>
+                    <Link href='#' className="text-secondary text-lg font-medium hover:border-b-2 border-purple_60">Serviços</Link>
                 </nav>
             </div>
 

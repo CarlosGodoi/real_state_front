@@ -48,19 +48,19 @@ const config: Config = {
         home_bg: "url(../../public/assets/background.png)",
       },
       screens: {
-        notebook_13p: { max: "1367px" },
+        notebook_13p: { max: "1366px" },
 
-        desktop: { max: "1279px" },
+        desktop: { max: "1280px" },
 
-        laptop: { max: "1023px" },
+        laptop: { max: "1024px" },
 
-        ipad: { max: "767px" },
+        ipad: { max: "768px" },
 
         tablet: { max: "639px" },
         //mobo2
         mobile_1: { max: "415px" },
         //mobo
-        mobile_2: { max: "376px" },
+        mobile_2: { max: "375px" },
       },
     },
   },

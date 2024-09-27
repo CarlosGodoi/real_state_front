@@ -6,7 +6,7 @@ import { PaperPlaneTilt, Envelope, FacebookLogo, LinkedinLogo, TwitterLogo, Yout
 export const Footer = () => {
     return (
         <div className="w-full flex flex-col gap-8 bg-gray_08">
-            <div className="w-full flex flex-col lg:flex-row gap-8 bg-gray_08 px-5 lg:px-20 py-14">
+            <div className="w-full flex flex-col justify-center lg:flex-row gap-8 bg-gray_08 px-5 lg:px-20 py-14">
                 <div className="w-full lg:w-[538px] flex flex-col gap-4">
                     <Logo width={30} height={30} textSize={"text-[20px]"} />
 
