@@ -12,6 +12,8 @@ const config: Config = {
         primary: '#000',
         secondary: '#fff',
 
+        yellow_60: '#FFE500',
+
         purple_60: '#7A00FF',
         purple_65: '#641AFF',
         purple_70: '#9533FF',

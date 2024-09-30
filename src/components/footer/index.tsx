@@ -5,7 +5,7 @@ import { PaperPlaneTilt, Envelope, FacebookLogo, LinkedinLogo, TwitterLogo, Yout
 
 export const Footer = () => {
     return (
-        <div className="w-full flex flex-col gap-8 bg-gray_08">
+        <div className="w-full flex flex-col gap-8 bg-gray_08 border border-t-gray_15">
             <div className="w-full flex flex-col justify-center lg:flex-row gap-8 bg-gray_08 px-5 lg:px-20 py-14">
                 <div className="w-full lg:w-[538px] flex flex-col gap-4">
                     <Logo width={30} height={30} textSize={"text-[20px]"} />
@@ -80,16 +80,16 @@ export const Footer = () => {
 
                 <div className="flex gap-4">
                     <div className="w-8 h-8 flex justify-center items-center rounded-full">
-                        <FacebookLogo weight="light" size='contain' color="#fff" />
+                        <FacebookLogo weight="light" size={30} color="#fff" />
                     </div>
                     <div className="w-8 h-8 flex justify-center items-center rounded-full">
-                        <LinkedinLogo weight="light" size='contain' color="#fff" />
+                        <LinkedinLogo weight="light" size={30} color="#fff" />
                     </div>
                     <div className="w-8 h-8 flex justify-center items-center rounded-full">
-                        <TwitterLogo weight="light" size='contain' color="#fff" />
+                        <TwitterLogo weight="light" size={30} color="#fff" />
                     </div>
                     <div className="w-8 h-8 flex justify-center items-center rounded-full">
-                        <YoutubeLogo weight="light" size='contain' color="#fff" />
+                        <YoutubeLogo weight="light" size={30} color="#fff" />
                     </div>
                 </div>
             </div>

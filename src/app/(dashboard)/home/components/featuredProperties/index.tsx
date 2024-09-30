@@ -4,11 +4,12 @@ import stars from "../../../../../../public/assets/StarsDesign.png"
 import { ButtonDeafult } from "@/components/buttonDefault"
 import { Bathtub, Bed, Building } from "@phosphor-icons/react"
 import propriedade1 from '../../../../../../public/images/Image.png'
+import { Pagination } from "@/components/pagination"
 
 export const FeaturedProperties = () => {
     return (
         <section className="w-full flex flex-col justify-center items-center gap-4 bg-gray_08 mt-2">
-            <div className="max-w-[1600px] w-full flex flex-col justify-center gap-4 bg-gray_08 px-14 py-14">
+            <div className="max-w-[1600px] w-full flex flex-col justify-center gap-4 bg-gray_08 pt-16">
                 <Image src={stars} width={50} height={50} alt="Imagem de estrelas" />
                 <div className="w-full flex justify-between mobile_1:flex-col">
                     <div className="w-full flex flex-col gap-2 mobile_1:w-full mobile_1:text-center">
@@ -20,7 +21,7 @@ export const FeaturedProperties = () => {
                     </div>
                 </div>
 
-                <div className="w-full flex justify-between gap-3">
+                <div className="w-full flex justify-between gap-3 mt-5">
                     <div className="max-w-[532px] flex flex-col gap-3 justify-between bg-gray_08 border border-gray_15 px-8 py-8 rounded-md">
                         <div className="w-full h-auto rounded-md"><Image src={propriedade1} width={430} height={400} quality={100} alt="" /></div>
                         <div className="w-full flex flex-col gap-3">
@@ -87,6 +88,8 @@ export const FeaturedProperties = () => {
                         </div>
                     </div>
                 </div>
+
+                <Pagination />
             </div>
 
 
