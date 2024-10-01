@@ -1,7 +1,7 @@
 'use client'
 import Image from "next/image"
 import stars from "../../../../../../public/assets/StarsDesign.png"
-import { ButtonDeafult } from "@/components/buttonDefault"
+import { ButtonDefault } from "@/components/buttonDefault"
 import { Bathtub, Bed, Building } from "@phosphor-icons/react"
 import propriedade1 from '../../../../../../public/images/Image.png'
 import { Pagination } from "@/components/pagination"
@@ -14,10 +14,10 @@ export const FeaturedProperties = () => {
                 <div className="w-full flex justify-between mobile_1:flex-col">
                     <div className="w-full flex flex-col gap-2 mobile_1:w-full mobile_1:text-center">
                         <h2 className="text-secondary text-4xl font-semibold">Propriedades em Destaque</h2>
-                        <span className="text-gray_60 text-lg font-medium mt-4">Explore nossa seleção escolhida a dedo de propriedades em destaque. Cada listagem oferece uma visão geral de casas e investimentos excepcionais disponíveis através da Real State. Clique em "Ver detalhes" para obter mais informações.</span>
+                        <span className="text-gray_60 text-lg font-medium mt-4">Explore nossa seleção escolhida a dedo de propriedades em destaque. Cada listagem oferece uma visão geral de casas e investimentos excepcionais disponíveis através da Prestige Imobiliária. Clique em "Ver detalhes" para obter mais informações.</span>
                     </div>
                     <div className="flex items-end mobile_1:mt-4">
-                        <ButtonDeafult className="w-[165px] mobile_1:w-full">Ver propriedades</ButtonDeafult>
+                        <ButtonDefault className="w-[165px] mobile_1:w-full">Ver propriedades</ButtonDefault>
                     </div>
                 </div>
 
@@ -39,7 +39,7 @@ export const FeaturedProperties = () => {
                                 <span className="text-secondary text-2xl font-semibold">R$550,000</span>
                             </div>
                             <div className="flex flex-1">
-                                <ButtonDeafult className="w-full" variant="primary">Ver detalhes do Imovel</ButtonDeafult>
+                                <ButtonDefault className="w-full" variant="primary">Ver detalhes do Imovel</ButtonDefault>
                             </div>
                         </div>
                     </div>
@@ -61,7 +61,7 @@ export const FeaturedProperties = () => {
                                 <span className="text-secondary text-2xl font-semibold">R$550,000</span>
                             </div>
                             <div className="flex flex-1">
-                                <ButtonDeafult className="w-full" variant="primary">Ver detalhes do Imovel</ButtonDeafult>
+                                <ButtonDefault className="w-full" variant="primary">Ver detalhes do Imovel</ButtonDefault>
                             </div>
                         </div>
                     </div>
@@ -83,7 +83,7 @@ export const FeaturedProperties = () => {
                                 <span className="text-secondary text-2xl font-semibold">R$550,000</span>
                             </div>
                             <div className="flex flex-1">
-                                <ButtonDeafult className="w-full" variant="primary">Ver detalhes do Imovel</ButtonDeafult>
+                                <ButtonDefault className="w-full" variant="primary">Ver detalhes do Imovel</ButtonDefault>
                             </div>
                         </div>
                     </div>

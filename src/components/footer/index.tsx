@@ -70,7 +70,7 @@ export const Footer = () => {
 
                 <div className="flex flex-col w-full lg:flex-row items-center gap-5">
                     <span className="block text-secondary text-md font-normal">
-                        @2024 Real State. Todos os direitos reservados.
+                        @2024 Prestige Imobiliária. Todos os direitos reservados.
                     </span>
                     <span className="block text-secondary text-md font-normal">
                         Termos & condições

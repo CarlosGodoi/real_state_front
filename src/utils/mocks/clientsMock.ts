@@ -17,7 +17,7 @@ export const clientData: IClient[] = [
     {
         id: 1,
         title: 'Serviço excepcional!',
-        content: 'Nossa experiência com a Real State foi excelente. A dedicação e o profissionalismo da sua equipe tornaram muito fácil encontrar a casa dos nossos sonhos. Altamente recomendado!',
+        content: 'Nossa experiência com a Prestige Imobiliária foi excelente. A dedicação e o profissionalismo da sua equipe tornaram muito fácil encontrar a casa dos nossos sonhos. Altamente recomendado!',
         image: client1,
         name: 'Wade Warren',
         location: 'USA, California',
@@ -25,7 +25,7 @@ export const clientData: IClient[] = [
     {
         id: 2,
         title: 'Eficiente e confiável',
-        content: 'Real State nos forneceu um serviço de primeira linha. Eles nos ajudaram a vender nossa propriedade rapidamente e por um ótimo preço. Não poderíamos estar mais felizes com os resultados.',
+        content: 'Prestige Imobiliária nos forneceu um serviço de primeira linha. Eles nos ajudaram a vender nossa propriedade rapidamente e por um ótimo preço. Não poderíamos estar mais felizes com os resultados.',
         image: client2,
         name: 'Emelie Thomson',
         location: 'USA, Florida',
@@ -33,7 +33,7 @@ export const clientData: IClient[] = [
     {
         id: 3,
         title: 'Consultores confiáveis',
-        content: 'A equipe Real State nos orientou durante todo o processo de compra. Seu conhecimento e comprometimento com nossas necessidades foram impressionantes. Obrigado pelo seu apoio!',
+        content: 'A equipe Prestige Imobiliária nos orientou durante todo o processo de compra. Seu conhecimento e comprometimento com nossas necessidades foram impressionantes. Obrigado pelo seu apoio!',
         image: client3,
         name: 'John Mans',
         location: 'USA, Nevada',

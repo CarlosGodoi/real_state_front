@@ -18,7 +18,7 @@ const colorsVariants = {
     secondary: 'bg-gray_08 text-[#fff] text-lg font-medium border border-zinc-700 rounded-md hover:bg-gray_10',
 };
 
-export const ButtonDeafult = ({ children, type, variant = 'secondary', onClick, className }: IButtonProps) => {
+export const ButtonDefault = ({ children, type, variant = 'secondary', onClick, className }: IButtonProps) => {
     return (
         <button type={type} onClick={onClick} className={clsx(
             className,

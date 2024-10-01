@@ -1,5 +1,5 @@
 
-import { ButtonDeafult } from "@/components/buttonDefault"
+import { ButtonDefault } from "@/components/buttonDefault"
 import { Pagination } from "@/components/pagination"
 import { faqs } from "@/utils/mocks/faqsMock"
 import Image from "next/image"
@@ -14,10 +14,10 @@ export const FaqsCards = () => {
                 <div className="w-full flex justify-between mobile_1:flex-col">
                     <div className="w-full flex flex-col gap-2 mobile_1:w-full mobile_1:text-center">
                         <h2 className="text-secondary text-4xl font-semibold">Perguntas frequentes</h2>
-                        <span className="text-gray_60 text-lg font-medium mt-2">Encontre respostas para perguntas comuns sobre os serviços do Real State, listagens de imóveis e o processo imobiliário. Estamos aqui para fornecer clareza e ajudá-lo em cada etapa do processo.</span>
+                        <span className="text-gray_60 text-lg font-medium mt-2">Encontre respostas para perguntas comuns sobre os serviços do Prestige Imobiliária, listagens de imóveis e o processo imobiliário. Estamos aqui para fornecer clareza e ajudá-lo em cada etapa do processo.</span>
                     </div>
                     <div className="flex items-end mobile_1:mt-4">
-                        <ButtonDeafult className="w-[165px] mobile_1:w-full">Ver depoimentos</ButtonDeafult>
+                        <ButtonDefault className="w-[165px] mobile_1:w-full">Ver depoimentos</ButtonDefault>
                     </div>
                 </div>
 

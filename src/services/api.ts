@@ -1,0 +1,26 @@
+import axios from "axios";
+
+const baseApi = process.env.NEXT_PUBLIC_BASE_API || "http://192.168.18.29:3334"
+
+const NODE_ENV = process.env.NODE_ENV
+
+const baseFront = NODE_ENV === 'production' ? process.env.NEXT_PUBLIC_BASE_FRONT_PROD : process.env.NEXT_PUBLIC_BASE_FRONT
+
+const api = axios.create({
+    baseURL: baseApi
+})
+
+console.log('baseApi =>', baseApi);
+
+
+export const apiFront = axios.create({
+    baseURL: baseFront
+})
+
+console.log('apiFront baseURL =>', apiFront.defaults.baseURL);
+console.log('api baseURL =>', api.defaults.baseURL);
+
+
+
+
+export default api

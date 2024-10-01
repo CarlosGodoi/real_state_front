@@ -7,7 +7,7 @@ interface IFaqs {
 export const faqs: IFaqs[] = [
     {
         id: 1,
-        title: 'Como procuro imóveis no Estatein?',
+        title: 'Como procuro imóveis no Prestige Imobiliária?',
         content: 'Aprenda como usar nossas ferramentas de pesquisa fáceis de usar para encontrar propriedades que correspondam aos seus critérios.'
     },
     {

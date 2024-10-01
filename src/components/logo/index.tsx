@@ -11,7 +11,7 @@ export const Logo = ({ width, height, textSize }: ILogoProps) => {
     return (
         <div className="flex items-center gap-2">
             <Image src={logo} width={width} height={height} alt="Imagem de logo" />
-            <h1 className={`text-secondary ${textSize} font-bold`}>Real State</h1>
+            <h1 className={`text-secondary ${textSize} font-bold`}>Prestige Imobiliária</h1>
         </div>
     )
 }

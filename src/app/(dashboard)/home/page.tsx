@@ -1,4 +1,4 @@
-import { ButtonDeafult } from "@/components/buttonDefault";
+import { ButtonDefault } from "@/components/buttonDefault";
 import { InformationCards } from "./components/cards/informationCards";
 import { BusinessCards } from "./components/cards/businessCards";
 import Image from "next/image";
@@ -22,8 +22,8 @@ export default function Home() {
                     </div>
 
                     <div className="w-[70%] flex justify-start gap-3 mt-8 desktop:w-[90%] laptop:w-[80%]">
-                        <ButtonDeafult>Saiba mais</ButtonDeafult>
-                        <ButtonDeafult variant="primary">Propriedades</ButtonDeafult>
+                        <ButtonDefault>Saiba mais</ButtonDefault>
+                        <ButtonDefault variant="primary">Propriedades</ButtonDefault>
                     </div>
 
                     <InformationCards />

@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { Urbanist } from 'next/font/google'
 import { Theme } from '@radix-ui/themes';
+import { ApiRequestProvider } from "@/context/apiRequestContext";
+import { AuthProvider } from "@/context/authContext";
 import "./globals.css";
+import 'react-toastify/dist/ReactToastify.css';
 
 const urbanist = Urbanist({ subsets: ['latin'], variable: '--font-urbanist' })
 
@@ -16,12 +19,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html className={urbanist.variable} lang="en">
-      <body className="bg-zinc-50 antialiased">
-        <Theme>
-          {children}
-        </Theme>
-      </body>
-    </html>
+    <ApiRequestProvider>
+      <AuthProvider>
+        <html className={urbanist.variable} lang="en">
+          <body className="bg-zinc-50 antialiased">
+            <Theme>
+              {children}
+            </Theme>
+          </body>
+        </html>
+      </AuthProvider>
+    </ApiRequestProvider>
   );
 }
