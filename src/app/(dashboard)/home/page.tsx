@@ -9,7 +9,7 @@ import { FaqsCards } from "./components/cards/faqsCards";
 
 export default function Home() {
     return (
-        <div className='w-full min-h-screen flex flex-col bg-gray_10'>
+        <main className='w-full min-h-screen flex flex-col bg-gray_10'>
             <section className="w-full flex flex-1 bg-gray_08 laptop:flex-col-reverse">
                 <div className="w-full flex flex-col justify-center items-center gap-4 pt-16 laptop:mb-8">
                     <div className="w-[70%] flex flex-col gap-3 desktop:w-[90%] laptop:w-[80%] mobile_1:w-[90%]">
@@ -47,6 +47,6 @@ export default function Home() {
             <CustomerReportCards />
 
             <FaqsCards />
-        </div>
+        </main>
     );
 }

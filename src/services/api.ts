@@ -10,17 +10,9 @@ const api = axios.create({
     baseURL: baseApi
 })
 
-console.log('baseApi =>', baseApi);
-
-
 export const apiFront = axios.create({
     baseURL: baseFront
 })
-
-console.log('apiFront baseURL =>', apiFront.defaults.baseURL);
-console.log('api baseURL =>', api.defaults.baseURL);
-
-
 
 
 export default api

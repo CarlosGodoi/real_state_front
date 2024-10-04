@@ -1,5 +1,5 @@
 'use client';
-import api from '@/services/api';
+import api, { apiFront } from '@/services/api';
 import { AxiosError, AxiosResponse } from 'axios';
 import React, { ReactNode, createContext, useContext, useState } from 'react';
 import { deleteCookie, getCookie, hasCookie, setCookie } from 'cookies-next';
@@ -50,14 +50,15 @@ const ApiRequestProvider: React.FC<IProps> = ({ children }) => {
         if (options?.params) urlApi += `?${urlSearch}`;
 
         try {
-            const response = await api[method](
+            const response = await apiFront[method](
                 urlApi,
-                options?.data,
+                {
+                    data: options?.data,
+                },
                 {
                     headers: { ...headers },
                 },
             );
-            console.log('resp =>', response);
 
             return response;
         } catch (error) {

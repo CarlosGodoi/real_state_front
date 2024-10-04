@@ -52,14 +52,16 @@ const AuthProvider: React.FC<IProps> = ({ children }) => {
     async function signIn(
         data: IPropsSignin
     ): Promise<{ status: boolean; message: string }> {
-        const result = await apiRequest('post', '/sessions', { data })
+        const result = await apiRequest('post', '/api/login', { data })
             .then(({ data }) => {
-                const { accessToken, usuario } = data;
+                const { token, usuario } = data;
 
-                // Armazena o token no cookie
-                setCookie('token', accessToken);
+                setCookie('token', token, {
+                    path: '/', // Garante que o cookie seja acessível em todas as rotas
+                    maxAge: 60 * 60 * 24, // Tempo de expiração (1 dia neste caso)
+                    sameSite: 'strict', // Controle de acesso cross-site
+                });
 
-                // Atualiza o contexto de usuário
                 setUser(usuario);
 
                 return { status: true, message: '' };

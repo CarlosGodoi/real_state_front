@@ -8,7 +8,8 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FormData, defaultValues, resolver } from './schema';
 import { toast } from 'react-toastify';
-import { Loading } from '@/components/loading';
+import Loading from '@/components/loading';
+
 
 export const LoginForm = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -33,7 +34,7 @@ export const LoginForm = () => {
                 type: "success",
                 position: 'top-right',
                 theme: "colored",
-                className: "bg-purple_60",
+                style: { backgroundColor: '#7A00FF', color: '#fff' }
             });
             router.push("/home");
         } else {
@@ -60,7 +61,6 @@ export const LoginForm = () => {
         >
             <h2 className="text-purple_60 text-4xl text-center font-semibold mb-4 mobile_1:text-center">Faça seu Login</h2>
 
-            {/* Campo de email */}
             <InputDefault
                 label="Email"
                 type="email"
@@ -69,7 +69,6 @@ export const LoginForm = () => {
                 helperText={errors.email?.message}
             />
 
-            {/* Campo de senha */}
             <div className="relative w-full">
                 <InputDefault
                     label="Senha"

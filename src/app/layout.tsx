@@ -5,6 +5,7 @@ import { ApiRequestProvider } from "@/context/apiRequestContext";
 import { AuthProvider } from "@/context/authContext";
 import "./globals.css";
 import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
 
 const urbanist = Urbanist({ subsets: ['latin'], variable: '--font-urbanist' })
 
@@ -21,10 +22,23 @@ export default function RootLayout({
   return (
     <ApiRequestProvider>
       <AuthProvider>
-        <html className={urbanist.variable} lang="en">
+        <html className={urbanist.variable} lang="pt">
           <body className="bg-zinc-50 antialiased">
             <Theme>
               {children}
+              <ToastContainer
+                position="top-right"
+                autoClose={2000}
+                hideProgressBar={true}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+
+              />
             </Theme>
           </body>
         </html>
