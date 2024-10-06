@@ -4,12 +4,12 @@ import { Logo } from "../logo";
 import { MoboMenu } from "../moboMenu";
 import { ButtonDefault } from "../buttonDefault";
 import { useAuthContext } from "@/context/authContext";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { ContactUsModal } from "../modal/contactUsModal";
 
 export const Header = () => {
     const { signOut } = useAuthContext()
-
-    const navigate = useRouter()
+    const [open, setOpen] = useState(false)
 
 
     return (
@@ -22,17 +22,19 @@ export const Header = () => {
                     <Link href='/sobre-nos' className="text-secondary text-lg font-medium hover:border-b-2 border-purple_60">Sobre nós</Link>
                     <Link href='#' className="text-secondary text-lg font-medium hover:border-b-2 border-purple_60">Propriedades</Link>
                     <Link href='#' className="text-secondary text-lg font-medium hover:border-b-2 border-purple_60">Serviços</Link>
-                    <button type="button" onClick={signOut} className="text-purple_70 text-lg font-medium hover:border-b-2 border-secondary">Logout</button>
+                    <button type="button" onClick={signOut} className="text-purple_70 text-lg font-medium hover:border-b-2 border-secondary">Sair</button>
                 </nav>
             </div>
 
             <div className="ipad:hidden">
-                <ButtonDefault type="button" onClick={() => navigate.push('/contact')}>Contate-nos</ButtonDefault>
+                <ButtonDefault type="button" onClick={() => setOpen(true)}>Contate-nos</ButtonDefault>
             </div>
 
             <div className="hidden ipad:block">
                 <MoboMenu />
             </div>
+
+            <ContactUsModal open={open} close={() => setOpen(false)} />
         </div>
     );
 };

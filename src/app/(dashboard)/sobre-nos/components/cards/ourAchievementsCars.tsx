@@ -21,7 +21,7 @@ export const OurAchievementsCards = () => {
         <div className="w-full grid grid-cols-3 gap-8 mt-10 mobile_1:grid-cols-1 mobile_1:gap-4">
             {ourAchievementsData.map((card) => {
                 return (
-                    <div key={card.id} className="w-full flex flex-col gap-2 border-[10px] border-gray_10 rounded-lg px-5 py-5">
+                    <div key={card.id} className="w-full h-full flex flex-col gap-2 border-[10px] border-gray_10 rounded-lg px-5 py-5">
                         <h2 className="text-secondary text-3xl font-semibold">{card.title}</h2>
                         <span className="text-gray_60 text-lg font-medium">{card.content}</span>
                     </div>

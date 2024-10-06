@@ -1,9 +1,57 @@
 'use client'
 
+import { useState } from "react";
 import { Logo } from "../logo";
 import { PaperPlaneTilt, Envelope, FacebookLogo, LinkedinLogo, TwitterLogo, YoutubeLogo } from '@phosphor-icons/react';
+import Swal from "sweetalert2";
 
 export const Footer = () => {
+    const [message, setMessage] = useState('')
+
+    function validateEmail(email: string) {
+        const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        return regex.test(email);
+    }
+
+    const handleMessage = () => {
+        const text = message.trim();
+
+        if (!text) {
+            Swal.fire({
+                title: 'Erro',
+                text: 'Por favor, digite um e-mail antes de enviar!',
+                icon: 'error',
+                confirmButtonText: 'OK',
+                background: '#1A1A1A',
+                color: '#999999'
+            });
+            return;
+        }
+
+        if (!validateEmail(text)) {
+            Swal.fire({
+                title: 'Erro',
+                text: 'Por favor, digite um e-mail válido!',
+                icon: 'error',
+                confirmButtonText: 'OK',
+                background: '#1A1A1A',
+                color: '#999999'
+            });
+            return;
+        }
+
+        Swal.fire({
+            title: 'E-mail Recebido!',
+            text: 'Dentro de alguns instantes, um de nossos corretores entrará em contato com você.',
+            icon: 'success',
+            confirmButtonText: 'OK',
+            background: '#1A1A1A',
+            color: '#999999'
+        });
+
+        setMessage('');
+    };
+
     return (
         <div className="w-full flex flex-col gap-8 bg-gray_08 border border-t-gray_15">
             <div className="w-full flex flex-col justify-center lg:flex-row gap-8 bg-gray_08 px-5 lg:px-20 py-14">
@@ -20,12 +68,16 @@ export const Footer = () => {
                             className="bg-gray_08 h-11 w-[95%] lg:w-full pl-10 pr-10 text-gray_60 border border-zinc-700 rounded-md outline-none focus:ring-0 placeholder:text-gray_50"
                             type="email"
                             placeholder="Digite seu e-mail"
+                            value={message}
+                            onChange={(e) => setMessage(e.target.value)}
                         />
-                        <PaperPlaneTilt
-                            color="#fff"
-                            size={20}
-                            className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer mobile_1:right-8"
-                        />
+                        <button type="button" onClick={handleMessage}>
+                            <PaperPlaneTilt
+                                color="#fff"
+                                size={20}
+                                className="absolute right-3 top-1/2 transform -translate-y-1/2 mobile_1:right-8"
+                            />
+                        </button>
                     </div>
                 </div>
 
@@ -68,7 +120,7 @@ export const Footer = () => {
 
             <div className="w-full px-5 lg:px-20 py-4 flex flex-col lg:flex-row items-center lg:justify-between bg-gray_10 gap-4 lg:gap-0">
 
-                <div className="flex flex-col w-full lg:flex-row items-center gap-5">
+                <div className="flex flex-col w-full lg:flex-row items-center gap-5 mobile_1:w-full">
                     <span className="block text-secondary text-md font-normal">
                         @2024 Prestige Imobiliária. Todos os direitos reservados.
                     </span>
@@ -80,16 +132,16 @@ export const Footer = () => {
 
                 <div className="flex gap-4">
                     <div className="w-8 h-8 flex justify-center items-center rounded-full">
-                        <FacebookLogo weight="light" size={30} color="#fff" />
+                        <FacebookLogo weight="bold" size={30} color="#fff" />
                     </div>
                     <div className="w-8 h-8 flex justify-center items-center rounded-full">
-                        <LinkedinLogo weight="light" size={30} color="#fff" />
+                        <LinkedinLogo weight="bold" size={30} color="#fff" />
                     </div>
                     <div className="w-8 h-8 flex justify-center items-center rounded-full">
-                        <TwitterLogo weight="light" size={30} color="#fff" />
+                        <TwitterLogo weight="bold" size={30} color="#fff" />
                     </div>
                     <div className="w-8 h-8 flex justify-center items-center rounded-full">
-                        <YoutubeLogo weight="light" size={30} color="#fff" />
+                        <YoutubeLogo weight="bold" size={30} color="#fff" />
                     </div>
                 </div>
             </div>

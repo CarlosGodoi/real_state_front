@@ -35,7 +35,7 @@ const config: Config = {
         gray_30: '#4D4D4D',
         gray_40: '#666666',
         gray_50: '#808080',
-        gray_60: '#999999'
+        gray_60: '#999999',
       },
       fontFamily: {
         sans: 'var(--font-urbanist)',
@@ -48,6 +48,7 @@ const config: Config = {
       },
       backgroundImage: {
         home_bg: "url(../../public/assets/background.png)",
+        'custom-gradient': 'linear-gradient(to right bottom, #7a00ff, #5921d3, #4027a6, #141414, #141414, #1A1A1A, #1a1826, #141414, #141414, #141414, #141414, #141414)',
       },
       screens: {
         notebook_13p: { max: "1366px" },
@@ -68,4 +69,5 @@ const config: Config = {
   },
   plugins: [],
 };
+
 export default config;

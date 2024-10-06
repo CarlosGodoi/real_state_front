@@ -39,19 +39,17 @@ const navigationExperienceData = [
 
 export const NavigationExperienceCards = () => {
     return (
-        <div className="w-full grid grid-cols-3 gap-6 mt-16">
+        <div className="w-full grid grid-cols-3 gap-6 mt-16 mobile_1:grid-cols-1">
             {navigationExperienceData.map((card) => {
                 return (
                     <div key={card.id} className="w-full flex flex-col h-full">
                         <div className="w-full border-l-2 border-purple_60 p-2">
                             <span className="text-secondary text-lg font-medium">{card.label}</span>
                         </div>
-                        <div className="flex-1 flex flex-col gap-2 px-5 py-7 bg-gradient-to-r from-purple_60 from-2% via-gray_10 via-10% to-gray_10 to-90% border border-gray_15 rounded-e-md">
+                        <div className="flex-1 flex flex-col gap-2 px-5 py-7 border border-gray_15 rounded-e-md bg-custom-gradient">
                             <h2 className="text-secondary text-2xl font-semibold">{card.title}</h2>
                             <span className="text-gray_60 text-lg font-medium">{card.content}</span>
                         </div>
-
-
                     </div>
                 )
             })}

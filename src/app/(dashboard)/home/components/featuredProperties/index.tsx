@@ -7,6 +7,7 @@ import { IImmobiles } from "@/interfaces/getImmobiles";
 import { getAllImmobiles } from "@/services/immobiles/getAll";
 import { StarsBackground } from "@/components/starsBackground";
 import Image from "next/image";
+import { formatCurrency } from "@/utils/formatCurrency";
 
 export const FeaturedProperties = () => {
     const [immobiles, setImmobiles] = useState<IImmobiles[]>([]);
@@ -142,7 +143,7 @@ export const FeaturedProperties = () => {
                                     <div className="flex flex-col gap-1 w-full">
                                         <span className="text-gray_60 text-lg font-medium">Preço</span>
                                         <span className="text-secondary text-2xl font-semibold">
-                                            {`R$${immobile.preco}`}
+                                            {formatCurrency(immobile.preco)}
                                         </span>
                                     </div>
                                     <ButtonDefault className="w-full" variant="primary">

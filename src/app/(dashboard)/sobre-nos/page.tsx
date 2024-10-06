@@ -5,6 +5,7 @@ import Image from "next/image";
 import { OurValuesCards } from "./components/cards/ourValuesCards";
 import { OurAchievementsCards } from "./components/cards/ourAchievementsCars";
 import { NavigationExperienceCards } from "./components/cards/navigationExperienceCards";
+import { TeamCards } from "./components/teamCards";
 
 export default function AboutUs() {
     return (
@@ -72,6 +73,18 @@ export default function AboutUs() {
                     </span>
                 </div>
                 <NavigationExperienceCards />
+            </section>
+
+            <section className="w-full flex flex-col mt-16">
+                <StarsBackground />
+                <div className="w-full flex flex-col gap-3 mt-6">
+                    <h2 className="text-secondary text-5xl font-semibold mobile_1:text-center">Conheça a equipe Prestige</h2>
+                    <span className="text-gray_60 text-lg font-medium mobile_1:text-center">
+                        Na Prestige, nosso sucesso é impulsionado pela dedicação e experiência de nossa equipe.
+                        Conheça as pessoas por trás da nossa missão de tornar realidade os seus sonhos imobiliários.
+                    </span>
+                </div>
+                <TeamCards />
             </section>
         </div>
     )

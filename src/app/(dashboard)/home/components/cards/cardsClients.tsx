@@ -9,20 +9,20 @@ import { StarsBackground } from "@/components/starsBackground"
 
 export const CustomerReportCards = () => {
     const [currentPage, setCurrentPage] = useState(1)
-    const [itemsPerPage, setItemsPerPage] = useState(3) // Default to 3 cards per page
+    const [itemsPerPage, setItemsPerPage] = useState(3)
 
-    // Verifica o tamanho da tela e ajusta os cards por página
+
     useEffect(() => {
         const handleResize = () => {
             if (window.innerWidth <= 768) {
-                setItemsPerPage(1) // Telas móveis: 1 card por página
+                setItemsPerPage(1)
             } else {
-                setItemsPerPage(3) // Telas maiores: 3 cards por página
+                setItemsPerPage(3)
             }
         }
 
-        handleResize() // Configura no início
-        window.addEventListener("resize", handleResize) // Atualiza no redimensionamento
+        handleResize()
+        window.addEventListener("resize", handleResize)
 
         return () => {
             window.removeEventListener("resize", handleResize)
@@ -31,7 +31,6 @@ export const CustomerReportCards = () => {
 
     const totalPages = Math.ceil(clientData.length / itemsPerPage)
 
-    // Divide os dados de acordo com a página atual e o número de itens por página
     const displayedClients = clientData.slice(
         (currentPage - 1) * itemsPerPage,
         currentPage * itemsPerPage
