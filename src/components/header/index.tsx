@@ -20,7 +20,7 @@ export const Header = () => {
                 <nav className="flex items-center gap-8">
                     <Link href='/home' className="text-secondary text-lg font-medium hover:border-b-2 border-purple_60">Home</Link>
                     <Link href='/sobre-nos' className="text-secondary text-lg font-medium hover:border-b-2 border-purple_60">Sobre nós</Link>
-                    <Link href='#' className="text-secondary text-lg font-medium hover:border-b-2 border-purple_60">Propriedades</Link>
+                    <Link href='/propriedades' className="text-secondary text-lg font-medium hover:border-b-2 border-purple_60">Propriedades</Link>
                     <Link href='#' className="text-secondary text-lg font-medium hover:border-b-2 border-purple_60">Serviços</Link>
                     <button type="button" onClick={signOut} className="text-purple_70 text-lg font-medium hover:border-b-2 border-secondary">Sair</button>
                 </nav>
