@@ -1,13 +1,16 @@
 import { Footer } from '@/components/footer'
 import { Header } from '@/components/header'
+import { ImmobilesProvider } from '@/context/immobilesContext'
 import { ReactNode, Suspense } from 'react'
 
 export default function HomeLayout({ children }: { children: ReactNode }) {
     return (
         <div>
-            <Header />
-            {children}
-            <Footer />
+            <ImmobilesProvider>
+                <Header />
+                {children}
+                <Footer />
+            </ImmobilesProvider>
         </div>
     )
 }

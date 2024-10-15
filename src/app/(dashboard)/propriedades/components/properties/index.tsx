@@ -1,28 +1,21 @@
-'use client'
-import { useEffect, useState } from "react";
+'use client';
 import { ButtonDefault } from "@/components/buttonDefault";
-import { Bathtub, Bed, Building } from "@phosphor-icons/react";
+import Loading from "@/components/loading";
 import { Pagination } from "@/components/pagination";
 import { StarsBackground } from "@/components/starsBackground";
-import { formatCurrency } from "@/utils/formatCurrency";
-import { useRouter } from "next/navigation";
 import { useImmobilesContext } from "@/context/immobilesContext";
+import { formatCurrency } from "@/utils/formatCurrency";
+import { Bathtub, Bed, Building } from "@phosphor-icons/react";
 import Image from "next/image";
-import Loading from "@/components/loading";
 
-export const FeaturedProperties = () => {
+import { useEffect, useState } from "react";
+
+export const ListProperties = () => {
     const { immobiles, loading, error } = useImmobilesContext();
     const [totalPages, setTotalPages] = useState(1);
     const [currentPage, setCurrentPage] = useState(1);
-    const [take, setTake] = useState(3);
+    const [take, setTake] = useState(6);
     const [isMobile, setIsMobile] = useState(false);
-
-    const navigate = useRouter()
-
-    const handleNavigate = () => {
-        navigate.push('/propriedades')
-    }
-
 
     // Detectando se é mobile para ajustar a quantidade de itens por página
     useEffect(() => {
@@ -46,7 +39,7 @@ export const FeaturedProperties = () => {
 
     // Ajusta o número de itens por página com base no estado "isMobile"
     useEffect(() => {
-        setTake(isMobile ? 1 : 3);
+        setTake(isMobile ? 1 : 6);
     }, [isMobile]);
 
     // Calcula o número total de páginas baseado na quantidade de imóveis
@@ -59,19 +52,19 @@ export const FeaturedProperties = () => {
         setCurrentPage(1);
     }, [take]);
 
+    // Filtra os imóveis para exibição com base na página atual e no número de itens por página
+    const paginatedImmobiles = immobiles.slice((currentPage - 1) * take, currentPage * take);
+
     return (
         <section className="w-full flex flex-col justify-center items-center gap-4 bg-gray_08 mt-2 px-4">
             <div className="max-w-[1600px] w-full flex flex-col justify-center gap-4 bg-gray_08 pt-16">
                 <StarsBackground />
                 <div className="w-full flex justify-between mobile_1:flex-col">
                     <div className="w-full flex flex-col gap-2 mobile_1:w-full mobile_1:text-center">
-                        <h2 className="text-secondary text-4xl font-semibold">Propriedades em Destaque</h2>
+                        <h2 className="text-secondary text-4xl font-semibold">Descubra um mundo de possibilidades</h2>
                         <span className="text-gray_60 text-lg font-medium mt-4">
-                            Explore nossa seleção escolhida a dedo de propriedades em destaque. Cada listagem oferece uma visão geral de casas e investimentos excepcionais disponíveis através da Prestige Imobiliária. Clique em "Ver detalhes" para obter mais informações.
+                            Nosso portfólio de imóveis é tão diversificado quanto os seus sonhos. Explore as seguintes categorias para encontrar a propriedade perfeita que corresponda à sua visão de casa.
                         </span>
-                    </div>
-                    <div className="flex items-end mobile_1:mt-4">
-                        <ButtonDefault className="w-[165px] mobile_1:w-full" onClick={handleNavigate}>Ver propriedades</ButtonDefault>
                     </div>
                 </div>
 
@@ -83,7 +76,7 @@ export const FeaturedProperties = () => {
                     <p className="text-red-500">Erro ao carregar imóveis: {error}</p>
                 ) : (
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-5 w-full">
-                        {immobiles.map((immobile) => (
+                        {paginatedImmobiles.map((immobile) => (
                             <div key={immobile.id} className="bg-gray_08 border border-gray_15 p-5 rounded-md flex flex-col">
                                 {immobile.ImageImovel && immobile.ImageImovel.length > 0 ? (
                                     <Image
@@ -138,8 +131,6 @@ export const FeaturedProperties = () => {
                         ))}
                     </div>
                 )}
-
-
 
                 <Pagination currentPage={currentPage} totalPages={totalPages} setCurrentPage={setCurrentPage} />
             </div>

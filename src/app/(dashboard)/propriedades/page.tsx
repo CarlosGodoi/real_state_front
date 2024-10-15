@@ -1,6 +1,6 @@
-import SelectDefault from "@/components/selectDefault";
 import { SearchProperty } from "./components/searchProperty";
-import IconWrapper from "@/utils/icons/icons";
+import { ListProperties } from "./components/properties";
+import { Filters } from "./components/filters";
 
 export default function Property() {
     return (
@@ -19,45 +19,9 @@ export default function Property() {
 
                 <SearchProperty />
 
-                <div className="w-[60%] grid grid-cols-5 bg-gray_15 p-3 rounded-lg mt-8 gap-3 mobile_1:grid-cols-1 mobile_1:mt-36 mobile_1:w-full ">
-                    <SelectDefault
-                        options={[
-                            { value: '1', label: 'Option 1' },
-                            { value: '2', label: 'Option 2' },
-                        ]}
-                        leftIcon={<IconWrapper iconName="mapPin" />}
-                        placeholder="Localização"
-                    />
-                    <SelectDefault
-                        options={[
-                            { value: '1', label: 'Option 1' },
-                            { value: '2', label: 'Option 2' },
-                        ]}
-                        leftIcon={<IconWrapper iconName="house" />}
-                        placeholder="Tipo Imóvel"
-                    />
-                    <SelectDefault options={[
-                        { value: '1', label: 'Option 1' },
-                        { value: '2', label: 'Option 2' },
-                    ]}
-                        leftIcon={<IconWrapper iconName="money" />}
-                        placeholder="Preço Max."
-                    />
-                    <SelectDefault options={[
-                        { value: '1', label: 'Option 1' },
-                        { value: '2', label: 'Option 2' },
-                    ]}
-                        leftIcon={<IconWrapper iconName="money" />}
-                        placeholder="Preço Min."
-                    />
-                    <SelectDefault options={[
-                        { value: '1', label: 'Option 1' },
-                        { value: '2', label: 'Option 2' },
-                    ]}
-                        leftIcon={<IconWrapper iconName="files" />}
-                        placeholder="Tipo contrato"
-                    />
-                </div>
+                <Filters />
+
+                <ListProperties />
             </section>
         </main>
     );

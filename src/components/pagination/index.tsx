@@ -26,7 +26,7 @@ export const Pagination = ({ currentPage, totalPages, setCurrentPage }: Paginati
     }
 
     return (
-        <div className="w-full flex flex-col">
+        <div className="w-full flex flex-col mb-6">
             <span className="w-full border border-gray_15 mt-5"></span>
             <div className="w-full flex justify-between items-center mt-4">
                 <span className="text-gray_60 text-lg font-medium">
