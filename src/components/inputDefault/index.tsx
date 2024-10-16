@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { InputHTMLAttributes } from "react";
 import { UseFormClearErrors, UseFormRegisterReturn } from "react-hook-form";
 
@@ -14,6 +15,7 @@ interface InputDefaultProps extends InputHTMLAttributes<HTMLInputElement> {
   handleClickSearch?: VoidFunction;
   passwordCheckValue?: string;
   onClick?: VoidFunction
+  labelClassName?: string
 }
 
 export const InputDefault = ({
@@ -24,12 +26,13 @@ export const InputDefault = ({
   helperText,
   onChangeValue,
   isLoading,
+  labelClassName,
   ...rest
 }: InputDefaultProps) => {
   return (
     <div className="flex flex-col gap-3">
       {label && (
-        <label className="text-purple_60 text-lg font-semibold">
+        <label className={clsx("text-purple_60 text-lg font-semibold", labelClassName)}>
           {label}
         </label>
       )}
@@ -39,9 +42,11 @@ export const InputDefault = ({
         onChange={(e) => onChangeValue && onChangeValue(e.target.value)}
         className=" w-full
         h-14
-        bg-gray_20 
+        bg-gray_10 
         rounded-md 
-        text-gray_60 
+        text-gray_60
+        text-lg 
+        font-medium
         placeholder:text-gray_60 
         pl-3 
         border 

@@ -4,7 +4,6 @@ export const locations = [
     { value: 'centro-historico', label: 'Centro Histórico' },
     { value: 'bela-vista', label: 'Bela Vista' },
     { value: 'moinhos-de-vento', label: 'Moinhos de Vento' },
-    { value: 'partenon', label: 'Partenon' },
     { value: 'cidade-baixa', label: 'Cidade Baixa' },
     { value: 'sao-joao', label: 'São João' },
     { value: 'humaita', label: 'Humaitá' },

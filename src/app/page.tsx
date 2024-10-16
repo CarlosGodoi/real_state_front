@@ -4,7 +4,7 @@ import { LoginForm } from "@/components/forms/login";
 export default function Login() {
   return (
     <div className="w-full h-[100vh] flex flex-col justify-center items-center p-5 bg-primary">
-      <Logo width={50} height={50} textSize={"text-4xl"} />
+      <Logo width={50} height={50} textSize={"text-5xl"} />
       <LoginForm />
     </div>
   );

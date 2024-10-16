@@ -42,7 +42,7 @@ export const CustomerReportCards = () => {
                 <StarsBackground />
                 <div className="w-full flex justify-between mobile_1:flex-col">
                     <div className="w-full flex flex-col gap-2 mobile_1:w-full mobile_1:text-center">
-                        <h2 className="text-secondary text-4xl font-semibold">O que nossos clientes dizem</h2>
+                        <h2 className="text-secondary text-5xl font-semibold">O que nossos clientes dizem</h2>
                         <span className="text-gray_60 text-lg font-medium mt-2">Leia as histórias de sucesso e depoimentos sinceros de nossos valiosos clientes. Descubra por que escolheram a Prestige Imobiliária para suas necessidades imobiliárias.</span>
                     </div>
                     <div className="flex items-end mobile_1:mt-4">

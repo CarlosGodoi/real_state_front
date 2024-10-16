@@ -13,7 +13,7 @@ export default function Home() {
             <section className="w-full flex flex-1 bg-gray_08 laptop:flex-col-reverse">
                 <div className="w-full flex flex-col justify-center items-center gap-4 pt-16 laptop:mb-8">
                     <div className="w-[70%] flex flex-col gap-3 desktop:w-[90%] laptop:w-[80%] mobile_1:w-[90%]">
-                        <h2 className="text-secondary text-4xl mobile_1:text-3xl font-semibold mobile_1:text-center">
+                        <h2 className="text-secondary text-5xl mobile_1:text-3xl font-semibold mobile_1:text-center">
                             Descubra o imóvel dos seus sonhos conosco!
                         </h2>
                         <span className="text-gray_60 text-lg mobile_1:text-base font-medium mobile_1:text-center">

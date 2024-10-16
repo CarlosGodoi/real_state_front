@@ -14,6 +14,7 @@ interface SelectProps {
     rightIcon?: React.ReactNode; // Ícone da direita (opcional)
     placeholder?: string; // Placeholder para o select
     onChange?: (value: string) => void; // Função de callback ao selecionar uma opção
+    label?: string; // Label opcional
 }
 
 const SelectDefault: React.FC<SelectProps> = ({
@@ -22,6 +23,7 @@ const SelectDefault: React.FC<SelectProps> = ({
     rightIcon,
     placeholder,
     onChange,
+    label,
 }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
@@ -33,9 +35,14 @@ const SelectDefault: React.FC<SelectProps> = ({
     };
 
     return (
-        <div className="relative w-full">
+        <div className="relative w-full flex flex-col gap-3">
+            {label && (
+                <label className="text-secondary text-lg font-semibold">
+                    {label}
+                </label>
+            )}
             <div
-                className="flex h-16 items-center px-3 py-2 cursor-pointer bg-gray_08 border rounded-lg
+                className="flex h-14 items-center px-3 py-2 cursor-pointer bg-gray_10 border rounded-lg
                      focus:border-purple_60 focus:outline-none"
                 onClick={() => setIsOpen(!isOpen)}
             >
@@ -49,7 +56,7 @@ const SelectDefault: React.FC<SelectProps> = ({
                     {rightIcon ? (
                         <span onClick={() => setIsOpen(!isOpen)}>{rightIcon}</span>
                     ) : (
-                        <div className="flex justify-center items-center p-1 bg-gray_10 rounded-full hover:bg-gray_15">
+                        <div className="flex justify-center items-center p-1 bg-gray_15 rounded-full hover:bg-gray_20">
                             <CaretDown size={20} color="#999999" />
                         </div>
                     )}
@@ -57,7 +64,7 @@ const SelectDefault: React.FC<SelectProps> = ({
             </div>
 
             {isOpen && options.length > 0 && (
-                <ul className="absolute z-10 w-full mt-1 bg-gray_08 border rounded-lg shadow-lg max-h-60 overflow-auto">
+                <ul className="absolute z-10 w-full mt-16 bg-gray_10 border rounded-lg shadow-lg max-h-60 overflow-auto">
                     {options.map((option, index) => (
                         <React.Fragment key={option.value}>
                             <li

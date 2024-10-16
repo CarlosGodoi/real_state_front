@@ -17,31 +17,28 @@ export const FeaturedProperties = () => {
     const [take, setTake] = useState(3);
     const [isMobile, setIsMobile] = useState(false);
 
-    const navigate = useRouter()
+    const navigate = useRouter();
 
     const handleNavigate = () => {
-        navigate.push('/propriedades')
-    }
-
+        navigate.push('/propriedades');
+    };
 
     // Detectando se é mobile para ajustar a quantidade de itens por página
     useEffect(() => {
-        if (typeof window !== "undefined" && window.visualViewport) {
-            const handleResize = () => {
-                const screenWidth = window.visualViewport?.width;
+        const handleResize = () => {
+            const screenWidth = window.visualViewport?.width;
 
-                if (screenWidth) {
-                    setIsMobile(screenWidth <= 768);
-                }
-            };
+            if (screenWidth) {
+                setIsMobile(screenWidth <= 768);
+            }
+        };
 
-            handleResize();
-            window.addEventListener("resize", handleResize);
+        handleResize();
+        window.addEventListener("resize", handleResize);
 
-            return () => {
-                window.removeEventListener("resize", handleResize);
-            };
-        }
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
     }, []);
 
     // Ajusta o número de itens por página com base no estado "isMobile"
@@ -59,13 +56,17 @@ export const FeaturedProperties = () => {
         setCurrentPage(1);
     }, [take]);
 
+    // Calcula os imóveis a serem exibidos na página atual
+    const startIndex = (currentPage - 1) * take;
+    const selectedImmobiles = immobiles.slice(startIndex, startIndex + take);
+
     return (
         <section className="w-full flex flex-col justify-center items-center gap-4 bg-gray_08 mt-2 px-4">
             <div className="max-w-[1600px] w-full flex flex-col justify-center gap-4 bg-gray_08 pt-16">
                 <StarsBackground />
                 <div className="w-full flex justify-between mobile_1:flex-col">
                     <div className="w-full flex flex-col gap-2 mobile_1:w-full mobile_1:text-center">
-                        <h2 className="text-secondary text-4xl font-semibold">Propriedades em Destaque</h2>
+                        <h2 className="text-secondary text-5xl font-semibold">Propriedades em Destaque</h2>
                         <span className="text-gray_60 text-lg font-medium mt-4">
                             Explore nossa seleção escolhida a dedo de propriedades em destaque. Cada listagem oferece uma visão geral de casas e investimentos excepcionais disponíveis através da Prestige Imobiliária. Clique em "Ver detalhes" para obter mais informações.
                         </span>
@@ -83,7 +84,7 @@ export const FeaturedProperties = () => {
                     <p className="text-red-500">Erro ao carregar imóveis: {error}</p>
                 ) : (
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-5 w-full">
-                        {immobiles.map((immobile) => (
+                        {selectedImmobiles.map((immobile) => (
                             <div key={immobile.id} className="bg-gray_08 border border-gray_15 p-5 rounded-md flex flex-col">
                                 {immobile.ImageImovel && immobile.ImageImovel.length > 0 ? (
                                     <Image
@@ -139,10 +140,9 @@ export const FeaturedProperties = () => {
                     </div>
                 )}
 
-
-
                 <Pagination currentPage={currentPage} totalPages={totalPages} setCurrentPage={setCurrentPage} />
             </div>
         </section>
     );
 };
+

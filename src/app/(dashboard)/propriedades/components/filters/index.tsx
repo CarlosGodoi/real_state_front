@@ -17,7 +17,7 @@ export const Filters = () => {
         handleFilterChange({ [field]: value });
     };
     return (
-        <div className="w-[60%] grid grid-cols-5 bg-gray_15 p-3 rounded-lg mt-8 gap-3 mobile_1:grid-cols-1 mobile_1:mt-36 mobile_1:w-full ">
+        <div className="w-[60%] grid grid-cols-5 bg-gray_20 p-3 rounded-lg mt-9 gap-3 mobile_1:grid-cols-1 mobile_1:mt-36 mobile_1:w-full ">
             <SelectDefault
                 options={locations}
                 leftIcon={<IconWrapper iconName="mapPin" />}

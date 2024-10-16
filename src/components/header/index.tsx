@@ -23,18 +23,18 @@ export const Header = () => {
 
                     {/* Propriedades com submenu */}
                     <div
-                        className="relative"
+                        className="relative group"
                         onMouseEnter={() => setSubmenuOpen(true)}
                         onMouseLeave={() => setSubmenuOpen(false)}
                     >
-                        <div className="text-secondary text-lg font-medium ">Propriedades</div>
-                        {submenuOpen && (
-                            <div className="absolute left-0 top-full mt-1 bg-gray_08 shadow-lg rounded-lg w-48 z-50">
-                                <Link href='/propriedades' className="block px-4 py-2 text-secondary text-lg font-medium hover:bg-gray_20 hover:rounded-md">Propriedades</Link>
-                                <Link href='#' className="block px-4 py-2 text-secondary text-lg font-medium hover:bg-gray_20 hover:rounded-md">Cadastro</Link>
-                                <Link href='#' className="block px-4 py-2 text-secondary text-lg font-medium hover:bg-gray_20 hover:rounded-md">Edição</Link>
+                        <div className="text-secondary text-lg font-medium cursor-pointer">Propriedades</div>
+                        <div className={`absolute left-0 top-full mt-1 bg-gray_08 shadow-lg rounded-lg w-48 z-50 transition-opacity duration-300 ${submenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+                            <div className="py-2">
+                                <Link href='/propriedades' className="block px-4 py-2 text-secondary text-lg font-medium hover:bg-gray_20">Propriedades</Link>
+                                <Link href='#' className="block px-4 py-2 text-secondary text-lg font-medium hover:bg-gray_20">Cadastro</Link>
+                                <Link href='#' className="block px-4 py-2 text-secondary text-lg font-medium hover:bg-gray_20">Edição</Link>
                             </div>
-                        )}
+                        </div>
                     </div>
 
                     <Link href='#' className="text-secondary text-lg font-medium hover:border-b-2 border-purple_60">Serviços</Link>

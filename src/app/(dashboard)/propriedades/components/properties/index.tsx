@@ -56,17 +56,19 @@ export const ListProperties = () => {
     const paginatedImmobiles = immobiles.slice((currentPage - 1) * take, currentPage * take);
 
     return (
-        <section className="w-full flex flex-col justify-center items-center gap-4 bg-gray_08 mt-2 px-4">
+        <section className="w-full flex flex-col justify-center items-center bg-gray_08 mt-2 px-4">
             <div className="max-w-[1600px] w-full flex flex-col justify-center gap-4 bg-gray_08 pt-16">
                 <StarsBackground />
                 <div className="w-full flex justify-between mobile_1:flex-col">
                     <div className="w-full flex flex-col gap-2 mobile_1:w-full mobile_1:text-center">
-                        <h2 className="text-secondary text-4xl font-semibold">Descubra um mundo de possibilidades</h2>
+                        <h2 className="text-secondary text-5xl font-semibold">Descubra um mundo de possibilidades</h2>
                         <span className="text-gray_60 text-lg font-medium mt-4">
                             Nosso portfólio de imóveis é tão diversificado quanto os seus sonhos. Explore as seguintes categorias para encontrar a propriedade perfeita que corresponda à sua visão de casa.
                         </span>
                     </div>
                 </div>
+
+
 
                 {loading ? (
                     <div className="w-full h-[300px] flex justify-center items-center">
@@ -74,6 +76,10 @@ export const ListProperties = () => {
                     </div>
                 ) : error ? (
                     <p className="text-red-500">Erro ao carregar imóveis: {error}</p>
+                ) : immobiles.length === 0 ? (
+                    <div className="w-full h-[400px] flex justify-center items-center">
+                        <span className="text-xl text-gray_60 font-medium">Não foram encontrados imóveis, faça uma nova busca.</span>
+                    </div>
                 ) : (
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-5 w-full">
                         {paginatedImmobiles.map((immobile) => (

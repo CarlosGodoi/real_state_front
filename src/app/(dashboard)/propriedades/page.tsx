@@ -1,6 +1,7 @@
 import { SearchProperty } from "./components/searchProperty";
 import { ListProperties } from "./components/properties";
 import { Filters } from "./components/filters";
+import { PropertyInterestForm } from "./components/interestForm";
 
 export default function Property() {
     return (
@@ -15,13 +16,17 @@ export default function Property() {
                     </span>
                 </div>
             </div>
-            <section className="w-full flex flex-col items-center gap-3 mobile_1:px-2">
+            <section className="w-full flex flex-col items-center mobile_1:px-2">
 
                 <SearchProperty />
 
                 <Filters />
 
                 <ListProperties />
+            </section>
+
+            <section className="w-full flex flex-col items-center">
+                <PropertyInterestForm />
             </section>
         </main>
     );

@@ -51,11 +51,11 @@ export const ImmobilesProvider: React.FC<IProps> = ({ children }) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
-    const fetchImmobiles = async () => {
+    const fetchImmobiles = async (currentFilter: IFilter) => {
         setLoading(true);
         setError(null);
         try {
-            const res = await getAllImmobiles();
+            const res = await getAllImmobiles({ ...currentFilter, take: 10, skip: 0 });
             if (res) {
                 setImmobiles(res.imoveis);
                 setFilteredImmobiles(res.imoveis);
@@ -67,11 +67,15 @@ export const ImmobilesProvider: React.FC<IProps> = ({ children }) => {
         }
     };
 
+
     useEffect(() => {
-        fetchImmobiles();
+        fetchImmobiles(filter);
     }, []);
 
     const searchImmobiles = useCallback(() => {
+        const precoMax = filter.precoMax ? parseFloat(filter.precoMax) * 1000 : null;
+        const precoMin = filter.precoMin ? parseFloat(filter.precoMin) * 1000 : null;
+
         console.log('Executando searchImmobiles');
         console.log('Filtro atual:', filter);
         console.log('Imóveis totais:', immobiles.length);
@@ -85,8 +89,10 @@ export const ImmobilesProvider: React.FC<IProps> = ({ children }) => {
             console.log('matchesSearch:', matchesSearch);
 
             const matchesLocalizacao = filter.localizacao
-                ? imovel.endereco.bairro.toLowerCase() === filter.localizacao.toLowerCase()
+                ? imovel.endereco.bairro.toLowerCase().replace(/\s+/g, '-') === filter.localizacao.toLowerCase()
                 : true;
+
+
             console.log('matchesLocalizacao:', matchesLocalizacao);
 
             const matchesTipoImovel = filter.tipoImovel
@@ -94,13 +100,13 @@ export const ImmobilesProvider: React.FC<IProps> = ({ children }) => {
                 : true;
             console.log('matchesTipoImovel:', matchesTipoImovel);
 
-            const matchesPrecoMax = filter.precoMax
-                ? imovel.preco <= parseFloat(filter.precoMax)
+            const matchesPrecoMax = precoMax !== null
+                ? imovel.preco <= precoMax
                 : true;
             console.log('matchesPrecoMax:', matchesPrecoMax);
 
-            const matchesPrecoMin = filter.precoMin
-                ? imovel.preco >= parseFloat(filter.precoMin)
+            const matchesPrecoMin = precoMin !== null
+                ? imovel.preco >= precoMin
                 : true;
             console.log('matchesPrecoMin:', matchesPrecoMin);
 

@@ -48,7 +48,7 @@ const config: Config = {
       },
       backgroundImage: {
         home_bg: "url(../../public/assets/background.png)",
-        'custom-gradient': 'linear-gradient(to right bottom, #7a00ff, #5921d3, #4027a6, #141414, #141414, #1A1A1A, #1a1826, #141414, #141414, #141414, #141414, #141414)',
+        'custom-gradient': 'linear-gradient(to right bottom, #7a00ff, #5921d3, #141414, #141414, #141414, #141414, #141414, #141414, #141414, #141414, #141414)',
       },
       screens: {
         notebook_13p: { max: "1366px" },
