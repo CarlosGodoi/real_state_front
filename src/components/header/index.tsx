@@ -6,6 +6,7 @@ import { ButtonDefault } from "../buttonDefault";
 import { useAuthContext } from "@/context/authContext";
 import { useState } from "react";
 import { ContactUsModal } from "../modal/contactUsModal";
+import UserAvatar from "../avatar";
 
 export const Header = () => {
     const { signOut } = useAuthContext();
@@ -31,7 +32,7 @@ export const Header = () => {
                         <div className={`absolute left-0 top-full mt-1 bg-gray_08 shadow-lg rounded-lg w-48 z-50 transition-opacity duration-300 ${submenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
                             <div className="py-2">
                                 <Link href='/propriedades' className="block px-4 py-2 text-secondary text-lg font-medium hover:bg-gray_20">Propriedades</Link>
-                                <Link href='#' className="block px-4 py-2 text-secondary text-lg font-medium hover:bg-gray_20">Cadastro</Link>
+                                <Link href='/propriedades/cadastro' className="block px-4 py-2 text-secondary text-lg font-medium hover:bg-gray_20">Cadastro</Link>
                                 <Link href='#' className="block px-4 py-2 text-secondary text-lg font-medium hover:bg-gray_20">Edição</Link>
                             </div>
                         </div>
@@ -43,7 +44,8 @@ export const Header = () => {
             </div>
 
             <div className="ipad:hidden">
-                <ButtonDefault type="button" onClick={() => setOpen(true)}>Contate-nos</ButtonDefault>
+                <UserAvatar />
+                {/* <ButtonDefault type="button" onClick={() => setOpen(true)}>Contate-nos</ButtonDefault> */}
             </div>
 
             <div className="hidden ipad:block">
