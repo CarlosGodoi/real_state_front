@@ -1,4 +1,5 @@
 export const priceMaxOptions = [
+    { value: '', label: 'Selecione' },
     { value: '200', label: 'R$ 200.000' },
     { value: '400', label: 'R$ 400.000' },
     { value: '600', label: 'R$ 600.000' },

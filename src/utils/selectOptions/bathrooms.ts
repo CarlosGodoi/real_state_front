@@ -1,4 +1,5 @@
 export const numberOfBathooms = [
+    { value: '', label: 'Selecione' },
     { value: '1', label: '1 Banheiro' },
     { value: '2', label: '2 Banheiros' },
     { value: '3', label: '3 Banheiros' },

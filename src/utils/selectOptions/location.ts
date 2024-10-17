@@ -1,4 +1,5 @@
 export const locations = [
+    { value: '', label: 'Selecione' },
     { value: 'porto-alegre', label: 'Porto Alegre' },
     { value: 'caminho-das-arvores', label: 'Caminho das Árvores' },
     { value: 'centro-historico', label: 'Centro Histórico' },

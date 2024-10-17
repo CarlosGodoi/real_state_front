@@ -1,4 +1,5 @@
 export const numberOfBedrooms = [
+    { value: '', label: 'Selecione' },
     { value: '1', label: '1 Quarto' },
     { value: '2', label: '2 Quartos' },
     { value: '3', label: '3 Quartos' },

@@ -1,4 +1,5 @@
 export const priceMinOptions = [
+    { value: '', label: 'Selecione' },
     { value: '100', label: 'R$ 100.000' },
     { value: '200', label: 'R$ 200.000' },
     { value: '300', label: 'R$ 300.000' },

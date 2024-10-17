@@ -1,7 +1,6 @@
-'use client'
-
 import React, { useState } from "react";
 import { CaretDown } from '@phosphor-icons/react';
+import { UseFormRegisterReturn } from "react-hook-form";
 
 interface SelectOption {
     value: string;
@@ -9,6 +8,7 @@ interface SelectOption {
 }
 
 interface SelectProps {
+    register?: UseFormRegisterReturn;
     options?: SelectOption[]; // Array de opções (opcional)
     leftIcon?: React.ReactNode; // Ícone da esquerda (opcional)
     rightIcon?: React.ReactNode; // Ícone da direita (opcional)
@@ -18,6 +18,7 @@ interface SelectProps {
 }
 
 const SelectDefault: React.FC<SelectProps> = ({
+    register,
     options = [],
     leftIcon,
     rightIcon,
@@ -61,6 +62,12 @@ const SelectDefault: React.FC<SelectProps> = ({
                         </div>
                     )}
                 </span>
+                {/* Associando o register ao campo oculto */}
+                <input
+                    type="hidden"
+                    value={selectedOption || ""}
+                    {...register}
+                />
             </div>
 
             {isOpen && options.length > 0 && (
