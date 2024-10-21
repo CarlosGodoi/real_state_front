@@ -1,34 +1,44 @@
+import React, { InputHTMLAttributes } from "react";
+import { UseFormRegisterReturn, UseFormClearErrors } from "react-hook-form";
 import clsx from "clsx";
-import { InputHTMLAttributes } from "react";
-import { UseFormClearErrors, UseFormRegisterReturn } from "react-hook-form";
 
-interface InputDefaultProps extends InputHTMLAttributes<HTMLInputElement> {
+type InputValue = string | number | readonly string[] | undefined;
+
+interface InputDefaultProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'value'> {
   label?: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   register?: UseFormRegisterReturn;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   clearErrors?: UseFormClearErrors<any>;
   helperText?: string;
   isLoading?: boolean;
   loading?: boolean;
-  onChangeValue?: (value: string | number) => void;
+  onChangeValue?: (value: string) => void;
   handleClickSearch?: VoidFunction;
   passwordCheckValue?: string;
-  onClick?: VoidFunction
-  labelClassName?: string
+  onClick?: VoidFunction;
+  labelClassName?: string;
+  value?: InputValue | null;
 }
 
-export const InputDefault = ({
+export const InputDefault: React.FC<InputDefaultProps> = ({
   label,
   register,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   clearErrors,
   helperText,
   onChangeValue,
   isLoading,
   labelClassName,
+  value,
   ...rest
-}: InputDefaultProps) => {
+}) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (onChangeValue) {
+      onChangeValue(e.target.value);
+    }
+    if (register?.onChange) {
+      register.onChange(e);
+    }
+  };
+
   return (
     <div className="flex flex-col gap-3">
       {label && (
@@ -39,20 +49,9 @@ export const InputDefault = ({
       <input
         {...register}
         {...rest}
-        onChange={(e) => onChangeValue && onChangeValue(e.target.value)}
-        className=" w-full
-        h-14
-        bg-gray_10 
-        rounded-md 
-        text-gray_60
-        text-lg 
-        font-medium
-        placeholder:text-gray_60 
-        pl-3 
-        border 
-        border-transparent 
-        focus:border-purple_60 
-        focus:outline-none"
+        value={value === null ? '' : value}
+        onChange={handleChange}
+        className="w-full h-14 bg-gray_10 rounded-md text-gray_60 text-lg font-medium placeholder:text-gray_60 pl-3 border border-transparent focus:border-purple_60 focus:outline-none"
         disabled={isLoading}
       />
       {helperText && <span className="text-sm text-red-500 mt-2">{helperText}</span>}

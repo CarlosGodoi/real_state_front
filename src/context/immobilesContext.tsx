@@ -27,6 +27,7 @@ interface IImmobilesContext {
     handleSearch: (value: string) => void;
     handleFilterChange: (newFilter: Partial<IFilter>) => void;
     searchImmobiles: () => void;
+    setImmobiles: React.Dispatch<React.SetStateAction<IImmobiles[]>>;
 }
 
 export const ImmobilesContext = createContext<IImmobilesContext>(
@@ -39,6 +40,7 @@ interface IProps {
 
 export const ImmobilesProvider: React.FC<IProps> = ({ children }) => {
     const [immobiles, setImmobiles] = useState<IImmobiles[]>([]);
+
     const [filteredImmobiles, setFilteredImmobiles] = useState<IImmobiles[]>([]);
     const [filter, setFilter] = useState<IFilter>({
         localizacao: "",
@@ -76,54 +78,38 @@ export const ImmobilesProvider: React.FC<IProps> = ({ children }) => {
         const precoMax = filter.precoMax ? parseFloat(filter.precoMax) * 1000 : null;
         const precoMin = filter.precoMin ? parseFloat(filter.precoMin) * 1000 : null;
 
-        console.log('Executando searchImmobiles');
-        console.log('Filtro atual:', filter);
-        console.log('Imóveis totais:', immobiles.length);
-
         const filtered = immobiles.filter((imovel) => {
-            console.log('Analisando imóvel:', imovel);
 
             const matchesSearch = filter.search
                 ? imovel.endereco.bairro.toLowerCase().includes(filter.search.toLowerCase())
                 : true;
-            console.log('matchesSearch:', matchesSearch);
 
             const matchesLocalizacao = filter.localizacao
                 ? imovel.endereco.bairro.toLowerCase().replace(/\s+/g, '-') === filter.localizacao.toLowerCase()
                 : true;
 
-
-            console.log('matchesLocalizacao:', matchesLocalizacao);
-
             const matchesTipoImovel = filter.tipoImovel
                 ? imovel.tipoImovel.toLowerCase() === filter.tipoImovel.toLowerCase()
                 : true;
-            console.log('matchesTipoImovel:', matchesTipoImovel);
 
             const matchesPrecoMax = precoMax !== null
                 ? imovel.preco <= precoMax
                 : true;
-            console.log('matchesPrecoMax:', matchesPrecoMax);
 
             const matchesPrecoMin = precoMin !== null
                 ? imovel.preco >= precoMin
                 : true;
-            console.log('matchesPrecoMin:', matchesPrecoMin);
 
             const matchesTipoContrato = filter.tipoContrato
                 ? imovel.tipoContrato.toLowerCase() === filter.tipoContrato.toLowerCase()
                 : true;
-            console.log('matchesTipoContrato:', matchesTipoContrato);
 
             const isMatch = matchesSearch && matchesLocalizacao && matchesTipoImovel &&
                 matchesPrecoMax && matchesPrecoMin && matchesTipoContrato;
-            console.log('Imóvel corresponde aos filtros:', isMatch);
 
             return isMatch;
         });
 
-        console.log('Imóveis filtrados:', filtered.length);
-        console.log('Imóveis filtrados detalhes:', filtered);
         setFilteredImmobiles(filtered);
     }, [filter, immobiles]);
 
@@ -136,14 +122,8 @@ export const ImmobilesProvider: React.FC<IProps> = ({ children }) => {
     };
 
     const handleFilterChange = (newFilter: Partial<IFilter>) => {
-        console.log('Novo filtro:', newFilter);
         setFilter((prev) => ({ ...prev, ...newFilter }));
     };
-
-    console.log('Renderizando Provider');
-    console.log('filter =>', filter);
-    console.log('immobiles =>', immobiles);
-    console.log('filteredImmobiles =>', filteredImmobiles);
 
     return (
         <ImmobilesContext.Provider
@@ -155,6 +135,7 @@ export const ImmobilesProvider: React.FC<IProps> = ({ children }) => {
                 handleSearch,
                 handleFilterChange,
                 searchImmobiles,
+                setImmobiles
             }}>
             {children}
         </ImmobilesContext.Provider>

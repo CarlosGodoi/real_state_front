@@ -6,7 +6,7 @@ import SelectDefault from "@/components/selectDefault"
 import { useAuthContext } from "@/context/authContext"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
-import { useForm } from "react-hook-form"
+import { Controller, useForm } from "react-hook-form"
 import { FormData, defaultValues, resolver } from './schema'
 import { registerImmobile } from "@/services/immobiles/register"
 import { upload } from "@/services/immobiles/upload"
@@ -17,6 +17,7 @@ import { typeContracts } from "@/utils/selectOptions/typeContract"
 import { typeImmobiles } from "@/utils/selectOptions/typeImmobile"
 import { statusOptions } from "@/utils/selectOptions/status"
 import Loading from "@/components/loading"
+import { isAxiosError } from "axios"
 
 const RegisterImmobiles = () => {
     const [loading, setLoading] = useState<boolean>(false);
@@ -40,12 +41,14 @@ const RegisterImmobiles = () => {
 
     const UploadImage = async (files: File[]) => {
         setImages(files);
+        console.log('Arquivos de imagem recebidos:', files);
     };
 
     const role = "CORRETOR";
 
     const onSubmitCreateImmobile = async (data: FormData) => {
         setLoading(true);
+        console.log('Dados enviados:', { ...data, images }); // Verifique se o campo images está presente
 
         if (role && user.perfil) {
             registerImmobile({ ...data, images })
@@ -63,12 +66,15 @@ const RegisterImmobiles = () => {
                             theme: "colored",
                             style: { backgroundColor: '#7A00FF', color: '#fff' }
                         });
+                        router.push('/propriedades')
                     }
-
-                    router.push('/propriedades')
                 })
-                .catch(() => {
-                    console.error("Unauthorized");
+                .catch((err) => {
+                    if (isAxiosError(err)) {
+                        console.error("Erro ao cadastrar imóvel:", err.response?.data);
+                    } else {
+                        console.error("Erro inesperado:", err);
+                    }
                     toast("Ocorreu erro ao tentar criar o imóvel", {
                         hideProgressBar: true,
                         autoClose: 2000,
@@ -80,6 +86,7 @@ const RegisterImmobiles = () => {
                 .finally(() => setLoading(false));
         }
     };
+
     return (
         <div className="w-full flex flex-col bg-gray_08">
             <h2 className="text-secondary text-3xl font-semibold px-16 py-10">Cadastro de Imóveis</h2>
@@ -107,12 +114,20 @@ const RegisterImmobiles = () => {
                         register={register("endereco.cidade")}
                         helperText={errors.endereco?.cidade?.message}
                     />
-                    <InputDefault
-                        label="Número"
-                        placeholder="Digite o número do imóvel"
-                        labelClassName="text-secondary"
-                        register={register("endereco.numero")}
-                        helperText={errors.endereco?.numero?.message}
+                    <Controller
+                        name="endereco.numero"
+                        control={control}
+                        render={({ field }) => (
+                            <InputDefault
+                                label="Número"
+                                placeholder="Digite o número do imóvel"
+                                labelClassName="text-secondary"
+                                {...field}
+                                value={field.value === null ? '' : field.value}
+                                onChangeValue={(value) => field.onChange(value === "" ? null : Number(value))}
+                                helperText={errors.endereco?.numero?.message}
+                            />
+                        )}
                     />
                     <InputDefault
                         label="CEP"
@@ -121,12 +136,20 @@ const RegisterImmobiles = () => {
                         register={register("endereco.cep")}
                         helperText={errors.endereco?.cep?.message}
                     />
-                    <InputDefault
-                        label="Area"
-                        placeholder="Digite a area do imóvel"
-                        labelClassName="text-secondary"
-                        register={register("area")}
-                        helperText={errors.area?.message}
+                    <Controller
+                        name="area"
+                        control={control}
+                        render={({ field }) => (
+                            <InputDefault
+                                label="Area"
+                                placeholder="Digite a area do imóvel"
+                                labelClassName="text-secondary"
+                                {...field}
+                                value={field.value === null ? '' : field.value}
+                                onChangeValue={(value) => field.onChange(value === "" ? null : Number(value))}
+                                helperText={errors.area?.message}
+                            />
+                        )}
                     />
                     <InputDefault
                         label="Valor"

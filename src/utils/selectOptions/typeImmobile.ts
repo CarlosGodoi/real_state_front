@@ -1,5 +1,5 @@
 export const typeImmobiles = [
     { value: '', label: 'Selecione' },
-    { value: 'casa', label: 'CASA' },
-    { value: 'apartamento', label: 'APARTAMENTO' }
+    { value: 'CASA', label: 'CASA' },
+    { value: 'APARTAMENTO', label: 'APARTAMENTO' }
 ]

@@ -10,6 +10,8 @@ export async function GET(req: NextRequest) {
     let token = req.cookies.get("token")?.value as string;
     let refreshToken = req.cookies.get("refresh")?.value as string;
 
+    console.log("Token recuperado:", token);
+
     const decoded = decode(token) as {
         role: string;
         sub: string;
@@ -42,6 +44,7 @@ export async function GET(req: NextRequest) {
         const response = await api.get("/imoveis", {
             headers: {
                 Authorization: `Bearer ${token}`,
+                "Content-Type": "multipart/form-data",
             },
             params: searchParams,
         });
@@ -71,6 +74,8 @@ export async function GET(req: NextRequest) {
 export async function POST(req: NextRequest) {
     const data = await req.json();
     const token = req.cookies.get("token")?.value;
+
+    console.log("Token recuperado:", token);
 
     try {
         const response = await api.post(

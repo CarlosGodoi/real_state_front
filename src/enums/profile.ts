@@ -1,5 +1,5 @@
 export enum ROLE {
-    ADMIN,
-    CORRETOR,
-    COMPRADOR,
+    ADMIN = "ADMIN",
+    CORRETOR = "CORRETOR",
+    COMPRADOR = "COMPRADOR"
 }

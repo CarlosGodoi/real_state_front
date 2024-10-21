@@ -12,7 +12,6 @@ export const getAllImmobiles = async (data?: {
         const urlSearch = new URLSearchParams(params).toString();
         if (data) urlApi += `?${urlSearch}`;
 
-        console.log(urlApi);
         const res = await apiFront.get(urlApi);
 
         return Promise.resolve(res.data);

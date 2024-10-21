@@ -1,21 +1,28 @@
 'use client';
 import { ButtonDefault } from "@/components/buttonDefault";
+import { DeleteIcon } from "@/components/deleteIcon";
 import Loading from "@/components/loading";
 import { Pagination } from "@/components/pagination";
 import { StarsBackground } from "@/components/starsBackground";
+import { useAuthContext } from "@/context/authContext";
 import { useImmobilesContext } from "@/context/immobilesContext";
+import { ROLE } from "@/enums/profile";
+import { deleteImmobileById } from "@/services/immobiles/delete";
 import { formatCurrency } from "@/utils/formatCurrency";
 import { Bathtub, Bed, Building } from "@phosphor-icons/react";
 import Image from "next/image";
 
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 export const ListProperties = () => {
-    const { immobiles, loading, error } = useImmobilesContext();
+    const { immobiles, loading, error, setImmobiles } = useImmobilesContext();
+    const [localImmobiles, setLocalImmobiles] = useState(immobiles);
     const [totalPages, setTotalPages] = useState(1);
     const [currentPage, setCurrentPage] = useState(1);
     const [take, setTake] = useState(6);
     const [isMobile, setIsMobile] = useState(false);
+    const { user } = useAuthContext()
 
     // Detectando se é mobile para ajustar a quantidade de itens por página
     useEffect(() => {
@@ -52,8 +59,77 @@ export const ListProperties = () => {
         setCurrentPage(1);
     }, [take]);
 
+    useEffect(() => {
+        setLocalImmobiles(immobiles);
+    }, [immobiles])
+
+    const handleDelete = async (id: string) => {
+        if (user.perfil === ROLE.CORRETOR) {
+            try {
+                await deleteImmobileById(id);
+                const updatedImmobiles = localImmobiles.filter(immobile => immobile.id !== id);
+                setLocalImmobiles(updatedImmobiles);
+                setImmobiles(updatedImmobiles); // Atualiza o contexto global
+                toast("Imóvel deletado!", {
+                    hideProgressBar: true,
+                    autoClose: 2000,
+                    type: "success",
+                    position: 'top-right',
+                    theme: "colored",
+                    style: { backgroundColor: '#7A00FF', color: '#fff' }
+                })
+            } catch (error) {
+                toast("Erro ao excluir imóvel", {
+                    hideProgressBar: true,
+                    autoClose: 2000,
+                    type: "error",
+                    position: "top-right",
+                    theme: "colored",
+                });
+            }
+        }
+    };
+
     // Filtra os imóveis para exibição com base na página atual e no número de itens por página
-    const paginatedImmobiles = immobiles.slice((currentPage - 1) * take, currentPage * take);
+    const paginatedImmobiles = localImmobiles.slice((currentPage - 1) * take, currentPage * take);
+
+    //     const idSelected = immobiles.findIndex((item) => item.id === id);
+
+    //     if (user.perfil === ROLE.CORRETOR) {
+    //         try {
+    //             if (idSelected !== -1) {
+    //                 const newListImmobiles = immobiles.filter(
+    //                     (immobile) => immobile.id !== id
+    //                 );
+
+    //                 await deleteImmobileById(id).then(() =>
+    //                     toast("Imóvel deletado!", {
+    //                         hideProgressBar: true,
+    //                         autoClose: 2000,
+    //                         type: "success",
+    //                         position: 'top-right',
+    //                         theme: "colored",
+    //                         style: { backgroundColor: '#7A00FF', color: '#fff' }
+    //                     })
+    //                 );
+
+    //                 return newListImmobiles
+    //             } else {
+    //                 console.error("Imóvel não encontrado para exclusão.");
+    //             }
+    //         } catch (error) {
+    //             toast("Erro ao excluir imóvel", {
+    //                 hideProgressBar: true,
+    //                 autoClose: 2000,
+    //                 type: "error",
+    //                 position: "top-right",
+    //                 theme: "colored",
+    //             });
+    //         }
+    //     } else {
+    //         throw new Error("unauthorized");
+    //     }
+    // };
 
     return (
         <section className="w-full flex flex-col justify-center items-center bg-gray_08 mt-2 px-4">
@@ -102,7 +178,11 @@ export const ListProperties = () => {
                                 )}
 
                                 <div className="flex flex-col gap-3 mt-3">
-                                    <h2 className="text-secondary text-2xl font-semibold">{immobile.endereco.bairro}</h2>
+                                    <div className="w-full flex justify-between items-center">
+                                        <h2 className="text-secondary text-2xl font-semibold">{immobile.endereco.bairro}</h2>
+                                        {user.perfil === ROLE.CORRETOR ? <DeleteIcon onClick={() => handleDelete(immobile.id)} /> : null}
+
+                                    </div>
                                     <span className="text-gray_60 text-lg font-medium">
                                         A stunning 4-bedroom, 3-bathroom villa in a peaceful suburban neighborhood... Read More
                                     </span>

@@ -55,6 +55,7 @@ const AuthProvider: React.FC<IProps> = ({ children }) => {
         const result = await apiRequest('post', '/api/login', { data })
             .then(({ data }) => {
                 const { token, usuario } = data;
+                console.log("Token recuperado no backend:", getCookie(token));
 
                 setCookie('token', token, {
                     path: '/', // Garante que o cookie seja acessível em todas as rotas

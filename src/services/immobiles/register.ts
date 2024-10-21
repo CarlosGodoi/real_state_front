@@ -1,6 +1,7 @@
 import { apiFront } from "../api";
 import { getCookie } from "cookies-next";
 import api from "../api";
+import { isAxiosError } from "axios";
 
 interface IAddress {
     rua: string;
@@ -24,21 +25,27 @@ interface ICreateImmobile {
 
 export const registerImmobile = async (data: ICreateImmobile) => {
     try {
-        const parseData = data;
+        const { images, ...otherData } = data;
 
-        delete parseData.images;
+        const parseData = {
+            ...otherData,
+            images: images ? images.map((img) => img.name) : [],
+        };
+
         const response = await apiFront.post("/api/immobiles", parseData);
 
-        if (data.images && data.images.length) {
+        if (images && images.length) {
             const id = response.data.id as string;
+            console.log('ID =>', id);
 
             const formData = new FormData();
 
-            data.images?.forEach((el) => {
+            images.forEach((el) => {
                 formData.append("files", el);
+                console.log('FormData contém:', Array.from(formData.entries()));
             });
 
-            return await api.post(`imoveis/images/${id}`, formData, {
+            return await api.post(`imovel/images/${id}`, formData, {
                 headers: {
                     Authorization: `Bearer ${getCookie("token")?.toString()}`,
                     "Content-Type": "multipart/form-data",
@@ -48,6 +55,12 @@ export const registerImmobile = async (data: ICreateImmobile) => {
 
         return response;
     } catch (error) {
-        Promise.reject(error);
+        if (isAxiosError(error)) {
+            console.log("Erro de resposta:", error.response?.data);
+            console.log("Status:", error.response?.status);
+            console.log("Headers:", error.response?.headers);
+            console.log("Erro de resposta:", error.response?.data);
+        }
+        return Promise.reject(error);
     }
 };

@@ -1,5 +1,5 @@
 export const typeContracts = [
     { value: '', label: 'Selecione' },
-    { value: 'venda', label: 'VENDA' },
-    { value: 'aluguel', label: 'ALUGUEL' }
+    { value: 'VENDA', label: 'VENDA' },
+    { value: 'ALUGUEL', label: 'ALUGUEL' }
 ]

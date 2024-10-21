@@ -1,7 +1,7 @@
 export const statusOptions = [
     { value: '', label: 'Selecione' },
-    { value: 'negociacao', label: 'NEGOCIAÇÃO' },
-    { value: 'vendido', label: 'VENDIDO' },
-    { value: 'alugado', label: 'ALUGADO' },
-    { value: 'pendente', label: 'PENDENTE' }
+    { value: 'NEGOCIACAO', label: 'NEGOCIAÇÃO' },
+    { value: 'VENDIDO', label: 'VENDIDO' },
+    { value: 'ALUGADO', label: 'ALUGADO' },
+    { value: 'PENDENTE', label: 'PENDENTE' }
 ]
