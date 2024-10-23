@@ -13,6 +13,7 @@ import { toast } from "react-toastify"
 import { isAxiosError } from "axios"
 import Swal from "sweetalert2"
 import Loading from "@/components/loading"
+import { formatPhoneNumber } from "@/utils/phoneMask"
 
 
 export const RegisterBrokerForm = () => {
@@ -34,7 +35,7 @@ export const RegisterBrokerForm = () => {
     const onHandleSubmitForm = async (data: FormData) => {
         setLoading(true)
         const userPerfil = isAuthenticated.user.perfil.toString();
-        console.log('data =>', data);
+
         if (userPerfil !== 'CORRETOR' && userPerfil !== 'ADMIN') {
             Swal.fire({
                 title: 'Erro',
@@ -73,7 +74,11 @@ export const RegisterBrokerForm = () => {
             });
         }).finally(() => setLoading(false))
     }
-    console.log('errors =>', errors);
+
+    const handlePhoneChange = (value: string) => {
+        const formattedPhone = formatPhoneNumber(value);
+        setValue("telefone", formattedPhone, { shouldValidate: true });
+    };
 
     return (
         <div className="w-full flex justify-center">
@@ -97,6 +102,7 @@ export const RegisterBrokerForm = () => {
                     labelClassName="text-secondary"
                     placeholder="Digite o telefone"
                     register={register('telefone')}
+                    onChangeValue={handlePhoneChange}
                     helperText={errors.telefone?.message}
                 />
                 <SelectDefault

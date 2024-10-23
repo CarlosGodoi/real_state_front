@@ -2,6 +2,7 @@
 import React, { InputHTMLAttributes } from "react";
 import { UseFormRegisterReturn, UseFormClearErrors } from "react-hook-form";
 import clsx from "clsx";
+import { formatPhoneNumber } from "@/utils/phoneMask";
 
 type InputValue = string | number | readonly string[] | undefined;
 
@@ -39,6 +40,7 @@ export const InputDefault: React.FC<InputDefaultProps> = ({
       register.onChange(e);
     }
   };
+
 
   return (
     <div className="flex flex-col gap-3">
