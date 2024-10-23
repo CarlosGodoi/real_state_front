@@ -1,3 +1,4 @@
+'use client'
 import React, { InputHTMLAttributes } from "react";
 import { UseFormRegisterReturn, UseFormClearErrors } from "react-hook-form";
 import clsx from "clsx";

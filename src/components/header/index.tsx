@@ -21,6 +21,7 @@ export const Header = () => {
                 <nav className="flex items-center gap-8 relative">
                     <Link href='/home' className="text-secondary text-lg font-medium hover:border-b-2 border-purple_60">Home</Link>
                     <Link href='/sobre-nos' className="text-secondary text-lg font-medium hover:border-b-2 border-purple_60">Sobre nós</Link>
+                    <Link href='/corretor/cadastro' className="text-secondary text-lg font-medium hover:border-b-2 border-purple_60">Cadastrar usuários</Link>
 
                     {/* Propriedades com submenu */}
                     <div
@@ -33,7 +34,6 @@ export const Header = () => {
                             <div className="py-2">
                                 <Link href='/propriedades' className="block px-4 py-2 text-secondary text-lg font-medium hover:bg-gray_20">Propriedades</Link>
                                 <Link href='/propriedades/cadastro' className="block px-4 py-2 text-secondary text-lg font-medium hover:bg-gray_20">Cadastro</Link>
-                                <Link href='#' className="block px-4 py-2 text-secondary text-lg font-medium hover:bg-gray_20">Edição</Link>
                             </div>
                         </div>
                     </div>

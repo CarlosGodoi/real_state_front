@@ -93,44 +93,6 @@ export const ListProperties = () => {
     // Filtra os imóveis para exibição com base na página atual e no número de itens por página
     const paginatedImmobiles = localImmobiles.slice((currentPage - 1) * take, currentPage * take);
 
-    //     const idSelected = immobiles.findIndex((item) => item.id === id);
-
-    //     if (user.perfil === ROLE.CORRETOR) {
-    //         try {
-    //             if (idSelected !== -1) {
-    //                 const newListImmobiles = immobiles.filter(
-    //                     (immobile) => immobile.id !== id
-    //                 );
-
-    //                 await deleteImmobileById(id).then(() =>
-    //                     toast("Imóvel deletado!", {
-    //                         hideProgressBar: true,
-    //                         autoClose: 2000,
-    //                         type: "success",
-    //                         position: 'top-right',
-    //                         theme: "colored",
-    //                         style: { backgroundColor: '#7A00FF', color: '#fff' }
-    //                     })
-    //                 );
-
-    //                 return newListImmobiles
-    //             } else {
-    //                 console.error("Imóvel não encontrado para exclusão.");
-    //             }
-    //         } catch (error) {
-    //             toast("Erro ao excluir imóvel", {
-    //                 hideProgressBar: true,
-    //                 autoClose: 2000,
-    //                 type: "error",
-    //                 position: "top-right",
-    //                 theme: "colored",
-    //             });
-    //         }
-    //     } else {
-    //         throw new Error("unauthorized");
-    //     }
-    // };
-
     return (
         <section className="w-full flex flex-col justify-center items-center bg-gray_08 mt-2 px-4">
             <div className="max-w-[1600px] w-full flex flex-col justify-center gap-4 bg-gray_08 pt-16">
