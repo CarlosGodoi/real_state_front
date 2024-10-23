@@ -17,10 +17,10 @@ export const FeaturedProperties = () => {
     const [take, setTake] = useState(3);
     const [isMobile, setIsMobile] = useState(false);
 
-    const navigate = useRouter();
+    const router = useRouter();
 
     const handleNavigate = () => {
-        navigate.push('/propriedades');
+        router.push('/propriedades');
     };
 
     // Detectando se é mobile para ajustar a quantidade de itens por página
@@ -130,7 +130,7 @@ export const FeaturedProperties = () => {
                                                 {formatCurrency(immobile.preco)}
                                             </span>
                                         </div>
-                                        <ButtonDefault className="w-full" variant="primary">
+                                        <ButtonDefault className="w-full" variant="primary" onClick={() => router.push(`/propriedades/${immobile.id}`)}>
                                             Ver detalhes do Imóvel
                                         </ButtonDefault>
                                     </div>

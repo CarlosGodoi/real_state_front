@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { CaretDown } from '@phosphor-icons/react';
 import { UseFormRegisterReturn } from "react-hook-form";
 
@@ -16,6 +16,7 @@ interface SelectProps {
     placeholder?: string; // Placeholder para o select
     onChange?: (value: string) => void; // Função de callback ao selecionar uma opção
     label?: string; // Label opcional
+    value?: string | null; // Valor para popular o select
 }
 
 const SelectDefault: React.FC<SelectProps> = ({
@@ -26,14 +27,21 @@ const SelectDefault: React.FC<SelectProps> = ({
     placeholder,
     onChange,
     label,
+    value
 }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedOption, setSelectedOption] = useState<string | null>(null);
+    const [selectedOption, setSelectedOption] = useState<string | null>(value || null);
 
-    const handleSelect = (value: string) => {
-        setSelectedOption(value);
+    useEffect(() => {
+        // Atualiza o estado selectedOption quando a prop value muda
+        if (value)
+            setSelectedOption(value);
+    }, [value]);
+
+    const handleSelect = (newValue: string) => {
+        setSelectedOption(newValue);
         setIsOpen(false);
-        onChange?.(value);
+        onChange?.(newValue);
     };
 
     return (
@@ -63,7 +71,7 @@ const SelectDefault: React.FC<SelectProps> = ({
                         </div>
                     )}
                 </span>
-                {/* Associando o register ao campo oculto */}
+
                 <input
                     type="hidden"
                     value={selectedOption || ""}

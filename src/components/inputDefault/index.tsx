@@ -2,7 +2,6 @@
 import React, { InputHTMLAttributes } from "react";
 import { UseFormRegisterReturn, UseFormClearErrors } from "react-hook-form";
 import clsx from "clsx";
-import { formatPhoneNumber } from "@/utils/phoneMask";
 
 type InputValue = string | number | readonly string[] | undefined;
 
@@ -41,7 +40,6 @@ export const InputDefault: React.FC<InputDefaultProps> = ({
     }
   };
 
-
   return (
     <div className="flex flex-col gap-3">
       {label && (
@@ -54,7 +52,13 @@ export const InputDefault: React.FC<InputDefaultProps> = ({
         {...rest}
         value={value === null ? '' : value}
         onChange={handleChange}
-        className="w-full h-14 bg-gray_10 rounded-md text-gray_60 text-lg font-medium placeholder:text-gray_60 pl-3 border border-transparent focus:border-purple_60 focus:outline-none"
+        className={clsx(
+          "w-full h-14 bg-gray_10 rounded-md text-gray_60 text-lg font-medium placeholder:text-gray_60 pl-3 focus:border-purple_60 focus:outline-none",
+          {
+            "border border-transparent": !rest.disabled,
+            "border-none caret-transparent": rest.disabled
+          }
+        )}
         disabled={isLoading}
       />
       {helperText && <span className="text-sm text-red-500 mt-2">{helperText}</span>}

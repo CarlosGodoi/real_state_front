@@ -11,6 +11,7 @@ import { deleteImmobileById } from "@/services/immobiles/delete";
 import { formatCurrency } from "@/utils/formatCurrency";
 import { Bathtub, Bed, Building } from "@phosphor-icons/react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
@@ -23,6 +24,7 @@ export const ListProperties = () => {
     const [take, setTake] = useState(6);
     const [isMobile, setIsMobile] = useState(false);
     const { user } = useAuthContext()
+    const router = useRouter()
 
     // Detectando se é mobile para ajustar a quantidade de itens por página
     useEffect(() => {
@@ -170,7 +172,7 @@ export const ListProperties = () => {
                                                 {formatCurrency(immobile.preco)}
                                             </span>
                                         </div>
-                                        <ButtonDefault className="w-full" variant="primary">
+                                        <ButtonDefault className="w-full" variant="primary" onClick={() => router.push(`/propriedades/${immobile.id}`)}>
                                             Ver detalhes do Imóvel
                                         </ButtonDefault>
                                     </div>
