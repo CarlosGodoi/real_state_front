@@ -38,7 +38,7 @@ const config: Config = {
         gray_60: '#999999',
       },
       fontFamily: {
-        sans: 'var(--font-urbanist)',
+        sans: ['var(--font-urbanist)'],
       },
       backdropBlur: {
         '2px': '2px',
