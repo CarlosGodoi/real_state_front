@@ -7,7 +7,7 @@ import { statusOptions } from "@/utils/selectOptions/status";
 import { typeContracts } from "@/utils/selectOptions/typeContract";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { FormData, defaultValues, resolver } from '../schema'
+import { FormData, defaultValues, resolver } from '../[id]/schema'
 import { getImmobileById } from "@/services/immobiles/getById";
 import { IImmobile } from "@/interfaces/getImmobiles";
 import Image from "next/image";
@@ -192,7 +192,8 @@ export const PropertyEditForm = ({ imovelId }: IFormProps) => {
                         disabled
                     />
 
-                    <div className="col-span-2 flex justify-end mt-8 mobile_1:col-span-1">
+                    <div className="col-span-2 flex justify-end gap-3 mt-8 mobile_1:col-span-1">
+                        <ButtonDefault type="button" className="mobile_1:w-full" onClick={() => router.push(`/propriedades/${imovelId}`)}>Voltar</ButtonDefault>
                         <ButtonDefault type="submit" variant="primary" className="mobile_1:w-full">{loading ? <Loading /> : 'Salvar'}</ButtonDefault>
                     </div>
                 </form>

@@ -1,0 +1,157 @@
+'use client'
+import { ButtonDefault } from "@/components/buttonDefault"
+import Loading from "@/components/loading"
+import { IImmobile } from "@/interfaces/getImmobiles"
+import { getImmobileById } from "@/services/immobiles/getById"
+import { formatCurrency } from "@/utils/formatCurrency"
+import { ArrowLeft, ArrowRight, MapPin, NotePencil } from "@phosphor-icons/react"
+import { isAxiosError } from "axios"
+import Image from "next/image"
+import { useRouter } from "next/navigation"
+import { useEffect, useState } from "react"
+import DescriptionImmobileCard from "./descriptionImmobileCard"
+import AdditionalsInformationsImmobile from "./additionalsInformationsImmobile"
+
+interface IPropertyDetailsProps {
+    imovelId: string
+}
+
+export default function PropertyDetails({ imovelId }: IPropertyDetailsProps) {
+    const [immobile, setImmobile] = useState<IImmobile>()
+    const [loading, setLoading] = useState(false)
+    const [currentPage, setCurrentPage] = useState(0);
+    const router = useRouter()
+
+    const IMAGES_PER_PAGE = 2;
+
+    useEffect(() => {
+        getImmobileById(imovelId).then((resp) => {
+            setLoading(true)
+            setImmobile(resp?.data.imovel)
+        }).catch((error) => {
+            if (isAxiosError(error)) {
+                console.error("Erro ao buscar os dados:", error.response?.data)
+            } else {
+                console.error("Erro inesperado:", error)
+            }
+        }).finally(() => setLoading(false))
+    }, [imovelId])
+
+    const goToNextImage = () => {
+        if (immobile?.ImageImovel) {
+            const totalPages = Math.ceil(immobile.ImageImovel.length / IMAGES_PER_PAGE);
+            setCurrentPage(prev => (prev + 1) % totalPages);
+        }
+    };
+
+    const goToPreviousImage = () => {
+        if (immobile?.ImageImovel) {
+            const totalPages = Math.ceil(immobile.ImageImovel.length / IMAGES_PER_PAGE);
+            setCurrentPage(prev => (prev - 1 + totalPages) % totalPages);
+        }
+    };
+
+    // Função para pegar as imagens atuais baseado na página
+    const getCurrentImages = () => {
+        if (!immobile?.ImageImovel) return [];
+        const startIndex = currentPage * IMAGES_PER_PAGE;
+        return immobile.ImageImovel.slice(startIndex, startIndex + IMAGES_PER_PAGE);
+    };
+
+    // Função para renderizar os indicadores de página
+    const renderPageIndicators = () => {
+        if (!immobile?.ImageImovel) return null;
+        const totalPages = Math.ceil(immobile.ImageImovel.length / IMAGES_PER_PAGE);
+
+        return Array.from({ length: totalPages }).map((_, index) => (
+            <div key={index} className="flex items-center gap-2">
+                <span
+                    className={`w-5 border-b-4 font-semibold rounded-full ${index === currentPage ? 'border-purple_60' : 'border-gray-300'
+                        }`}
+                />
+            </div>
+        ));
+    };
+
+    return (
+        <main className="w-full flex flex-col px-16 items-center">
+            <div className="w-full flex justify-between items-center">
+                <div className="flex items-center gap-4">
+                    <h2 className="text-secondary text-2xl font-semibold">{immobile?.endereco.bairro}</h2>
+                    <div className="flex items-center gap-2 border border-gray_15 rounded-lg px-2 py-1">
+                        <MapPin size={20} weight="fill" color="#fff" />
+                        <span className="text-secondary text-base font-medium">{immobile?.endereco.cidade}</span>
+                    </div>
+                </div>
+                <div className="flex flex-col">
+                    <span className="text-gray_60 text-base font-medium">Valor:</span>
+                    <span className="text-secondary text-2xl font-semibold">
+                        {immobile?.preco ? formatCurrency(immobile?.preco) : null}
+                    </span>
+                </div>
+            </div>
+
+            <section className="w-full flex flex-col bg-gray_10 p-10 mt-8 mb-8 border border-gray_15 rounded-md">
+                <div className="w-full flex justify-between gap-3 px-8 py-8 bg-gray_08 rounded-md">
+                    <div className="flex max-w-full w-full gap-3 max-h-[583px] h-screen relative">
+                        {loading ? (
+                            <div className="w-full h-full flex justify-center items-center border border-gray_15 rounded-lg">
+                                <Loading />
+                            </div>
+                        ) : immobile === undefined || immobile === null ? (
+                            <div className="w-full h-full flex justify-center items-center border border-gray_15 rounded-lg">
+                                <Loading />
+                            </div>
+                        ) : immobile?.ImageImovel && immobile.ImageImovel.length > 0 ? (
+                            getCurrentImages().map((image, index) => (
+                                <div key={`${currentPage}-${index}`} className="relative w-1/2 h-full border border-gray_15 rounded-lg">
+                                    <Image
+                                        src={`http://localhost:3334/${image.path}`}
+                                        alt={`Imagem do Imóvel ${currentPage * IMAGES_PER_PAGE + index + 1}`}
+                                        layout="fill"
+                                        objectFit="cover"
+                                        quality={100}
+                                        className="rounded-lg"
+                                    />
+                                </div>
+                            ))
+                        ) : (
+                            <div className="flex justify-center items-center w-full h-full border border-gray_15 rounded-lg">
+                                <span className="text-gray_60 text-lg font-medium">Não há imagens cadastradas</span>
+                            </div>
+                        )}
+                    </div>
+                </div>
+
+                <div className="w-full flex justify-center items-center mt-8">
+                    <div className="flex gap-3 bg-gray_08 p-2 rounded-full">
+                        <div
+                            className="p-2 flex justify-center items-center bg-gray_10 border border-gray_15 rounded-full cursor-pointer"
+                            onClick={goToPreviousImage}
+                        >
+                            <ArrowLeft size={20} color="#808080" />
+                        </div>
+                        <div className="flex gap-2">
+                            {renderPageIndicators()}
+                        </div>
+                        <div
+                            className="p-2 flex justify-center items-center bg-gray_10 border border-gray_15 rounded-full cursor-pointer"
+                            onClick={goToNextImage}
+                        >
+                            <ArrowRight size={20} color="#808080" />
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section className="w-full flex justify-between mb-8">
+                <DescriptionImmobileCard
+                    numberBedrooms={immobile?.quantidadeQuartos || 0}
+                    numberBathrooms={immobile?.quantidadeBanheiros || 0}
+                    areaTotal={immobile?.area || 0}
+                />
+                <AdditionalsInformationsImmobile />
+            </section>
+        </main>
+    )
+}
