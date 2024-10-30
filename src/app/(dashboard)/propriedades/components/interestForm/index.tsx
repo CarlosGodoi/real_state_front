@@ -85,7 +85,7 @@ export const PropertyInterestForm = () => {
             <StarsBackground />
             <div className="w-full flex flex-col gap-3">
                 <h2 className="text-secondary text-5xl font-semibold mobile_1:text-center">Vamos fazer acontecer</h2>
-                <span className="w-[80%] text-gray_60 text-lg font-medium mobile_1:text-center">
+                <span className="w-[80%] text-gray_60 text-lg font-medium mobile_1:text-center mobile_1:w-full">
                     Pronto para dar o primeiro passo em direção ao imóvel dos seus sonhos? Preencha o formulário abaixo,
                     e nossos assistentes imobiliários farão sua mágica para encontrar o par perfeito.
                     Não espere; vamos embarcar juntos nesta emocionante jornada.

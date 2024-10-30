@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import DescriptionImmobileCard from "./descriptionImmobileCard"
 import AdditionalsInformationsImmobile from "./additionalsInformationsImmobile"
+import PricingDetails from "./princingDetails"
 
 interface IPropertyDetailsProps {
     imovelId: string
@@ -74,16 +75,16 @@ export default function PropertyDetails({ imovelId }: IPropertyDetailsProps) {
     };
 
     return (
-        <main className="w-full flex flex-col px-16 items-center">
-            <div className="w-full flex justify-between items-center">
-                <div className="flex items-center gap-4">
+        <main className="w-full flex flex-col px-16 items-center mobile_1:p-4">
+            <div className="w-full flex justify-between items-center mobile_1:flex-col mobile_1:items-start">
+                <div className="flex items-center gap-4 mobile_1:w-full">
                     <h2 className="text-secondary text-2xl font-semibold">{immobile?.endereco.bairro}</h2>
                     <div className="flex items-center gap-2 border border-gray_15 rounded-lg px-2 py-1">
                         <MapPin size={20} weight="fill" color="#fff" />
                         <span className="text-secondary text-base font-medium">{immobile?.endereco.cidade}</span>
                     </div>
                 </div>
-                <div className="flex flex-col">
+                <div className="flex flex-col mobile_1:mt-5">
                     <span className="text-gray_60 text-base font-medium">Valor:</span>
                     <span className="text-secondary text-2xl font-semibold">
                         {immobile?.preco ? formatCurrency(immobile?.preco) : null}
@@ -144,13 +145,17 @@ export default function PropertyDetails({ imovelId }: IPropertyDetailsProps) {
                 </div>
             </section>
 
-            <section className="w-full flex justify-between mb-8">
+            <section className="w-full flex justify-between mb-8 mobile_1:flex-col">
                 <DescriptionImmobileCard
                     numberBedrooms={immobile?.quantidadeQuartos || 0}
                     numberBathrooms={immobile?.quantidadeBanheiros || 0}
                     areaTotal={immobile?.area || 0}
                 />
                 <AdditionalsInformationsImmobile />
+            </section>
+
+            <section className="w-full flex-col justify-between mb-8">
+                <PricingDetails price={immobile?.preco || 0} />
             </section>
         </main>
     )

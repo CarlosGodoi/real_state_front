@@ -58,8 +58,10 @@ export const LoginForm = () => {
             onSubmit={handleSubmit(submitForm)}
             className="flex flex-col w-[700px] max-w-full gap-4 bg-[rgba(255,255,255,0.05)] shadow-[0_8px_32px_0_rgba(31,38,135,0.37)] 
             backdrop-blur-[10px] rounded-[10px] border border-[rgba(255,255,255,0.18)] px-8 py-10 mt-8"
+            role="form"
+
         >
-            <h2 className="text-purple_60 text-4xl text-center font-semibold mb-4 mobile_1:text-center">Faça seu Login</h2>
+            <h2 role="heading" className="text-purple_60 text-4xl text-center font-semibold mb-4 mobile_1:text-center">Faça seu Login</h2>
 
             <InputDefault
                 label="Email"

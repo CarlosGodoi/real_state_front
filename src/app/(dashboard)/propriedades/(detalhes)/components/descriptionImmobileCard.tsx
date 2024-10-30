@@ -34,7 +34,7 @@ const DescriptionImmobileCard = ({ numberBedrooms, numberBathrooms, areaTotal }:
     }
 
     return (
-        <div className="w-[48%] h-fit flex flex-col p-7 border border-gray_15 rounded-lg">
+        <div className="w-[48%] h-fit flex flex-col p-7 border border-gray_15 rounded-lg mobile_1:w-full">
             <h2 className="text-secondary text-2xl font-semibold">Descrição</h2>
             <span className="text-gray_60 text-lg font-semibold mt-4">
                 Descubra o seu próprio pedaço de paraíso no bairro Moinhos de Vento.
@@ -45,13 +45,13 @@ const DescriptionImmobileCard = ({ numberBedrooms, numberBathrooms, areaTotal }:
             <div className="w-full flex flex-col">
                 <span className="w-full border-t-2 border-gray_15 mt-8"></span>
 
-                <div className="w-full flex justify-between gap-3 mt-4">
+                <div className="w-full flex justify-between gap-3 mt-4 mobile_1:flex-col">
                     {descriptionCardData.map((card, index) => {
                         const isLastItem = index === descriptionCardData.length - 1
                         return (
                             <div
                                 key={card.label}
-                                className={`flex flex-1 flex-col p-4 ${!isLastItem ? 'border-r-2 border-gray_15' : ''}`}
+                                className={`flex flex-1 flex-col p-4 ${!isLastItem ? 'border-r-2 border-gray_15 mobile_1:border-b-2 mobile_1:border-r-0' : ''} `}
                             >
                                 <div className="flex items-center h-auto gap-2">
                                     <span className="text-gray_60">{card.icon}</span>
