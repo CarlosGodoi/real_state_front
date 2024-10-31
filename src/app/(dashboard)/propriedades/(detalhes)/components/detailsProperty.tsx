@@ -21,9 +21,23 @@ export default function PropertyDetails({ imovelId }: IPropertyDetailsProps) {
     const [immobile, setImmobile] = useState<IImmobile>()
     const [loading, setLoading] = useState(false)
     const [currentPage, setCurrentPage] = useState(0);
+    const [isMobile, setIsMobile] = useState(false);
     const router = useRouter()
 
-    const IMAGES_PER_PAGE = 2;
+    // Number of images per page changes based on screen size
+    const IMAGES_PER_PAGE = isMobile ? 1 : 2;
+
+    useEffect(() => {
+        // Check for mobile screen size on mount and window resize
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth <= 768); // You can adjust this breakpoint
+        };
+
+        checkMobile(); // Initial check
+        window.addEventListener('resize', checkMobile);
+
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
     useEffect(() => {
         getImmobileById(imovelId).then((resp) => {
@@ -52,14 +66,12 @@ export default function PropertyDetails({ imovelId }: IPropertyDetailsProps) {
         }
     };
 
-    // Função para pegar as imagens atuais baseado na página
     const getCurrentImages = () => {
         if (!immobile?.ImageImovel) return [];
         const startIndex = currentPage * IMAGES_PER_PAGE;
         return immobile.ImageImovel.slice(startIndex, startIndex + IMAGES_PER_PAGE);
     };
 
-    // Função para renderizar os indicadores de página
     const renderPageIndicators = () => {
         if (!immobile?.ImageImovel) return null;
         const totalPages = Math.ceil(immobile.ImageImovel.length / IMAGES_PER_PAGE);
@@ -92,9 +104,21 @@ export default function PropertyDetails({ imovelId }: IPropertyDetailsProps) {
                 </div>
             </div>
 
-            <section className="w-full flex flex-col bg-gray_10 p-10 mt-8 mb-8 border border-gray_15 rounded-md">
-                <div className="w-full flex justify-between gap-3 px-8 py-8 bg-gray_08 rounded-md">
-                    <div className="flex max-w-full w-full gap-3 max-h-[583px] h-screen relative">
+            <section className="w-full flex flex-col bg-gray_10 p-10 mt-8 mb-8 border border-gray_15 rounded-md mobile_1:p-4">
+                <div
+                    className="w-full sm:max-w-72 flex gap-2 bg-gray_08 justify-center items-center py-2 rounded-lg cursor-pointer mb-5"
+                    onClick={() => router.push(`/propriedades/editar/${imovelId}`)}
+                >
+                    <span className="text-gray_60 text-lg font-medium">Editar dados do Imóvel</span>
+                    <NotePencil
+                        size={32}
+                        weight="fill"
+                        color="#999999"
+                    />
+                </div>
+
+                <div className="w-full flex justify-between gap-3 px-8 py-8 bg-gray_08 rounded-md mobile_1:p-4">
+                    <div className="flex max-w-full w-full gap-3 max-h-[583px] h-screen relative mobile_1:gap-0 mobile_1:h-72">
                         {loading ? (
                             <div className="w-full h-full flex justify-center items-center border border-gray_15 rounded-lg">
                                 <Loading />
@@ -105,7 +129,11 @@ export default function PropertyDetails({ imovelId }: IPropertyDetailsProps) {
                             </div>
                         ) : immobile?.ImageImovel && immobile.ImageImovel.length > 0 ? (
                             getCurrentImages().map((image, index) => (
-                                <div key={`${currentPage}-${index}`} className="relative w-1/2 h-full border border-gray_15 rounded-lg">
+                                <div
+                                    key={`${currentPage}-${index}`}
+                                    className={`relative border border-gray_15 rounded-lg ${isMobile ? 'w-full' : 'w-1/2'
+                                        } h-full`}
+                                >
                                     <Image
                                         src={`http://localhost:3334/${image.path}`}
                                         alt={`Imagem do Imóvel ${currentPage * IMAGES_PER_PAGE + index + 1}`}
@@ -125,7 +153,7 @@ export default function PropertyDetails({ imovelId }: IPropertyDetailsProps) {
                 </div>
 
                 <div className="w-full flex justify-center items-center mt-8">
-                    <div className="flex gap-3 bg-gray_08 p-2 rounded-full">
+                    <div className="flex gap-3 bg-gray_08 p-2 rounded-full mobile_1:w-full mobile_1:justify-between">
                         <div
                             className="p-2 flex justify-center items-center bg-gray_10 border border-gray_15 rounded-full cursor-pointer"
                             onClick={goToPreviousImage}
