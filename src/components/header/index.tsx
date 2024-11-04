@@ -38,7 +38,7 @@ export const Header = () => {
                         </div>
                     </div>
 
-                    <Link href='#' className="text-secondary text-lg font-medium hover:border-b-2 border-purple_60">Serviços</Link>
+                    <Link href='/servicos' className="text-secondary text-lg font-medium hover:border-b-2 border-purple_60">Serviços</Link>
                     <button type="button" onClick={signOut} className="text-purple_70 text-lg font-medium hover:border-b-2 border-secondary">Sair</button>
                 </nav>
             </div>

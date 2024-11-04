@@ -11,7 +11,7 @@ export const UserAvatar: React.FC = () => {
                 <Avatar.Image
                     className="w-full h-full object-cover rounded-inherit"
                     src="https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80"
-                    alt="Colm Tuite"
+                    alt="Foto de usuário"
                 />
                 <Avatar.Fallback
                     className="w-full h-full flex items-center justify-center bg-white text-violet-800 text-[15px] leading-none font-medium"
