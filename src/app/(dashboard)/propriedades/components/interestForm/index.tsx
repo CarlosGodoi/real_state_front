@@ -81,7 +81,7 @@ export const PropertyInterestForm = () => {
     };
 
     return (
-        <div className="max-w-[1600px] w-full flex flex-col justify-center gap-3 mb-6 mobile_1:px-4">
+        <div className="max-w-[1600px] w-full flex flex-col justify-center gap-3 mb-6  notebook_13p:px-6 mobile_1:px-4">
             <StarsBackground />
             <div className="w-full flex flex-col gap-3">
                 <h2 className="text-secondary text-5xl font-semibold mobile_1:text-center">Vamos fazer acontecer</h2>

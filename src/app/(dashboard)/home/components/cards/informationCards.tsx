@@ -17,7 +17,7 @@ export const InformationCards = () => {
     ];
 
     return (
-        <div className="w-[70%] grid grid-cols-3 gap-2 mt-8 desktop:w-[90%] laptop:w-[80%] ipad:grid-cols-2 ipad:grid-rows-2 mobile_1:grid-cols-2 mobile_1:grid-rows-2">
+        <div className="w-[70%] grid grid-cols-3 gap-2 mt-8 desktop:w-[90%] laptop:w-[80%] ipad:grid-cols-2 ipad:grid-rows-2 mobile_1:grid-cols-2 mobile_1:grid-rows-2 mobile_1:w-full notebook_13p:w-4/5">
             {cards.map((card, index) => (
                 <div
                     key={card.title}

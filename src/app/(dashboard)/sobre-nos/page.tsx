@@ -9,7 +9,7 @@ import { TeamCards } from "./components/teamCards";
 
 export default function AboutUs() {
     return (
-        <div className="w-full flex flex-col gap-10 items-center bg-gray_08 px-16 py-20">
+        <div className="w-full flex flex-col gap-10 items-center bg-gray_08 px-16 py-20 mobile_1:px-4 mobile_1:py-10">
             <section className=" w-full flex justify-between gap-4 mobile_1:flex-col-reverse">
                 <div className="w-full flex flex-col justify-center gap-3">
                     <StarsBackground />
@@ -34,7 +34,7 @@ export default function AboutUs() {
                     />
                 </div>
             </section>
-            <section className="w-full flex justify-between items-center gap-[80px] mt-8 bg-gray_08 py-20 mobile_1:flex-col mobile_1:gap-6">
+            <section className="w-full flex justify-between items-center gap-[80px] mt-8 bg-gray_08 py-20 mobile_1:flex-col mobile_1:gap-6 mobile_1:mt-0 mobile_1:py-5">
                 <div className="w-[50%] flex flex-col gap-3 mobile_1:w-full">
                     <StarsBackground />
 
@@ -63,7 +63,7 @@ export default function AboutUs() {
 
                 <OurAchievementsCards />
             </section>
-            <section className="w-full flex flex-col mt-16">
+            <section className="w-full flex flex-col mt-16 mobile_1:mt-5">
                 <StarsBackground />
                 <div className="w-full flex flex-col gap-3 mt-6">
                     <h2 className="text-secondary text-5xl font-semibold mobile_1:text-center">Navegue pela experiência Prestige</h2>
@@ -75,7 +75,7 @@ export default function AboutUs() {
                 <NavigationExperienceCards />
             </section>
 
-            <section className="w-full flex flex-col mt-16">
+            <section className="w-full flex flex-col mt-16 mobile_1:mt-5">
                 <StarsBackground />
                 <div className="w-full flex flex-col gap-3 mt-6">
                     <h2 className="text-secondary text-5xl font-semibold mobile_1:text-center">Conheça a equipe Prestige</h2>

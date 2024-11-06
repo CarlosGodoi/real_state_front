@@ -10,7 +10,7 @@ export const UserAvatar: React.FC = () => {
             <Avatar.Root className="inline-flex items-center justify-center overflow-hidden select-none w-11 h-11 rounded-full bg-black/30">
                 <Avatar.Image
                     className="w-full h-full object-cover rounded-inherit"
-                    src="https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80"
+                    src="https://github.com/carlosgodoi.png"
                     alt="Foto de usuário"
                 />
                 <Avatar.Fallback

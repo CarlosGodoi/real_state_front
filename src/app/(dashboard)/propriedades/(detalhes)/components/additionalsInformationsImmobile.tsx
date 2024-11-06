@@ -1,8 +1,6 @@
 import { Lightning } from "@phosphor-icons/react"
-import { useEffect, useState } from "react";
 
 const AdditionalsInformationsImmobile = () => {
-    const [iconSize, setIconSize] = useState(window.innerWidth < 640 ? 30 : 25);
     const additionalsInformations = [
         {
             id: 1,
@@ -35,7 +33,7 @@ const AdditionalsInformationsImmobile = () => {
                 return (
                     <div key={data.id} className="w-full min-h-16 h-auto flex items-center gap-2 border-l-2 border-purple_60 bg-gradient-to-r from-gray_15 to-gray_08 p-2 mb-4">
 
-                        <Lightning size={window.innerWidth < 640 ? 25 : 30} color="#fff" weight="fill" />
+                        <Lightning size={30} color="#fff" weight="fill" />
                         <span className="text-gray_60 text-lg font-medium mobile_1:text-base">{data.content}</span>
                     </div>
                 )

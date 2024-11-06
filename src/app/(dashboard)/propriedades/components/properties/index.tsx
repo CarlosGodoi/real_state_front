@@ -96,7 +96,7 @@ export const ListProperties = () => {
     const paginatedImmobiles = localImmobiles.slice((currentPage - 1) * take, currentPage * take);
 
     return (
-        <section className="w-full flex flex-col justify-center items-center bg-gray_08 mt-2 px-4">
+        <section className="w-full flex flex-col justify-center items-center bg-gray_08 mt-2 px-4 mobile_1:px-0">
             <div className="max-w-[1600px] w-full flex flex-col justify-center gap-4 bg-gray_08 pt-16">
                 <StarsBackground />
                 <div className="w-full flex justify-between mobile_1:flex-col">
@@ -151,7 +151,7 @@ export const ListProperties = () => {
                                         A stunning 4-bedroom, 3-bathroom villa in a peaceful suburban neighborhood... Read More
                                     </span>
 
-                                    <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 mt-3">
+                                    <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 laptop:grid-cols-1 gap-2 mt-3">
                                         <span className="flex items-center gap-2 text-secondary text-lg font-medium bg-gray_10 border border-gray_15 rounded-full px-2 py-1 justify-center w-auto">
                                             <Bed size={25} color="#fff" weight="fill" /> {immobile.quantidadeQuartos} Quartos
                                         </span>
@@ -160,12 +160,12 @@ export const ListProperties = () => {
                                             <Bathtub size={25} color="#fff" weight="fill" /> {immobile.quantidadeBanheiros} Banheiros
                                         </span>
 
-                                        <span className="flex items-center gap-2 text-secondary text-lg font-medium bg-gray_10 border border-gray_15 rounded-full px-2 py-1 justify-center sm:col-span-2 lg:col-span-1 w-auto">
+                                        <span className="flex items-center gap-2 text-secondary text-lg font-medium bg-gray_10 border border-gray_15 rounded-full px-2 py-1 justify-center sm:col-span-2 lg:col-span-1 xl:col-span-2 w-auto">
                                             <Building size={25} color="#fff" weight="fill" /> {immobile.endereco.cidade}
                                         </span>
                                     </div>
 
-                                    <div className="w-full flex items-center justify-between gap-8 mt-3 mobile_1:flex-col">
+                                    <div className="w-full flex items-center justify-between gap-8 mt-3 mobile_1:flex-col laptop:flex-col">
                                         <div className="flex flex-col gap-1 w-full">
                                             <span className="text-gray_60 text-lg font-medium">Preço</span>
                                             <span className="text-secondary text-2xl font-semibold">
@@ -173,7 +173,7 @@ export const ListProperties = () => {
                                             </span>
                                         </div>
                                         <ButtonDefault className="w-full" variant="primary" onClick={() => router.push(`/propriedades/${immobile.id}`)}>
-                                            Ver detalhes do Imóvel
+                                            Ver detalhes
                                         </ButtonDefault>
                                     </div>
                                 </div>

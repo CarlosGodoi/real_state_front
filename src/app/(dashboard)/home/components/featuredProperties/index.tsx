@@ -109,7 +109,7 @@ export const FeaturedProperties = () => {
                                         A stunning 4-bedroom, 3-bathroom villa in a peaceful suburban neighborhood... Read More
                                     </span>
 
-                                    <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 mt-3">
+                                    <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 gap-2 mt-3">
                                         <span className="flex items-center gap-2 text-secondary text-lg font-medium bg-gray_10 border border-gray_15 rounded-full px-2 py-1 justify-center w-auto">
                                             <Bed size={25} color="#fff" weight="fill" /> {immobile.quantidadeQuartos} Quartos
                                         </span>
@@ -118,7 +118,7 @@ export const FeaturedProperties = () => {
                                             <Bathtub size={25} color="#fff" weight="fill" /> {immobile.quantidadeBanheiros} Banheiros
                                         </span>
 
-                                        <span className="flex items-center gap-2 text-secondary text-lg font-medium bg-gray_10 border border-gray_15 rounded-full px-2 py-1 justify-center sm:col-span-2 lg:col-span-1 w-auto">
+                                        <span className="flex items-center gap-2 text-secondary text-lg font-medium bg-gray_10 border border-gray_15 rounded-full px-2 py-1 justify-center sm:col-span-2 lg:col-span-1 xl:col-span-2 w-auto">
                                             <Building size={25} color="#fff" weight="fill" /> {immobile.endereco.cidade}
                                         </span>
                                     </div>
@@ -131,7 +131,7 @@ export const FeaturedProperties = () => {
                                             </span>
                                         </div>
                                         <ButtonDefault className="w-full" variant="primary" onClick={() => router.push(`/propriedades/${immobile.id}`)}>
-                                            Ver detalhes do Imóvel
+                                            Ver detalhes
                                         </ButtonDefault>
                                     </div>
                                 </div>

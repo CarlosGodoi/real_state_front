@@ -12,7 +12,7 @@ export default function Home() {
         <main className='w-full min-h-screen flex flex-col bg-gray_10'>
             <section className="w-full flex flex-1 bg-gray_08 laptop:flex-col-reverse">
                 <div className="w-full flex flex-col justify-center items-center gap-4 pt-16 laptop:mb-8">
-                    <div className="w-[70%] flex flex-col gap-3 desktop:w-[90%] laptop:w-[80%] mobile_1:w-[90%]">
+                    <div className="w-[70%] flex flex-col gap-3 desktop:w-[90%] laptop:w-[80%] mobile_1:w-[90%] notebook_13p:w-4/5">
                         <h2 className="text-secondary text-5xl mobile_1:text-3xl font-semibold mobile_1:text-center">
                             Descubra o imóvel dos seus sonhos conosco!
                         </h2>
@@ -21,7 +21,7 @@ export default function Home() {
                         </span>
                     </div>
 
-                    <div className="w-[70%] flex justify-start gap-3 mt-8 desktop:w-[90%] laptop:w-[80%]">
+                    <div className="w-[70%] flex justify-start gap-3 mt-8 desktop:w-[90%] laptop:w-[80%] notebook_13p:w-4/5">
                         <ButtonDefault>Saiba mais</ButtonDefault>
                         <ButtonDefault variant="primary">Propriedades</ButtonDefault>
                     </div>

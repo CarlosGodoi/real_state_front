@@ -86,8 +86,8 @@ export const RegisterImmobilesForm = () => {
         }
     };
     return (
-        <div className="w-full flex justify-center">
-            <form onSubmit={handleSubmit(onSubmitCreateImmobile)} className="max-w-[1300px] w-full grid grid-cols-3 gap-3 border border-gray_15 rounded-lg p-20 mb-10 mobile_1:grid-cols-1 mobile_1:p-1">
+        <div className="w-full flex justify-center mobile_1:p-4">
+            <form onSubmit={handleSubmit(onSubmitCreateImmobile)} className="max-w-[1300px] w-full grid grid-cols-3 gap-3 border border-gray_15 rounded-lg p-20 mb-10 mobile_1:p-4 mobile_1:grid-cols-1">
                 <InputDefault
                     label="Rua"
                     placeholder="Digite a rua"
@@ -186,7 +186,7 @@ export const RegisterImmobilesForm = () => {
                     options={statusOptions}
                     onChange={(value) => setValue("status", value as "NEGOCIACAO" | "VENDIDO" | "ALUGADO" | "PENDENTE")}
                 />
-                <div className="grid col-span-3 ">
+                <div className="grid col-span-3 mobile_1:col-span-1">
                     <DropzoneImage
                         id="images"
                         name="images"
@@ -195,9 +195,12 @@ export const RegisterImmobilesForm = () => {
                         onSetBaseImage={setBaseImage}
                     />
                 </div>
-                <div className="col-span-3 flex justify-end mt-8">
-                    <ButtonDefault variant="primary" type="submit" className="w-[33%] mobile_1:w-full">{loading ? <Loading /> : 'Salvar'}</ButtonDefault>
+                <div className="col-span-3 flex justify-end mt-8 mobile_1:mt-4 mobile_1:col-span-1">
+                    <ButtonDefault variant="primary" type="submit" className="mobile_1:w-full">
+                        {loading ? <Loading /> : 'Salvar'}
+                    </ButtonDefault>
                 </div>
+
             </form>
         </div>
     )

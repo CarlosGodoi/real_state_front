@@ -15,7 +15,7 @@ export const SearchProperty = () => {
     }
 
     return (
-        <div className="w-full flex justify-center absolute translate-y-[-65px] mobile_1:translate-y-0 mobile_1:px-2 mobile_1:mt-4">
+        <div className="w-full flex justify-center absolute translate-y-[-65px] mobile_1:translate-y-0 mobile_1:px-6 mobile_1:mt-4">
             <div className="relative w-[50%] bg-gray_20 p-3 rounded-lg mobile_1:w-full">
                 <input
                     type="text"
