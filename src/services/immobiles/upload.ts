@@ -5,21 +5,19 @@ interface IUploadImage {
     images: File[];
 }
 
-export const upload = async (imovelId: string, data: File[]) => {
+export const uploadImages = async (imovelId: string, images: File[]) => {
     const formData = new FormData();
-
-    data.forEach((image) => {
-        formData.append("image", image);
-    });
+    images.forEach((image) => formData.append("files", image));
 
     try {
-        return api.post<IUploadImage>(`/imovel/images/${imovelId}`, formData, {
+        return await api.post(`/imovel/images/${imovelId}`, formData, {
             headers: {
                 Authorization: `Bearer ${getCookie("token")?.toString()}`,
                 "Content-Type": "multipart/form-data",
             },
         });
     } catch (error) {
-        Promise.reject(error);
+        console.error("Erro ao fazer upload das imagens:", error);
+        return Promise.reject(error);
     }
 };

@@ -9,7 +9,7 @@ import { useState } from "react"
 import { Controller, useForm } from "react-hook-form"
 import { FormData, defaultValues, resolver } from '../schema'
 import { registerImmobile } from "@/services/immobiles/register"
-import { upload } from "@/services/immobiles/upload"
+import { uploadImages } from "@/services/immobiles/upload"
 import { toast } from "react-toastify"
 import { numberOfBedrooms } from "@/utils/selectOptions/bedrooms"
 import { numberOfBathooms } from "@/utils/selectOptions/bathrooms"
@@ -50,41 +50,43 @@ export const RegisterImmobilesForm = () => {
         setLoading(true);
 
         if (role && user.perfil) {
-            registerImmobile({ ...data, images })
-                .then((res) => {
-                    const imovelId = res?.data?.id;
-                    console.log(imovelId);
+            try {
+                const imovelId = await registerImmobile({ ...data, images });
+                console.log("ID do imóvel cadastrado:", imovelId);
 
-                    if (imovelId) {
-                        upload(imovelId, images);
-                        toast("Imóvel cadastrado com sucesso!", {
-                            hideProgressBar: true,
-                            autoClose: 2000,
-                            type: "success",
-                            position: 'top-right',
-                            theme: "colored",
-                            style: { backgroundColor: '#7A00FF', color: '#fff' }
-                        });
-                        router.push('/propriedades')
+                if (imovelId) {
+                    if (images.length > 0) {
+                        await uploadImages(imovelId, images);
                     }
-                })
-                .catch((err) => {
-                    if (isAxiosError(err)) {
-                        console.error("Erro ao cadastrar imóvel:", err.response?.data);
-                    } else {
-                        console.error("Erro inesperado:", err);
-                    }
-                    toast("Ocorreu erro ao tentar criar o imóvel", {
+
+                    toast("Imóvel cadastrado com sucesso!", {
                         hideProgressBar: true,
                         autoClose: 2000,
-                        type: "error",
+                        type: "success",
                         position: "top-right",
                         theme: "colored",
+                        style: { backgroundColor: "#7A00FF", color: "#fff" },
                     });
-                })
-                .finally(() => setLoading(false));
+
+                    reset();
+                    router.push("/propriedades");
+                }
+            } catch (error) {
+                console.error("Erro ao cadastrar ou fazer upload do imóvel:", error);
+
+                toast("Ocorreu um erro ao tentar criar o imóvel", {
+                    hideProgressBar: true,
+                    autoClose: 2000,
+                    type: "error",
+                    position: "top-right",
+                    theme: "colored",
+                });
+            } finally {
+                setLoading(false);
+            }
         }
     };
+
     return (
         <div className="w-full flex justify-center mobile_1:p-4">
             <form onSubmit={handleSubmit(onSubmitCreateImmobile)} className="max-w-[1300px] w-full grid grid-cols-3 gap-3 border border-gray_15 rounded-lg p-20 mb-10 mobile_1:p-4 mobile_1:grid-cols-1">

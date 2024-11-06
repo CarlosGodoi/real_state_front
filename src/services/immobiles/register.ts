@@ -34,32 +34,15 @@ export const registerImmobile = async (data: ICreateImmobile) => {
 
         const response = await apiFront.post("/api/immobiles", parseData);
 
-        if (images && images.length) {
-            const id = response.data.id as string;
-            console.log('ID =>', id);
+        const imovelId = response.data.id;
+        console.log('ID do imóvel registrado =>', imovelId);
 
-            const formData = new FormData();
-
-            images.forEach((el) => {
-                formData.append("files", el);
-                console.log('FormData contém:', Array.from(formData.entries()));
-            });
-
-            return await api.post(`imovel/images/${id}`, formData, {
-                headers: {
-                    Authorization: `Bearer ${getCookie("token")?.toString()}`,
-                    "Content-Type": "multipart/form-data",
-                },
-            });
-        }
-
-        return response;
+        return imovelId;
     } catch (error) {
         if (isAxiosError(error)) {
             console.log("Erro de resposta:", error.response?.data);
             console.log("Status:", error.response?.status);
             console.log("Headers:", error.response?.headers);
-            console.log("Erro de resposta:", error.response?.data);
         }
         return Promise.reject(error);
     }
