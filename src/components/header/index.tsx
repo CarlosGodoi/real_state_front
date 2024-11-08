@@ -2,7 +2,6 @@
 import Link from "next/link";
 import { Logo } from "../logo";
 import { MoboMenu } from "../moboMenu";
-import { ButtonDefault } from "../buttonDefault";
 import { useAuthContext } from "@/context/authContext";
 import { useState } from "react";
 import { ContactUsModal } from "../modal/contactUsModal";

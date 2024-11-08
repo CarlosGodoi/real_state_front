@@ -15,7 +15,6 @@ export const DropzoneImage: React.FC<IProps> = ({
     id,
     name,
     onUploadImage,
-    onSetBaseImage,
     type,
 }) => {
     const [files, setFiles] = useState<any>([]);

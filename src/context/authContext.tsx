@@ -7,7 +7,6 @@ import {
     useState,
 } from 'react';
 
-import { apiFront } from '@/services/api';
 import { ROLE } from '@/enums/profile';
 import { useRouter } from 'next/navigation';
 import { deleteCookie, getCookie, hasCookie, setCookie } from 'cookies-next';

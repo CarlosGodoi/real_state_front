@@ -25,7 +25,7 @@ export const RegisterBrokerForm = () => {
     const {
         handleSubmit,
         register,
-        formState: { errors, isDirty },
+        formState: { errors },
         setValue,
     } = useForm<FormData>({
         resolver,

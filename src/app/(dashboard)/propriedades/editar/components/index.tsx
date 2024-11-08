@@ -36,8 +36,6 @@ export const PropertyEditForm = ({ imovelId }: IFormProps) => {
         register,
         setValue,
         reset,
-        formState: { errors, isDirty },
-        control,
     } = useForm<FormData>({
         resolver,
         defaultValues,
@@ -78,6 +76,7 @@ export const PropertyEditForm = ({ imovelId }: IFormProps) => {
 
         try {
             await editImmobile(imovelId, { preco, tipoContrato, status });
+            reset()
             router.push("/propriedades");
         } catch (error) {
             console.log(error);

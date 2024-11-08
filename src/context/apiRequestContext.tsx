@@ -1,8 +1,8 @@
 'use client';
-import api, { apiFront } from '@/services/api';
+import { apiFront } from '@/services/api';
 import { AxiosError, AxiosResponse } from 'axios';
 import React, { ReactNode, createContext, useContext, useState } from 'react';
-import { deleteCookie, getCookie, hasCookie, setCookie } from 'cookies-next';
+import { getCookie } from 'cookies-next';
 import { useJwt } from 'react-jwt';
 
 interface IApiRequestContext {

@@ -17,11 +17,11 @@ import { typeContracts } from "@/utils/selectOptions/typeContract"
 import { typeImmobiles } from "@/utils/selectOptions/typeImmobile"
 import { statusOptions } from "@/utils/selectOptions/status"
 import Loading from "@/components/loading"
-import { isAxiosError } from "axios"
 
 export const RegisterImmobilesForm = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const [baseImage, setBaseImage] = useState<string[]>([]);
+    console.log(baseImage);
 
     const [images, setImages] = useState<File[]>([]);
     const router = useRouter();

@@ -1,7 +1,7 @@
 import { Footer } from '@/components/footer'
 import { Header } from '@/components/header'
 import { ImmobilesProvider } from '@/context/immobilesContext'
-import { ReactNode, Suspense } from 'react'
+import { ReactNode } from 'react'
 
 export default function HomeLayout({ children }: { children: ReactNode }) {
     return (

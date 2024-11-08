@@ -1,5 +1,4 @@
 'use client'
-import { ButtonDefault } from "@/components/buttonDefault"
 import Loading from "@/components/loading"
 import { IImmobile } from "@/interfaces/getImmobiles"
 import { getImmobileById } from "@/services/immobiles/getById"

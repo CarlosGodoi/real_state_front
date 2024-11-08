@@ -1,14 +1,10 @@
 'use client';
-
-import { ButtonDefault } from "@/components/buttonDefault";
 import { useImmobilesContext } from "@/context/immobilesContext";
-import { IImmobiles } from "@/interfaces/getImmobiles";
 import { MagnifyingGlass } from '@phosphor-icons/react'
-import { useState } from "react";
 
 
 export const SearchProperty = () => {
-    const { handleSearch, searchImmobiles } = useImmobilesContext()
+    const { handleSearch } = useImmobilesContext()
 
     const onSearchChange = (event: { target: { value: string; }; }) => {
         handleSearch(event.target.value)
