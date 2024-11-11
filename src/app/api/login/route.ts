@@ -6,6 +6,9 @@ import { addHours } from "date-fns";
 
 export async function POST(req: NextRequest) {
     const { data } = await req.json();
+    const token = req.cookies.get("token")?.value;
+    console.log('token_recuperado_no_login =>', token);
+
 
     try {
         const response = await api.post("/sessions", {

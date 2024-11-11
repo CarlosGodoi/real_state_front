@@ -2,7 +2,7 @@
 import { apiFront } from '@/services/api';
 import { AxiosError, AxiosResponse, AxiosRequestConfig } from 'axios';
 import React, { ReactNode, createContext, useContext } from 'react';
-import { getCookie } from 'cookies-next';
+import { getCookie, setCookie } from 'cookies-next';
 
 interface ApiRequestOptions<T = unknown> {
     data?: T;
@@ -25,7 +25,7 @@ interface IProps {
 const ApiRequestContext = createContext<IApiRequestContext>({} as IApiRequestContext);
 
 const ApiRequestProvider: React.FC<IProps> = ({ children }) => {
-    const token = getCookie('token') as string;
+    let token = getCookie('token') as string;
 
     const apiRequest = async <T = unknown>(
         method: 'put' | 'post' | 'get' | 'delete' | 'patch',
@@ -55,7 +55,30 @@ const ApiRequestProvider: React.FC<IProps> = ({ children }) => {
         } catch (error) {
             if (error instanceof AxiosError) {
                 if (error.response?.status === 401) {
-                    // Tratamento de erro de autenticação
+
+                    const refreshToken = getCookie('refresh') as string;
+                    const refreshResponse = await apiFront.post('/token/refresh', { refreshToken });
+
+                    // Atualiza o token nos cookies e no contexto
+                    setCookie('token', refreshResponse.data.token);
+                    token = refreshResponse.data.token;
+                    console.log('token-atualizado =>', token);
+
+
+                    // Tente a requisição original novamente com o novo token
+                    const newConfig: AxiosRequestConfig = {
+                        headers: {
+                            ...config.headers,
+                            Authorization: `Bearer ${token}`,
+                        },
+                        params: config.params,
+                        data: config.data,
+                    };
+                    const newResponse = await apiFront[method](urlApi, newConfig);
+                    return newResponse;
+                } else {
+                    // Outros erros
+                    return Promise.reject(error);
                 }
             }
 
