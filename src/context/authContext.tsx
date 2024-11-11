@@ -30,7 +30,7 @@ interface IPropsSignin {
     email: string;
     senha: string;
     token?: string
-    usuario: TUser
+    user?: TUser;
 }
 
 interface IAuthContext {
@@ -57,19 +57,16 @@ const AuthProvider: React.FC<IProps> = ({ children }) => {
     ): Promise<ISignInResponse> {
         const result = await apiRequest('post', '/api/login', { data })
             .then(({ data }) => {
-                const { token, usuario } = data;
+                const { token, user } = data;
                 console.log("Token recuperado no backend:", getCookie(token ? token : ''));
 
-                if (token) {
-                    setCookie('token', token, {
-                        path: '/', // Garante que o cookie seja acessível em todas as rotas
-                        maxAge: 60 * 60 * 24, // Tempo de expiração (1 dia neste caso)
-                        sameSite: 'strict', // Controle de acesso cross-site
-                    });
-                }
+                setCookie('token', token, {
+                    path: '/', // Garante que o cookie seja acessível em todas as rotas
+                    maxAge: 60 * 60 * 24, // Tempo de expiração (1 dia neste caso)
+                    sameSite: 'strict', // Controle de acesso cross-site
+                });
 
-
-                setUser(usuario);
+                if (user) setUser(user);
 
                 return { status: true, message: '' };
             })
