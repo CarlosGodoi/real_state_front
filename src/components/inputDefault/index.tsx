@@ -8,7 +8,7 @@ type InputValue = string | number | readonly string[] | undefined;
 interface InputDefaultProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'value'> {
   label?: string;
   register?: UseFormRegisterReturn;
-  clearErrors?: UseFormClearErrors<any>;
+  clearErrors?: UseFormClearErrors<Record<string, unknown>>;
   helperText?: string;
   isLoading?: boolean;
   loading?: boolean;
@@ -23,7 +23,6 @@ interface InputDefaultProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 
 export const InputDefault: React.FC<InputDefaultProps> = ({
   label,
   register,
-  clearErrors,
   helperText,
   onChangeValue,
   isLoading,

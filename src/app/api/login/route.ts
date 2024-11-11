@@ -42,7 +42,7 @@ export async function GET(req: NextRequest) {
     const data = await req.json();
     const { searchParams } = new URL(req.url);
     let token = req.cookies.get("token")?.value as string;
-    let refreshToken = req.cookies.get("refresh")?.value as string;
+    const refreshToken = req.cookies.get("refresh")?.value as string;
 
     const decoded = decode(token) as {
         role: string;

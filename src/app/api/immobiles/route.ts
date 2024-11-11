@@ -8,7 +8,7 @@ export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url);
 
     let token = req.cookies.get("token")?.value as string;
-    let refreshToken = req.cookies.get("refresh")?.value as string;
+    const refreshToken = req.cookies.get("refresh")?.value as string;
 
     console.log("Token recuperado:", token);
 

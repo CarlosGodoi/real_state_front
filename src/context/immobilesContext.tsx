@@ -72,7 +72,7 @@ export const ImmobilesProvider: React.FC<IProps> = ({ children }) => {
 
     useEffect(() => {
         fetchImmobiles(filter);
-    }, []);
+    }, [filter]);
 
     const searchImmobiles = useCallback(() => {
         const precoMax = filter.precoMax ? parseFloat(filter.precoMax) * 1000 : null;

@@ -32,7 +32,7 @@ export const OurValuesCards = () => {
     return (
         <div className="w-full grid grid-cols-1 gap-3 sm:grid-cols-2 rounded-md border border-gray_15 shadow-lg shadow-gray_30 px-6 py-6 sm:px-10 sm:py-10 relative">
 
-            {valuesCardsData.map((card, index) => (
+            {valuesCardsData.map((card) => (
                 <div
                     key={card.id}
                     className="flex flex-col gap-3 p-5 border border-gray_15 rounded-md"

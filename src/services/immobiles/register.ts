@@ -1,6 +1,4 @@
 import { apiFront } from "../api";
-import { getCookie } from "cookies-next";
-import api from "../api";
 import { isAxiosError } from "axios";
 
 interface IAddress {

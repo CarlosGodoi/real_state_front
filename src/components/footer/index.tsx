@@ -86,7 +86,7 @@ export const Footer = () => {
                         <span className="text-gray_60 text-xl font-medium">Home</span>
                         <nav className="text-secondary text-lg font-medium">Propriedades</nav>
                         <nav className="text-secondary text-lg font-medium">Depoimentos</nav>
-                        <nav className="text-secondary text-lg font-medium">FAQ's</nav>
+                        <nav className="text-secondary text-lg font-medium">FAQs</nav>
                     </div>
 
                     <div className="flex flex-col gap-2">

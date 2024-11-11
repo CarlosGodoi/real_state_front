@@ -1,10 +1,6 @@
 import { getCookie } from "cookies-next";
 import api from "../api";
 
-interface IUploadImage {
-    images: File[];
-}
-
 export const uploadImages = async (imovelId: string, images: File[]) => {
     const formData = new FormData();
     images.forEach((image) => formData.append("files", image));

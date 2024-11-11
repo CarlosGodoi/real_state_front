@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useDropzone } from "react-dropzone";
 
 interface IProps {
-    onUploadImage: (e: any) => void;
+    onUploadImage: (files: File[]) => void;
     onSetBaseImage: (images: string[]) => void;
     type: string;
     id: string;
@@ -17,7 +17,7 @@ export const DropzoneImage: React.FC<IProps> = ({
     onUploadImage,
     type,
 }) => {
-    const [files, setFiles] = useState<any>([]);
+    const [files, setFiles] = useState<(File & { preview: string })[]>([]);
     const { getInputProps, getRootProps, acceptedFiles, fileRejections } =
         useDropzone({
             maxFiles: 3,
@@ -35,11 +35,11 @@ export const DropzoneImage: React.FC<IProps> = ({
             },
         });
 
-    const handleRemoveFile = (fileToRemove: any) => {
-        setFiles(files.filter((file: any) => file !== fileToRemove));
+    const handleRemoveFile = (fileToRemove: File & { preview: string }) => {
+        setFiles(files.filter((file) => file !== fileToRemove));
     };
 
-    const preview = files.map((file: any) => (
+    const preview = files.map((file) => (
         <div
             key={file.preview}
             className="relative w-full h-72 rounded-lg overflow-hidden">
@@ -73,7 +73,6 @@ export const DropzoneImage: React.FC<IProps> = ({
                         type={type}
                         id={id}
                         name={name}
-                        onChange={onUploadImage}
                         {...getInputProps()}
                     />
                     <div className="flex flex-col gap-2 justify-center items-center text-center cursor-pointer">

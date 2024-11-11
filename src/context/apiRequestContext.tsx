@@ -1,43 +1,37 @@
 'use client';
 import { apiFront } from '@/services/api';
-import { AxiosError, AxiosResponse } from 'axios';
-import React, { ReactNode, createContext, useContext, useState } from 'react';
+import { AxiosError, AxiosResponse, AxiosRequestConfig } from 'axios';
+import React, { ReactNode, createContext, useContext } from 'react';
 import { getCookie } from 'cookies-next';
-import { useJwt } from 'react-jwt';
+
+interface ApiRequestOptions<T = unknown> {
+    data?: T;
+    params?: Record<string, string | number>;
+    isUpload?: boolean;
+}
 
 interface IApiRequestContext {
-    apiRequest: (
+    apiRequest: <T = unknown>(
         method: 'put' | 'post' | 'get' | 'delete' | 'patch',
         url: string,
-        options?: {
-            data?: any;
-            params?: any;
-            isUpload?: boolean;
-        },
-    ) => Promise<AxiosResponse<any, any>>;
+        options?: ApiRequestOptions<T>
+    ) => Promise<AxiosResponse<T>>;
 }
 
 interface IProps {
     children: ReactNode;
 }
 
-const ApiRequestContext = createContext<IApiRequestContext>(
-    {} as IApiRequestContext,
-);
+const ApiRequestContext = createContext<IApiRequestContext>({} as IApiRequestContext);
 
 const ApiRequestProvider: React.FC<IProps> = ({ children }) => {
     const token = getCookie('token') as string;
-    const { isExpired } = useJwt(token);
 
-    const apiRequest = async (
+    const apiRequest = async <T = unknown>(
         method: 'put' | 'post' | 'get' | 'delete' | 'patch',
         url: string,
-        options?: {
-            data?: any;
-            params?: any;
-            isUpload?: boolean;
-        },
-    ) => {
+        options?: ApiRequestOptions<T>
+    ): Promise<AxiosResponse<T>> => {
         let urlApi = url;
         const headers = {
             'Content-Type': options?.isUpload ? 'multipart/form-data' : 'application/json',
@@ -45,25 +39,23 @@ const ApiRequestProvider: React.FC<IProps> = ({ children }) => {
         };
 
         const params = { ...options?.params };
-        const urlSearch = new URLSearchParams(params).toString();
+        const urlSearch = new URLSearchParams(params as Record<string, string>).toString();
 
         if (options?.params) urlApi += `?${urlSearch}`;
 
-        try {
-            const response = await apiFront[method](
-                urlApi,
-                {
-                    data: options?.data,
-                },
-                {
-                    headers: { ...headers },
-                },
-            );
+        const config: AxiosRequestConfig = {
+            headers,
+            params,
+            data: options?.data,
+        };
 
+        try {
+            const response = await apiFront[method](urlApi, config);
             return response;
         } catch (error) {
             if (error instanceof AxiosError) {
-                if (error.response?.status == 401) {
+                if (error.response?.status === 401) {
+                    // Tratamento de erro de autenticação
                 }
             }
 

@@ -68,7 +68,7 @@ export const FeaturedProperties = () => {
                     <div className="w-full flex flex-col gap-2 mobile_1:w-full mobile_1:text-center">
                         <h2 className="text-secondary text-5xl font-semibold">Propriedades em Destaque</h2>
                         <span className="text-gray_60 text-lg font-medium mt-4">
-                            Explore nossa seleção escolhida a dedo de propriedades em destaque. Cada listagem oferece uma visão geral de casas e investimentos excepcionais disponíveis através da Prestige Imobiliária. Clique em "Ver detalhes" para obter mais informações.
+                            Explore nossa seleção escolhida a dedo de propriedades em destaque. Cada listagem oferece uma visão geral de casas e investimentos excepcionais disponíveis através da Prestige Imobiliária. Clique em Ver detalhes para obter mais informações.
                         </span>
                     </div>
                     <div className="flex items-end mobile_1:mt-4">
