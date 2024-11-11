@@ -134,7 +134,7 @@ export default function PropertyDetails({ imovelId }: IPropertyDetailsProps) {
                                         } h-full`}
                                 >
                                     <Image
-                                        src={`http://localhost:3334/${image.path}`}
+                                        src={image.path}
                                         alt={`Imagem do Imóvel ${currentPage * IMAGES_PER_PAGE + index + 1}`}
                                         layout="fill"
                                         objectFit="cover"
