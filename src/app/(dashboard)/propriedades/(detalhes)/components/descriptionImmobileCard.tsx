@@ -5,9 +5,10 @@ interface IDescriptionDataCardProps {
     numberBedrooms: number
     numberBathrooms: number
     areaTotal: number
+    description: string
 }
 
-const DescriptionImmobileCard = ({ numberBedrooms, numberBathrooms, areaTotal }: IDescriptionDataCardProps) => {
+const DescriptionImmobileCard = ({ numberBedrooms, numberBathrooms, areaTotal, description }: IDescriptionDataCardProps) => {
     const descriptionCardData = [
         {
             icon: <Bed size={25} color="#fff" />,
@@ -37,9 +38,7 @@ const DescriptionImmobileCard = ({ numberBedrooms, numberBathrooms, areaTotal }:
         <div className="w-[48%] h-fit flex flex-col p-7 border border-gray_15 rounded-lg mobile_1:w-full">
             <h2 className="text-secondary text-2xl font-semibold">Descrição</h2>
             <span className="text-gray_60 text-lg font-semibold mt-4">
-                Descubra o seu próprio pedaço de paraíso no bairro Moinhos de Vento.
-                Com uma planta aberta, vistas deslumbrantes do oceano em todos os quartos
-                e acesso direto a uma praia de areia imaculada, esta propriedade é o epítome da vida costeira.
+                {description}
             </span>
 
             <div className="w-full flex flex-col">

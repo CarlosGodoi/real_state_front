@@ -143,12 +143,12 @@ export const ListProperties = () => {
 
                                 <div className="flex flex-col gap-3 mt-3">
                                     <div className="w-full flex justify-between items-center">
-                                        <h2 className="text-secondary text-2xl font-semibold">{immobile.endereco.bairro}</h2>
+                                        <h2 className="text-secondary text-2xl font-semibold">{immobile.businessName}</h2>
                                         {user.perfil === ROLE.CORRETOR ? <DeleteIcon onClick={() => handleDelete(immobile.id)} /> : null}
 
                                     </div>
                                     <span className="text-gray_60 text-lg font-medium">
-                                        A stunning 4-bedroom, 3-bathroom villa in a peaceful suburban neighborhood... Read More
+                                        {immobile.description}
                                     </span>
 
                                     <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 laptop:grid-cols-1 gap-2 mt-3">

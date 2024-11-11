@@ -17,10 +17,12 @@ interface IImage {
 
 interface IImmobiles {
     id: string;
+    businessName: string;
     tipoContrato: TipoContrato;
     tipoImovel: TipoImovel;
     quantidadeQuartos: number;
     quantidadeBanheiros: number;
+    description: string;
     area: number;
     preco: number;
     status: StatusImovel;
@@ -33,10 +35,12 @@ export type { IImmobiles };
 
 interface IImmobile {
     id: string;
+    businessName: string;
     tipoContrato: TipoContrato;
     tipoImovel: TipoImovel;
     quantidadeQuartos: number;
     quantidadeBanheiros: number;
+    description: string;
     area: number;
     preco: number;
     status: StatusImovel;
