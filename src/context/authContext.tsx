@@ -19,14 +19,18 @@ export type TUser = {
     perfil: ROLE;
 };
 
-export type TCredentials = {
-    accessToken: string;
-    refreshToken: string;
-};
+interface ISignInResponse {
+    status: boolean;
+    message: string;
+    token?: string;
+    usuario?: TUser;
+}
 
 interface IPropsSignin {
     email: string;
     senha: string;
+    token?: string
+    usuario: TUser
 }
 
 interface IAuthContext {
@@ -50,17 +54,20 @@ const AuthProvider: React.FC<IProps> = ({ children }) => {
 
     async function signIn(
         data: IPropsSignin
-    ): Promise<{ status: boolean; message: string }> {
+    ): Promise<ISignInResponse> {
         const result = await apiRequest('post', '/api/login', { data })
             .then(({ data }) => {
                 const { token, usuario } = data;
-                console.log("Token recuperado no backend:", getCookie(token));
+                console.log("Token recuperado no backend:", getCookie(token ? token : ''));
 
-                setCookie('token', token, {
-                    path: '/', // Garante que o cookie seja acessível em todas as rotas
-                    maxAge: 60 * 60 * 24, // Tempo de expiração (1 dia neste caso)
-                    sameSite: 'strict', // Controle de acesso cross-site
-                });
+                if (token) {
+                    setCookie('token', token, {
+                        path: '/', // Garante que o cookie seja acessível em todas as rotas
+                        maxAge: 60 * 60 * 24, // Tempo de expiração (1 dia neste caso)
+                        sameSite: 'strict', // Controle de acesso cross-site
+                    });
+                }
+
 
                 setUser(usuario);
 
