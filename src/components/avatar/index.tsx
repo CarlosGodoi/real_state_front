@@ -1,9 +1,17 @@
-import React from "react";
+'use client'
+import React, { useEffect, useState } from "react";
 import * as Avatar from "@radix-ui/react-avatar";
 import { useAuthContext } from "@/context/authContext";
 
 export const UserAvatar: React.FC = () => {
     const { user } = useAuthContext()
+    const [userName, setUserName] = useState<string | null>(null);
+
+    useEffect(() => {
+        if (user) {
+            setUserName(user.nome);
+        }
+    }, [user]);
 
     return (
         < div className="flex items-center gap-3" >
@@ -20,7 +28,7 @@ export const UserAvatar: React.FC = () => {
                     CT
                 </Avatar.Fallback>
             </Avatar.Root>
-            <span className="text-secondary text-base font-medium">{user.nome}</span>
+            <span className="text-secondary text-base font-medium">{userName}</span>
         </div >
     )
 }
