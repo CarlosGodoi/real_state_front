@@ -27,8 +27,8 @@ export default function CardServices({
         <div className="w-full flex flex-col gap-3 mt-5">
             <div className="w-full flex flex-col gap-3">
                 <StarsBackground />
-                <h2 className="text-secondary text-4xl font-semibold">{mainTitle}</h2>
-                <p className="w-[90%] text-gray_60 text-lg font-medium">
+                <h2 className="text-secondary text-4xl font-semibold mobile_1:text-center">{mainTitle}</h2>
+                <p className="w-[90%] text-gray_60 text-lg font-medium mobile_1:text-center mobile_1:w-full mobile_1:mt-4">
                     {mainDescription}
                 </p>
             </div>

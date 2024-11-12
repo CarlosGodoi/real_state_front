@@ -102,7 +102,7 @@ export const PropertyEditForm = ({ imovelId }: IFormProps) => {
                     ) : immobile.ImageImovel && immobile.ImageImovel.length > 0 ? (
                         // Tem imagem
                         <Image
-                            src={srcImg}
+                            src={immobile.ImageImovel[0].path}
                             alt="Imagem do Imóvel"
                             layout="fill"
                             objectFit="cover"
@@ -155,10 +155,12 @@ export const PropertyEditForm = ({ imovelId }: IFormProps) => {
                     <SelectDefault
                         label="Contrato"
                         options={typeContracts}
+                        value={immobile?.tipoContrato}
                         onChange={(value) => setValue("tipoContrato", value as 'VENDA' || 'ALUGUEL')} />
                     <SelectDefault
                         label="Status"
                         options={statusOptions}
+                        value={immobile?.status}
                         onChange={(value) => setValue("status", value as "NEGOCIACAO" | "VENDIDO" | "ALUGADO" | "PENDENTE")} />
                     <InputDefault
                         label="Rua"
@@ -191,7 +193,7 @@ export const PropertyEditForm = ({ imovelId }: IFormProps) => {
                         disabled
                     />
 
-                    <div className="col-span-2 flex justify-end gap-3 mt-8 mobile_1:col-span-1">
+                    <div className="col-span-2 flex justify-end gap-3 mt-8 mobile_1:col-span-1 mobile_1:flex-col">
                         <ButtonDefault type="button" className="mobile_1:w-full" onClick={() => router.push(`/propriedades/${imovelId}`)}>Voltar</ButtonDefault>
                         <ButtonDefault type="submit" variant="primary" className="mobile_1:w-full">{loading ? <Loading /> : 'Salvar'}</ButtonDefault>
                     </div>

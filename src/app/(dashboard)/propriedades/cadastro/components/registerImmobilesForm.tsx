@@ -21,8 +21,6 @@ import Loading from "@/components/loading"
 export const RegisterImmobilesForm = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const [baseImage, setBaseImage] = useState<string[]>([]);
-    console.log(baseImage);
-
     const [images, setImages] = useState<File[]>([]);
     const router = useRouter();
     const { user } = useAuthContext();
@@ -41,7 +39,6 @@ export const RegisterImmobilesForm = () => {
 
     const UploadImage = async (files: File[]) => {
         setImages(files);
-        console.log('Arquivos de imagem recebidos:', files);
     };
 
     const role = "CORRETOR";
@@ -52,7 +49,6 @@ export const RegisterImmobilesForm = () => {
         if (role && user.perfil) {
             try {
                 const imovelId = await registerImmobile({ ...data, images });
-                console.log("ID do imóvel cadastrado:", imovelId);
 
                 if (imovelId) {
                     if (images.length > 0) {
@@ -68,7 +64,13 @@ export const RegisterImmobilesForm = () => {
                         style: { backgroundColor: "#7A00FF", color: "#fff" },
                     });
 
-                    reset();
+                    reset(defaultValues); // Reseta o formulário para valores padrões
+                    setValue("quantidadeQuartos", null); // Reseta o valor do select "Quartos"
+                    setValue("quantidadeBanheiros", null); // Reseta o valor do select "Banheiros"
+                    setValue("tipoContrato", ''); // Reseta o valor do select "Contrato"
+                    setValue("tipoImovel", ''); // Reseta o valor do select "Tipo Imóvel"
+                    setValue("status", ''); // Reseta o valor do select "Status"
+
                     router.push("/propriedades");
                 }
             } catch (error) {
@@ -202,7 +204,6 @@ export const RegisterImmobilesForm = () => {
                         {loading ? <Loading /> : 'Salvar'}
                     </ButtonDefault>
                 </div>
-
             </form>
         </div>
     )

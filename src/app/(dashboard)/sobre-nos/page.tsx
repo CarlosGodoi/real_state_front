@@ -15,7 +15,7 @@ export default function AboutUs() {
                     <StarsBackground />
                     <div className="flex flex-col gap-2">
                         <h2 className="text-secondary text-5xl font-semibold mobile_1:text-center">Nossa Jornada</h2>
-                        <span className="w-[90%] text-gray_60 text-lg font-medium mobile_1:text-center">
+                        <span className="w-[90%] text-gray_60 text-lg font-medium mobile_1:text-center mobile_1:w-full mobile_1:mt-4">
                             Nossa história é de crescimento e evolução contínuos. Começamos como uma pequena equipe com grandes sonhos,
                             determinada a criar uma plataforma imobiliária que transcendesse o comum. Ao longo dos anos, ampliamos nosso alcance,
                             firmamos parcerias valiosas e conquistamos a confiança de inúmeros clientes.
@@ -40,7 +40,7 @@ export default function AboutUs() {
 
                     <div className="flex flex-col gap-2 mobile_1:grid-cols-1">
                         <h2 className="text-secondary text-5xl font-semibold mobile_1:text-center">Nossos Valores</h2>
-                        <span className="text-gray_60 text-lg font-medium mobile_1:text-center">
+                        <span className="text-gray_60 text-lg font-medium mobile_1:text-center mobile_1:w-full mobile_1:mt-4">
                             Nossa história é de crescimento e evolução contínuos.
                             Começamos como uma pequena equipe com grandes sonhos,
                             determinada a criar uma plataforma imobiliária que transcendesse o comum.
@@ -55,7 +55,7 @@ export default function AboutUs() {
                 <StarsBackground />
                 <div className="w-full flex flex-col gap-3 mt-6">
                     <h2 className="text-secondary text-5xl font-semibold mobile_1:text-center">Nossas conquistas</h2>
-                    <span className="text-gray_60 text-lg font-medium mobile_1:text-center">
+                    <span className="text-gray_60 text-lg font-medium mobile_1:text-center mobile_1:w-full mobile_1:mt-4">
                         Nossa história é de crescimento e evolução contínuos. Começamos como uma pequena equipe com grandes sonhos,
                         determinada a criar uma plataforma imobiliária que transcendesse o comum.
                     </span>
@@ -67,7 +67,7 @@ export default function AboutUs() {
                 <StarsBackground />
                 <div className="w-full flex flex-col gap-3 mt-6">
                     <h2 className="text-secondary text-5xl font-semibold mobile_1:text-center">Navegue pela experiência Prestige</h2>
-                    <span className="text-gray_60 text-lg font-medium mobile_1:text-center">
+                    <span className="text-gray_60 text-lg font-medium mobile_1:text-center mobile_1:w-full mobile_1:mt-4">
                         Na Prestige imobiliária, criamos um processo simples para ajudá-lo a encontrar e comprar a propriedade dos seus sonhos com facilidade.
                         Aqui está um guia passo a passo de como tudo funciona.
                     </span>
@@ -79,7 +79,7 @@ export default function AboutUs() {
                 <StarsBackground />
                 <div className="w-full flex flex-col gap-3 mt-6">
                     <h2 className="text-secondary text-5xl font-semibold mobile_1:text-center">Conheça a equipe Prestige</h2>
-                    <span className="text-gray_60 text-lg font-medium mobile_1:text-center">
+                    <span className="text-gray_60 text-lg font-medium mobile_1:text-center mobile_1:w-full mobile_1:mt-4">
                         Na Prestige, nosso sucesso é impulsionado pela dedicação e experiência de nossa equipe.
                         Conheça as pessoas por trás da nossa missão de tornar realidade os seus sonhos imobiliários.
                     </span>

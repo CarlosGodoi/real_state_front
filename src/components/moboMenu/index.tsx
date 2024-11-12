@@ -1,8 +1,10 @@
+import { useAuthContext } from '@/context/authContext';
 import { HamburgerMenuIcon } from '@radix-ui/react-icons';
 import { Button, DropdownMenu, Flex } from "@radix-ui/themes";
 import Link from 'next/link';
 
 export const MoboMenu = () => {
+    const { signOut } = useAuthContext();
     return (
         <Flex gap="3" align="center">
             <DropdownMenu.Root>
@@ -37,7 +39,7 @@ export const MoboMenu = () => {
                         <Link href='/servicos' className="text-secondary text-lg font-medium hover:border-b-2 border-purple_60">Serviços</Link>
                     </DropdownMenu.Item>
 
-                    <DropdownMenu.Item className='text-purple_60 text-lg font-medium hover:bg-purple_65 hover:text-white rounded-md mt-2'>
+                    <DropdownMenu.Item className='text-purple_60 text-lg font-medium hover:bg-purple_65 hover:text-white rounded-md mt-2' onClick={signOut}>
                         Sair
                     </DropdownMenu.Item>
                 </DropdownMenu.Content>

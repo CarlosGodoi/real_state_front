@@ -61,7 +61,7 @@ export const LoginForm = () => {
             role="form"
 
         >
-            <h2 role="heading" className="text-purple_60 text-4xl text-center font-semibold mb-4 mobile_1:text-center">Faça seu Login</h2>
+            <h2 role="heading" className="text-purple_60 text-4xl text-center font-semibold mb-4 mobile_1:text-center mobile_1:text-3xl">Faça seu Login</h2>
 
             <InputDefault
                 label="Email"
