@@ -25,6 +25,9 @@ export const RegisterImmobilesForm = () => {
     const router = useRouter();
     const { user } = useAuthContext();
 
+    console.log(baseImage);
+
+
     const {
         handleSubmit,
         register,

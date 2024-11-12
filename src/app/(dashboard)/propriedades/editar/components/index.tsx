@@ -26,11 +26,6 @@ export const PropertyEditForm = ({ imovelId }: IFormProps) => {
 
     const router = useRouter()
 
-    const srcImg =
-        immobile?.ImageImovel && immobile.ImageImovel[0]
-            ? `http://localhost:3334/${immobile.ImageImovel[0].path}`
-            : "";
-
     const {
         handleSubmit,
         register,

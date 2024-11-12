@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Logo } from "../logo";
 import { MoboMenu } from "../moboMenu";
 import { useAuthContext } from "@/context/authContext";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ContactUsModal } from "../modal/contactUsModal";
 import UserAvatar from "../avatar";
 
