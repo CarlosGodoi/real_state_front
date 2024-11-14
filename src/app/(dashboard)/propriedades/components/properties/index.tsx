@@ -10,6 +10,7 @@ import { ROLE } from "@/enums/profile";
 import { deleteImmobileById } from "@/services/immobiles/delete";
 import { formatCurrency } from "@/utils/formatCurrency";
 import { Bathtub, Bed, Building } from "@phosphor-icons/react";
+import { Tooltip } from "@radix-ui/themes";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
@@ -149,8 +150,10 @@ export const ListProperties = () => {
                                         {user.perfil === ROLE.CORRETOR ? <DeleteIcon onClick={() => handleDelete(immobile.id)} /> : null}
 
                                     </div>
-                                    <span className="text-gray_60 text-lg font-medium">
-                                        {immobile.description}
+                                    <span className="text-gray_60 text-lg font-medium truncate line-clamp-3">
+                                        <Tooltip content={immobile.description}>
+                                            {immobile.description}
+                                        </Tooltip>
                                     </span>
 
                                     <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 laptop:grid-cols-1 gap-2 mt-3">
