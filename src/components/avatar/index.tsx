@@ -1,5 +1,4 @@
-'use client'
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import * as Avatar from "@radix-ui/react-avatar";
 import { ROLE } from "@/enums/profile";
 
@@ -9,6 +8,7 @@ type TUser = {
     email: string;
     perfil: ROLE;
 };
+
 interface UserAvatarProps {
     user: TUser | null;
 }
@@ -18,17 +18,22 @@ const UserAvatar: React.FC<UserAvatarProps> = ({ user }) => {
 
     useEffect(() => {
         if (user && user.nome) {
-            console.log('user =>', user);
-
-            setUserName(user.nome);
+            console.log("User after login:", user);
+            setTimeout(() => {
+                setUserName(user.nome);
+            }, 0);
+        } else {
+            setUserName(null); // ou exibir um nome padrão, caso user esteja indefinido
         }
     }, [user]);
+
+
     return (
-        < div className="flex items-center gap-3" >
+        <div className="flex items-center gap-3">
             <Avatar.Root className="inline-flex items-center justify-center overflow-hidden select-none w-11 h-11 rounded-full bg-black/30">
                 <Avatar.Image
                     className="w-full h-full object-cover rounded-inherit"
-                    src="https://github.com/carlosgodoi.png"
+                    src=""
                     alt="Foto de usuário"
                 />
                 <Avatar.Fallback
@@ -38,9 +43,11 @@ const UserAvatar: React.FC<UserAvatarProps> = ({ user }) => {
                     CT
                 </Avatar.Fallback>
             </Avatar.Root>
-            <span className="text-secondary text-base font-medium">{userName}</span>
-        </div >
-    )
-}
+            <span className="text-secondary text-base font-medium">
+                {userName}
+            </span>
+        </div>
+    );
+};
 
 export default UserAvatar;

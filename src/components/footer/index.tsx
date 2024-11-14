@@ -56,7 +56,7 @@ export const Footer = () => {
         <div className="w-full flex flex-col gap-8 bg-gray_08 border border-t-gray_15">
             <div className="w-full flex flex-col justify-center lg:flex-row gap-8 bg-gray_08 px-5 lg:px-20 py-14">
                 <div className="w-full lg:w-[538px] flex flex-col gap-4">
-                    <Logo width={30} height={30} textSize={"text-[20px]"} />
+                    <Logo width={30} height={30} textSize={"text-xl"} responsive={false} />
 
                     <div className="relative w-full lg:w-[300px] max-w-full">
                         <Envelope

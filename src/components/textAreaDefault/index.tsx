@@ -15,7 +15,7 @@ interface TextareaDefaultProps extends TextareaHTMLAttributes<HTMLTextAreaElemen
     textareaClassName?: string; // Classe adicional para estilizar o textarea
 }
 
-export const TextareaDefault = ({
+export const TextAreaDefault = ({
     label,
     register,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars

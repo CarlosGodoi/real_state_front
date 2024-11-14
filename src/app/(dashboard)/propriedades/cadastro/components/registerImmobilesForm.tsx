@@ -17,6 +17,7 @@ import { typeContracts } from "@/utils/selectOptions/typeContract"
 import { typeImmobiles } from "@/utils/selectOptions/typeImmobile"
 import { statusOptions } from "@/utils/selectOptions/status"
 import Loading from "@/components/loading"
+import { TextAreaDefault } from "@/components/textAreaDefault"
 
 export const RegisterImmobilesForm = () => {
     const [loading, setLoading] = useState<boolean>(false);
@@ -92,9 +93,19 @@ export const RegisterImmobilesForm = () => {
         }
     };
 
+    console.log('errors =>', errors);
+
+
     return (
         <div className="w-full flex justify-center mobile_1:p-4">
-            <form onSubmit={handleSubmit(onSubmitCreateImmobile)} className="max-w-[1300px] w-full grid grid-cols-3 gap-3 border border-gray_15 rounded-lg p-20 mb-10 mobile_1:p-4 mobile_1:grid-cols-1">
+            <form onSubmit={handleSubmit(onSubmitCreateImmobile)} className="max-w-[1100px] w-full grid grid-cols-2 gap-3 border border-gray_15 rounded-lg p-20 mb-10 mobile_1:p-4 mobile_1:grid-cols-1">
+                <InputDefault
+                    label="Empreendimento"
+                    placeholder="Digite o nome do empreendimento"
+                    labelClassName="text-secondary"
+                    register={register("businessName")}
+                    helperText={errors.businessName?.message}
+                />
                 <InputDefault
                     label="Rua"
                     placeholder="Digite a rua"
@@ -193,7 +204,14 @@ export const RegisterImmobilesForm = () => {
                     options={statusOptions}
                     onChange={(value) => setValue("status", value as "NEGOCIACAO" | "VENDIDO" | "ALUGADO" | "PENDENTE")}
                 />
-                <div className="grid col-span-3 mobile_1:col-span-1">
+                <div className="col-span-2 mobile_1:col-span-1">
+                    <TextAreaDefault
+                        label="Descrição"
+                        placeholder="Digite a descrição do imóvel"
+                        register={register('description')}
+                    />
+                </div>
+                <div className="col-span-2 mobile_1:col-span-1">
                     <DropzoneImage
                         id="images"
                         name="images"
@@ -202,12 +220,13 @@ export const RegisterImmobilesForm = () => {
                         onSetBaseImage={setBaseImage}
                     />
                 </div>
-                <div className="col-span-3 flex justify-end mt-8 mobile_1:mt-4 mobile_1:col-span-1">
+                <div className="col-span-2 flex justify-end mt-8 mobile_1:mt-4 mobile_1:col-span-1">
                     <ButtonDefault variant="primary" type="submit" className="mobile_1:w-full">
                         {loading ? <Loading /> : 'Salvar'}
                     </ButtonDefault>
                 </div>
             </form>
+
         </div>
     )
 }

@@ -20,7 +20,7 @@ export const DropzoneImage: React.FC<IProps> = ({
     const [files, setFiles] = useState<(File & { preview: string })[]>([]);
     const { getInputProps, getRootProps, acceptedFiles, fileRejections } =
         useDropzone({
-            maxFiles: 3,
+            maxFiles: 6,
             accept: {
                 "image/*": [".jpg", ".jpeg", ".png"],
             },

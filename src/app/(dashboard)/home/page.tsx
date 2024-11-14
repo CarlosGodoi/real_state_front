@@ -1,4 +1,3 @@
-import { ButtonDefault } from "@/components/buttonDefault";
 import { InformationCards } from "./components/cards/informationCards";
 import { BusinessCards } from "./components/cards/businessCards";
 import Image from "next/image";
@@ -6,6 +5,7 @@ import mainImg from '../../../../public/assets/Image.png';
 import { FeaturedProperties } from "./components/featuredProperties";
 import { CustomerReportCards } from "./components/cards/cardsClients";
 import { FaqsCards } from "./components/cards/faqsCards";
+import ButtonGroup from "./components/buttonGroup";
 
 export default function Home() {
     return (
@@ -21,10 +21,7 @@ export default function Home() {
                         </span>
                     </div>
 
-                    <div className="w-[70%] flex justify-start gap-3 mt-8 desktop:w-[90%] laptop:w-[80%] notebook_13p:w-4/5">
-                        <ButtonDefault>Saiba mais</ButtonDefault>
-                        <ButtonDefault variant="primary">Propriedades</ButtonDefault>
-                    </div>
+                    <ButtonGroup />
 
                     <InformationCards />
                 </div>

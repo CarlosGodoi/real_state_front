@@ -37,7 +37,6 @@ interface IAuthContext {
     user: TUser;
     signIn: (data: IPropsSignin) => Promise<{ status: boolean; message: string }>;
     signOut: VoidFunction;
-
     updateUserContext: ({ nome, email }: { nome: string; email: string }) => void;
 }
 
@@ -101,6 +100,7 @@ const AuthProvider: React.FC<IProps> = ({ children }) => {
     };
 
     useEffect(() => {
+        // Checa cookies no carregamento inicial para obter o usuário
         if (hasCookie('usuario')) {
             const usuario = getCookie('usuario')?.toString();
             if (usuario) {

@@ -3,7 +3,7 @@ import { ButtonDefault } from "@/components/buttonDefault";
 import { InputDefault } from "@/components/inputDefault";
 import SelectDefault from "@/components/selectDefault";
 import { StarsBackground } from "@/components/starsBackground";
-import { TextareaDefault } from "@/components/textAreaDefault";
+import { TextAreaDefault } from "@/components/textAreaDefault";
 import { numberOfBathooms } from "@/utils/selectOptions/bathrooms";
 import { numberOfBedrooms } from "@/utils/selectOptions/bedrooms";
 import { locations } from "@/utils/selectOptions/location";
@@ -158,7 +158,7 @@ export const PropertyInterestForm = () => {
                     />
 
                     <div className="col-span-3 mobile_1:col-span-1">
-                        <TextareaDefault
+                        <TextAreaDefault
                             label="Mensagem"
                             placeholder="Digite mais informações sobre o imóvel desejado."
                             register={register("message")}
