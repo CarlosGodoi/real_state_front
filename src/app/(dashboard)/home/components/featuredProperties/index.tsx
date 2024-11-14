@@ -79,11 +79,17 @@ export const FeaturedProperties = () => {
                 </div>
 
                 {loading ? (
-                    <div className="w-full h-[300px] flex justify-center items-center">
+                    <div className="w-full h-[400px] flex justify-center items-center">
                         <Loading size='large' color="purple_60" />
                     </div>
                 ) : error ? (
-                    <p className="text-red-500">Erro ao carregar imóveis: {error}</p>
+                    <div className="w-full h-[400px] flex justify-center items-center">
+                        <p className="text-red-500">Erro ao carregar imóveis: {error}</p>
+                    </div>
+                ) : immobiles.length === 0 ? (
+                    <div className="w-full h-[400px] flex justify-center items-center">
+                        <span className="text-xl text-gray_60 font-medium">Não foram encontrados imóveis, faça uma nova busca.</span>
+                    </div>
                 ) : (
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-5 w-full">
                         {selectedImmobiles.map((immobile) => (

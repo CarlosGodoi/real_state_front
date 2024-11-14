@@ -88,9 +88,9 @@ export default function PropertyDetails({ imovelId }: IPropertyDetailsProps) {
     return (
         <main className="w-full flex flex-col px-16 items-center mobile_1:p-4">
             <div className="w-full flex justify-between items-center mobile_1:flex-col mobile_1:items-start">
-                <div className="flex items-center gap-4 mobile_1:w-full">
+                <div className="flex items-center gap-4 mobile_1:w-full mobile_1:flex-col">
                     <h2 className="text-secondary text-2xl font-semibold">{immobile?.businessName}</h2>
-                    <div className="flex items-center gap-2 border border-gray_15 rounded-lg px-2 py-1">
+                    <div className="flex items-center gap-2 border border-gray_15 rounded-lg px-2 py-1 mobile_1:flex-1">
                         <MapPin size={20} weight="fill" color="#fff" />
                         <span className="text-secondary text-base font-medium">{immobile?.endereco.bairro}</span>
                     </div>

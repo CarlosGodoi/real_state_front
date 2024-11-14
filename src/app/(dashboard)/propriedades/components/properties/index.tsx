@@ -111,11 +111,13 @@ export const ListProperties = () => {
 
 
                 {loading ? (
-                    <div className="w-full h-[300px] flex justify-center items-center">
+                    <div className="w-full h-[400px] flex justify-center items-center">
                         <Loading size='large' color="purple_60" />
                     </div>
                 ) : error ? (
-                    <p className="text-red-500">Erro ao carregar imóveis: {error}</p>
+                    <div className="w-full h-[400px] flex justify-center items-center">
+                        <p className="text-red-500">Erro ao carregar imóveis: {error}</p>
+                    </div>
                 ) : immobiles.length === 0 ? (
                     <div className="w-full h-[400px] flex justify-center items-center">
                         <span className="text-xl text-gray_60 font-medium">Não foram encontrados imóveis, faça uma nova busca.</span>
