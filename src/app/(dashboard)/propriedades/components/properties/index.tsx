@@ -150,8 +150,6 @@ export const ListProperties = () => {
                                         {user.perfil === ROLE.CORRETOR ? <DeleteIcon onClick={() => handleDelete(immobile.id)} /> : null}
 
                                     </div>
-                                    import * as Tooltip from '@radix-ui/react-tooltip';
-
                                     <span className="text-gray_60 text-lg font-medium truncate line-clamp-3">
                                         <Tooltip.Provider>
                                             <Tooltip.Root>
