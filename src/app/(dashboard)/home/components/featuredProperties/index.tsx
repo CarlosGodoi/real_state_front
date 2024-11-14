@@ -120,7 +120,7 @@ export const FeaturedProperties = () => {
                                             <Tooltip.Trigger asChild>
                                                 <span className="text-gray_60 text-lg font-medium">{immobile.description}</span>
                                             </Tooltip.Trigger>
-                                            <Tooltip.Content side="top" align="center" className="flex max-w-52 w-full min-h-24 h-auto bg-gray_10 text-gray_60 font-medium p-2 rounded border border-gray_15">
+                                            <Tooltip.Content side="top" align="center" className="flex w-full bg-gray_10 text-gray_60 font-medium p-2 rounded border border-gray_15">
                                                 <span className="text-gray_60 text-lg font-medium truncate line-clamp-3">
                                                     {immobile.description}
                                                 </span>
