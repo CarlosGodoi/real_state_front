@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import * as Avatar from "@radix-ui/react-avatar";
 import { ROLE } from "@/enums/profile";
 
