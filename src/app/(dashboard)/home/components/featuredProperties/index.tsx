@@ -114,18 +114,20 @@ export const FeaturedProperties = () => {
 
                                 <div className="flex flex-col gap-3 mt-3">
                                     <h2 className="text-secondary text-2xl font-semibold">{immobile.businessName}</h2>
-                                    <span className="text-gray_60 text-lg font-medium truncate line-clamp-3">
-                                        <Tooltip.Provider>
-                                            <Tooltip.Root>
-                                                <Tooltip.Trigger asChild>
-                                                    <span>{immobile.description}</span>
-                                                </Tooltip.Trigger>
-                                                <Tooltip.Content side="top" align="center" className="bg-gray-900 text-white p-2 rounded">
+
+                                    <Tooltip.Provider>
+                                        <Tooltip.Root>
+                                            <Tooltip.Trigger asChild>
+                                                <span>{immobile.description}</span>
+                                            </Tooltip.Trigger>
+                                            <Tooltip.Content side="top" align="center" className="flex max-w-20 w-full min-h-20 h-auto bg-purple_60 text-white p-2 rounded">
+                                                <span className="text-gray_60 text-lg font-medium truncate line-clamp-3">
                                                     {immobile.description}
-                                                </Tooltip.Content>
-                                            </Tooltip.Root>
-                                        </Tooltip.Provider>
-                                    </span>
+                                                </span>
+                                            </Tooltip.Content>
+                                        </Tooltip.Root>
+                                    </Tooltip.Provider>
+
 
                                     <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 gap-2 mt-3">
                                         <span className="flex items-center gap-2 text-secondary text-lg font-medium bg-gray_10 border border-gray_15 rounded-full px-2 py-1 justify-center w-auto">
