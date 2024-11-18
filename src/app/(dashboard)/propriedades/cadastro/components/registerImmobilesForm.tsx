@@ -5,7 +5,7 @@ import { InputDefault } from "@/components/inputDefault"
 import SelectDefault from "@/components/selectDefault"
 import { useAuthContext } from "@/context/authContext"
 import { useRouter } from "next/navigation"
-import { useState } from "react"
+import { ReactEventHandler, useState } from "react"
 import { Controller, useForm } from "react-hook-form"
 import { FormData, defaultValues, resolver } from '../schema'
 import { registerImmobile } from "@/services/immobiles/register"
@@ -18,6 +18,8 @@ import { typeImmobiles } from "@/utils/selectOptions/typeImmobile"
 import { statusOptions } from "@/utils/selectOptions/status"
 import Loading from "@/components/loading"
 import { TextAreaDefault } from "@/components/textAreaDefault"
+import { maskCep } from "@/utils/cepMask"
+import { formatCurrency } from "@/utils/formatCurrency"
 
 export const RegisterImmobilesForm = () => {
     const [loading, setLoading] = useState<boolean>(false);
@@ -34,12 +36,15 @@ export const RegisterImmobilesForm = () => {
         register,
         setValue,
         reset,
+        watch,
         formState: { errors },
         control,
     } = useForm<FormData>({
         resolver,
         defaultValues,
     });
+
+    const preco = watch("preco");
 
     const UploadImage = async (files: File[]) => {
         setImages(files);
@@ -50,7 +55,7 @@ export const RegisterImmobilesForm = () => {
     const onSubmitCreateImmobile = async (data: FormData) => {
         setLoading(true);
 
-        if (role && user.perfil) {
+        if (role && user?.perfil) {
             try {
                 const imovelId = await registerImmobile({ ...data, images });
 
@@ -80,7 +85,7 @@ export const RegisterImmobilesForm = () => {
             } catch (error) {
                 console.error("Erro ao cadastrar ou fazer upload do imóvel:", error);
 
-                toast("Ocorreu um erro ao tentar criar o imóvel", {
+                toast("Você não possui permissão para esta ação! Fale com um corretor.", {
                     hideProgressBar: true,
                     autoClose: 2000,
                     type: "error",
@@ -92,8 +97,6 @@ export const RegisterImmobilesForm = () => {
             }
         }
     };
-
-    console.log('errors =>', errors);
 
 
     return (
@@ -146,7 +149,8 @@ export const RegisterImmobilesForm = () => {
                     label="CEP"
                     placeholder="Digite o CEP"
                     labelClassName="text-secondary"
-                    register={register("endereco.cep")}
+                    register={(register("endereco.cep"))}
+                    value={maskCep(watch("endereco.cep"))}
                     helperText={errors.endereco?.cep?.message}
                 />
                 <Controller

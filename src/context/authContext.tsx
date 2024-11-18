@@ -34,7 +34,7 @@ interface IPropsSignin {
 }
 
 interface IAuthContext {
-    user: TUser;
+    user: TUser | null;
     signIn: (data: IPropsSignin) => Promise<{ status: boolean; message: string }>;
     signOut: VoidFunction;
     updateUserContext: ({ nome, email }: { nome: string; email: string }) => void;
@@ -49,27 +49,34 @@ const AuthContext = createContext<IAuthContext>({} as IAuthContext);
 const AuthProvider: React.FC<IProps> = ({ children }) => {
     const { apiRequest } = useRequest();
     const router = useRouter();
-    const [user, setUser] = useState<TUser>({} as TUser);
+    const [user, setUser] = useState<TUser | null>(null);
+
 
     async function signIn(
         data: IPropsSignin
-    ): Promise<ISignInResponse> {
+    ): Promise<{ status: boolean; message: string }> {
         const result = await apiRequest('post', '/api/login', { data })
             .then(({ data }) => {
                 const { token, user } = data;
-                console.log("Token recuperado:", token);
 
-                if (token) localStorage.setItem('token', token);
-                // console.log("Token recuperado no backend:", getCookie(token ? token : ''));
-                // console.log("Token recuperado no backend:", localStorage.getItem('token_get'));
+                if (token) {
+                    localStorage.setItem('token', token);
+                    setCookie('token', token, {
+                        path: '/',
+                        maxAge: 60 * 60 * 24,
+                        sameSite: 'strict',
+                    });
+                }
 
-                setCookie('token', token, {
-                    path: '/', // Garante que o cookie seja acessível em todas as rotas
-                    maxAge: 60 * 60 * 24, // Tempo de expiração (1 dia neste caso)
-                    sameSite: 'strict', // Controle de acesso cross-site
-                });
-
-                if (user) setUser(user);
+                if (user) {
+                    setUser(user);
+                    console.log("Usuário retornado do login:", user);
+                    setCookie('usuario', JSON.stringify(user), {
+                        path: '/',
+                        maxAge: 60 * 60 * 24,
+                        sameSite: 'strict',
+                    });
+                }
 
                 return { status: true, message: '' };
             })
@@ -81,8 +88,7 @@ const AuthProvider: React.FC<IProps> = ({ children }) => {
     }
 
     async function signOut() {
-        setUser({} as TUser);
-
+        setUser(null);
         deleteCookie('token');
         deleteCookie('usuario');
         router.push('/');
@@ -95,24 +101,38 @@ const AuthProvider: React.FC<IProps> = ({ children }) => {
         nome: string;
         email: string;
     }) => {
-        setUser({ ...user, email: email, nome: nome });
-        setCookie('usuario', { ...user, email: email, nome: nome });
+        if (user) {
+            const updatedUser = { ...user, email, nome };
+            setUser(updatedUser);
+            setCookie('usuario', JSON.stringify(updatedUser), {
+                path: '/',
+                maxAge: 60 * 60 * 24,
+                sameSite: 'strict',
+            });
+        }
     };
 
+
     useEffect(() => {
-        // Checa cookies no carregamento inicial para obter o usuário
-        if (hasCookie('usuario')) {
-            const usuario = getCookie('usuario')?.toString();
-            if (usuario) {
-                try {
-                    const parseUser = JSON.parse(usuario) as TUser;
-                    setUser(parseUser);
-                } catch (error) {
-                    console.error('Erro ao fazer o parse do JSON:', error);
-                }
+        const usuarioCookie = getCookie('usuario');
+        if (usuarioCookie) {
+            try {
+                const parseUser = JSON.parse(usuarioCookie.toString()) as TUser;
+                console.log("Usuário carregado do cookie:", parseUser);
+                setUser(parseUser);
+            } catch (error) {
+                console.error("Erro ao fazer o parse do JSON do cookie:", error);
+                setUser(null);
             }
+        } else {
+            console.log("Nenhum cookie de usuário encontrado no carregamento inicial.");
+            setUser(null);
         }
     }, []);
+
+
+
+
 
     return (
         <AuthContext.Provider value={{ user, signIn, signOut, updateUserContext }}>

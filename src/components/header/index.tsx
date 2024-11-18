@@ -8,13 +8,15 @@ import { ContactUsModal } from "../modal/contactUsModal";
 import UserAvatar from "../avatar";
 
 export const Header = () => {
-    const { signOut, user } = useAuthContext();
+    const { signOut } = useAuthContext();
     const [open, setOpen] = useState(false);
     const [submenuOpen, setSubmenuOpen] = useState(false);
 
     return (
         <div className="w-full h-24 flex justify-around items-center bg-gray_10">
-            <Logo width={40} height={40} textSize={"text-2xl"} responsive={false} />
+            <Link href={'/home'}>
+                <Logo width={40} height={40} textSize={"text-2xl"} responsive={false} />
+            </Link>
 
             <div className="flex justify-center items-center w-[60%] ipad:hidden">
                 <nav className="flex items-center gap-8 relative">
@@ -43,7 +45,7 @@ export const Header = () => {
             </div>
 
             <div className="ipad:hidden">
-                <UserAvatar user={user} />
+                <UserAvatar />
                 {/* <ButtonDefault type="button" onClick={() => setOpen(true)}>Contate-nos</ButtonDefault> */}
             </div>
 

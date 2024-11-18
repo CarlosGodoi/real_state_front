@@ -26,6 +26,7 @@ export const RegisterBrokerForm = () => {
         handleSubmit,
         register,
         formState: { errors },
+        reset,
         setValue,
     } = useForm<FormData>({
         resolver,
@@ -34,17 +35,19 @@ export const RegisterBrokerForm = () => {
 
     const onHandleSubmitForm = async (data: FormData) => {
         setLoading(true)
-        const userPerfil = isAuthenticated.user.perfil.toString();
+        const userPerfil = isAuthenticated.user?.perfil.toString();
 
-        if (userPerfil !== 'CORRETOR' && userPerfil !== 'ADMIN') {
+        if (userPerfil !== 'ADMIN') {
             Swal.fire({
                 title: 'Erro',
-                text: 'Seu perfil não possui as permissões necessárias, para esta ação!',
+                text: 'Seu perfil não possui as permissões necessárias, para esta ação! Fale com um administrador.',
                 icon: 'error',
                 confirmButtonText: 'OK',
                 background: '#1A1A1A',
                 color: '#999999'
             });
+            setLoading(false);
+            reset()
             return;
         }
         registerUsers(data).then((res) => {

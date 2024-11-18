@@ -32,8 +32,7 @@ export const registerImmobile = async (data: ICreateImmobile) => {
 
         const response = await apiFront.post("/api/immobiles", parseData);
 
-        const imovelId = response.data.id;
-        console.log('ID do imóvel registrado =>', imovelId);
+        const imovelId = response.data.novoImovel?.id;
 
         return imovelId;
     } catch (error) {

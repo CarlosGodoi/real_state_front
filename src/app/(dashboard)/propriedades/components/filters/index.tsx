@@ -12,8 +12,6 @@ export const Filters = () => {
     const { handleFilterChange } = useImmobilesContext();
 
     const onFilterChange = (field: string, value: string) => {
-        console.log('Filtro atualizado:', field, '=>', value);
-
         handleFilterChange({ [field]: value });
     };
     return (

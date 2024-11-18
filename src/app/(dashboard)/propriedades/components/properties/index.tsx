@@ -67,7 +67,7 @@ export const ListProperties = () => {
     }, [immobiles])
 
     const handleDelete = async (id: string) => {
-        if (user.perfil === ROLE.CORRETOR) {
+        if (user?.perfil === ROLE.CORRETOR) {
             try {
                 await deleteImmobileById(id);
                 const updatedImmobiles = localImmobiles.filter(immobile => immobile.id !== id);
@@ -147,7 +147,7 @@ export const ListProperties = () => {
                                 <div className="flex flex-col gap-3 mt-3">
                                     <div className="w-full flex justify-between items-center">
                                         <h2 className="text-secondary text-2xl font-semibold">{immobile.businessName}</h2>
-                                        {user.perfil === ROLE.CORRETOR ? <DeleteIcon onClick={() => handleDelete(immobile.id)} /> : null}
+                                        {user?.perfil === ROLE.CORRETOR ? <DeleteIcon onClick={() => handleDelete(immobile.id)} /> : null}
 
                                     </div>
 

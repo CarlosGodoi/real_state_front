@@ -1,32 +1,26 @@
 import React, { useEffect, useState } from "react";
 import * as Avatar from "@radix-ui/react-avatar";
-import { ROLE } from "@/enums/profile";
+import { useAuthContext } from "@/context/authContext";
 
-type TUser = {
-    id: string;
-    nome: string;
-    email: string;
-    perfil: ROLE;
-};
-
-interface UserAvatarProps {
-    user: TUser | null;
-}
-
-const UserAvatar: React.FC<UserAvatarProps> = ({ user }) => {
+const UserAvatar: React.FC = () => {
+    const { user } = useAuthContext();
     const [userName, setUserName] = useState<string | null>(null);
 
     useEffect(() => {
         if (user && user.nome) {
-            console.log("User after login:", user);
+            console.log("Usuário encontrado no contexto:", user);
             setTimeout(() => {
                 setUserName(user.nome);
-            }, 0);
+            }, 300); // Atraso para permitir sincronização
         } else {
-            setUserName(null); // ou exibir um nome padrão, caso user esteja indefinido
+            setUserName("Usuário");
         }
     }, [user]);
 
+
+    useEffect(() => {
+        console.log("Atualização do estado do usuário no contexto:", user);
+    }, [user]);
 
     return (
         <div className="flex items-center gap-3">
@@ -40,7 +34,7 @@ const UserAvatar: React.FC<UserAvatarProps> = ({ user }) => {
                     className="w-full h-full flex items-center justify-center bg-white text-violet-800 text-[15px] leading-none font-medium"
                     delayMs={600}
                 >
-                    CT
+                    {userName?.charAt(0) || "?"}
                 </Avatar.Fallback>
             </Avatar.Root>
             <span className="text-secondary text-base font-medium">

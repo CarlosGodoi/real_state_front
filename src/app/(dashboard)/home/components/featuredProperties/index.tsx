@@ -19,8 +19,6 @@ export const FeaturedProperties = () => {
     const [isMobile, setIsMobile] = useState(false);
 
     const router = useRouter();
-    console.log('imoveis =>', immobiles);
-
 
     const handleNavigate = () => {
         router.push('/propriedades');
