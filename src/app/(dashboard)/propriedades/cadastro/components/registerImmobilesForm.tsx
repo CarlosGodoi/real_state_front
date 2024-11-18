@@ -5,7 +5,7 @@ import { InputDefault } from "@/components/inputDefault"
 import SelectDefault from "@/components/selectDefault"
 import { useAuthContext } from "@/context/authContext"
 import { useRouter } from "next/navigation"
-import { ReactEventHandler, useState } from "react"
+import { useState } from "react"
 import { Controller, useForm } from "react-hook-form"
 import { FormData, defaultValues, resolver } from '../schema'
 import { registerImmobile } from "@/services/immobiles/register"
@@ -42,8 +42,6 @@ export const RegisterImmobilesForm = () => {
         resolver,
         defaultValues,
     });
-
-    const preco = watch("preco");
 
     const UploadImage = async (files: File[]) => {
         setImages(files);

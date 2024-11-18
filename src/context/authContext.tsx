@@ -9,7 +9,7 @@ import {
 
 import { ROLE } from '@/enums/profile';
 import { useRouter } from 'next/navigation';
-import { deleteCookie, getCookie, hasCookie, setCookie } from 'cookies-next';
+import { deleteCookie, getCookie, setCookie } from 'cookies-next';
 import { useRequest } from './apiRequestContext';
 
 export type TUser = {
@@ -18,13 +18,6 @@ export type TUser = {
     email: string;
     perfil: ROLE;
 };
-
-interface ISignInResponse {
-    status: boolean;
-    message: string;
-    token?: string;
-    usuario?: TUser;
-}
 
 interface IPropsSignin {
     email: string;
