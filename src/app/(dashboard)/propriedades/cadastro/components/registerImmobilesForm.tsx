@@ -19,7 +19,6 @@ import { statusOptions } from "@/utils/selectOptions/status"
 import Loading from "@/components/loading"
 import { TextAreaDefault } from "@/components/textAreaDefault"
 import { maskCep } from "@/utils/cepMask"
-import { formatCurrency } from "@/utils/formatCurrency"
 
 export const RegisterImmobilesForm = () => {
     const [loading, setLoading] = useState<boolean>(false);
