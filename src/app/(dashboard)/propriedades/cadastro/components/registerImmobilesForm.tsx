@@ -96,13 +96,10 @@ export const RegisterImmobilesForm = () => {
         }
     };
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
-        const preco = watch("preco");
-        console.log("Watched Value (preco):", preco);
-    }, [watch, watch("preco")]);
-
-
-
+        console.log("Watched Value (preco):", watch("preco"));
+    }, [watch("preco")]);
 
     return (
         <div className="w-full flex justify-center mobile_1:p-4">
