@@ -5,7 +5,7 @@ import { InputDefault } from "@/components/inputDefault"
 import SelectDefault from "@/components/selectDefault"
 import { useAuthContext } from "@/context/authContext"
 import { useRouter } from "next/navigation"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Controller, useForm } from "react-hook-form"
 import { FormData, defaultValues, resolver } from '../schema'
 import { registerImmobile } from "@/services/immobiles/register"
@@ -19,6 +19,7 @@ import { statusOptions } from "@/utils/selectOptions/status"
 import Loading from "@/components/loading"
 import { TextAreaDefault } from "@/components/textAreaDefault"
 import { maskCep } from "@/utils/cepMask"
+import { maskPrice } from "@/utils/maskPrice"
 
 export const RegisterImmobilesForm = () => {
     const [loading, setLoading] = useState<boolean>(false);
@@ -95,6 +96,11 @@ export const RegisterImmobilesForm = () => {
         }
     };
 
+    useEffect(() => {
+        console.log("Watched Value (preco):", watch("preco")); // Valor bruto no estado
+    }, [watch("preco")]);
+
+
 
     return (
         <div className="w-full flex justify-center mobile_1:p-4">
@@ -146,10 +152,15 @@ export const RegisterImmobilesForm = () => {
                     label="CEP"
                     placeholder="Digite o CEP"
                     labelClassName="text-secondary"
-                    register={(register("endereco.cep"))}
-                    value={maskCep(watch("endereco.cep"))}
+                    register={register("endereco.cep")}
+                    value={maskCep(watch("endereco.cep"))} // Aplica a máscara ao valor exibido
+                    onChangeValue={(value) => {
+                        const numericValue = String(value).replace(/\D/g, ''); // Remove tudo que não for número
+                        setValue("endereco.cep", numericValue); // Atualiza o valor bruto sem a máscara
+                    }}
                     helperText={errors.endereco?.cep?.message}
                 />
+
                 <Controller
                     name="area"
                     control={control}
@@ -170,8 +181,20 @@ export const RegisterImmobilesForm = () => {
                     placeholder="Digite o valor do imóvel"
                     labelClassName="text-secondary"
                     register={register("preco", {
-                        setValueAs: (value) => value ? Number(value) : null,
+                        setValueAs: (value) => {
+                            if (!value) return null;
+                            const stringValue = typeof value === "string" ? value : String(value);
+                            const rawValue = stringValue.replace(/\D/g, ""); // Remove caracteres não numéricos
+                            return rawValue ? parseInt(rawValue, 10) : null; // Retorna número inteiro
+                        },
                     })}
+                    onChangeValue={(value) => {
+                        const stringValue = typeof value === "string" ? value : String(value || ""); // Garante string
+                        const rawValue = stringValue.replace(/\D/g, ""); // Remove caracteres não numéricos
+                        setValue("preco", +rawValue); // Atualiza o valor bruto no formulário
+                        console.log("Raw Value:", rawValue);
+                    }}
+                    value={maskPrice(watch("preco"))} // Aplica a máscara
                     helperText={errors.preco?.message}
                 />
 

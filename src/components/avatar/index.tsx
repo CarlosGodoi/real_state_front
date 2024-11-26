@@ -31,7 +31,7 @@ const UserAvatar: React.FC = () => {
                     alt="Foto de usuário"
                 />
                 <Avatar.Fallback
-                    className="w-full h-full flex items-center justify-center bg-white text-violet-800 text-[15px] leading-none font-medium"
+                    className="w-full h-full flex items-center justify-center bg-purple_65 text-secondary text-lg leading-none font-medium"
                     delayMs={600}
                 >
                     {userName?.charAt(0) || "?"}

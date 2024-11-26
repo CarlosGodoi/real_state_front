@@ -4,3 +4,8 @@ export const profileOptions = [
     { value: 'CORRETOR', label: 'Corretor' },
     { value: 'COMPRADOR', label: 'Comprador' },
 ]
+
+export const profileOptionsBuyer = [
+    { value: '', label: 'Selecione' },
+    { value: 'COMPRADOR', label: 'Comprador' },
+]

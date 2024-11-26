@@ -9,6 +9,7 @@ import { useForm } from 'react-hook-form';
 import { FormData, defaultValues, resolver } from './schema';
 import { toast } from 'react-toastify';
 import Loading from '@/components/loading';
+import Link from 'next/link';
 
 
 export const LoginForm = () => {
@@ -86,6 +87,11 @@ export const LoginForm = () => {
                         <EyeClosedIcon width={25} height={25} color="#7a00ff" />
                     )}
                 </div>
+            </div>
+
+            <div className='w-full flex items-center gap-1 mt-3'>
+                <p className='text-gray_60 text-base font-medium'>Já possui conta?</p>
+                <Link className='text-purple_60 text-base font-semibold' href={'/signup'}>cadastre-se aqui</Link>
             </div>
 
             <div className="flex justify-end mt-4">

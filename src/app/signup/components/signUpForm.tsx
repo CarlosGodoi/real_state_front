@@ -2,8 +2,8 @@
 import { ButtonDefault } from "@/components/buttonDefault"
 import { InputDefault } from "@/components/inputDefault"
 import SelectDefault from "@/components/selectDefault"
-import { profileOptions } from "@/utils/selectOptions/profile"
-import { FormData, defaultValues, resolver } from "../../schema"
+import { profileOptionsBuyer } from "@/utils/selectOptions/profile"
+import { FormData, defaultValues, resolver } from "../schema"
 import { useForm } from "react-hook-form"
 import { useState } from "react"
 import { useAuthContext } from "@/context/authContext"
@@ -16,7 +16,7 @@ import Loading from "@/components/loading"
 import { formatPhoneNumber } from "@/utils/phoneMask"
 
 
-export const RegisterBrokerForm = () => {
+export const SignUpForm = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const isAuthenticated = useAuthContext();
 
@@ -35,21 +35,6 @@ export const RegisterBrokerForm = () => {
 
     const onHandleSubmitForm = async (data: FormData) => {
         setLoading(true)
-        const userPerfil = isAuthenticated.user?.perfil.toString();
-
-        if (userPerfil !== 'ADMIN') {
-            Swal.fire({
-                title: 'Erro',
-                text: 'Seu perfil não possui as permissões necessárias, para esta ação! Fale com um administrador.',
-                icon: 'error',
-                confirmButtonText: 'OK',
-                background: '#1A1A1A',
-                color: '#999999'
-            });
-            setLoading(false);
-            reset()
-            return;
-        }
         registerUsers(data).then((res) => {
             if (res) {
                 toast("Usuário cadastrado com sucesso!", {
@@ -60,7 +45,7 @@ export const RegisterBrokerForm = () => {
                     theme: "colored",
                     style: { backgroundColor: '#7A00FF', color: '#fff' }
                 });
-                router.push('/home')
+                router.push('/')
             }
         }).catch((error) => {
             if (isAxiosError(error)) {
@@ -83,9 +68,9 @@ export const RegisterBrokerForm = () => {
         const formattedPhone = formatPhoneNumber(phoneValue);
         setValue("telefone", formattedPhone, { shouldValidate: true });
     };
-
     return (
-        <div className="w-full flex justify-center">
+        <div className="w-full flex flex-col justify-center items-center mt-16 gap-8 mobile_1:mt-6">
+            <h2 className="text-secondary text-4xl font-semibold text-center">Cadastre-se</h2>
             <form onSubmit={handleSubmit(onHandleSubmitForm)} className="max-w-[1200px] w-full grid grid-cols-2 gap-3 p-16 mb-14 border border-gray_15 rounded-lg mobile_1:grid-cols-1 mobile_1:p-6">
                 <InputDefault
                     label="Nome"
@@ -110,9 +95,9 @@ export const RegisterBrokerForm = () => {
                     helperText={errors.telefone?.message}
                 />
                 <SelectDefault
-                    label="Perfil" options={profileOptions}
+                    label="Perfil" options={profileOptionsBuyer}
                     placeholder="Selecione o perfil"
-                    onChange={(value) => setValue("perfil", value as 'ADMIN' || 'CORRETOR' || 'COMPRADOR')}
+                    onChange={(value) => setValue("perfil", value as 'COMPRADOR')}
                 />
                 <InputDefault
                     label="Senha"
@@ -132,7 +117,7 @@ export const RegisterBrokerForm = () => {
                 />
 
                 <div className="col-span-2 flex justify-end mt-8 mobile_1:col-span-1">
-                    <ButtonDefault variant="primary" type="submit" className="mobile_1:w-full">{loading ? <Loading /> : 'Cadastrar'}</ButtonDefault>
+                    <ButtonDefault variant="primary" type="submit" className="mobile_1:w-full">{loading ? <Loading /> : 'Salvar'}</ButtonDefault>
                 </div>
             </form>
         </div>

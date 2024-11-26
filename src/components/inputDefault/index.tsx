@@ -12,7 +12,7 @@ interface InputDefaultProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 
   helperText?: string;
   isLoading?: boolean;
   loading?: boolean;
-  onChangeValue?: (value: string) => void;
+  onChangeValue?: (value: string | React.ChangeEvent<HTMLInputElement>) => void;
   handleClickSearch?: VoidFunction;
   passwordCheckValue?: string;
   onClick?: VoidFunction;
@@ -38,6 +38,7 @@ export const InputDefault: React.FC<InputDefaultProps> = ({
       register.onChange(e);
     }
   };
+
 
   return (
     <div className="flex flex-col gap-3">
