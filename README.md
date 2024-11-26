@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# Prestige Imobiliária
 
-First, run the development server:
+Este projeto foi desenvolvido para fins de estudo e portfólio. Neste projeto foi implementado o CRUD completo para imóveis, implementação de autenticação via token, testes unitários.
+
+Este projeto traz a ideia de uma plataforma onde será possivel, gerir imóveis com usuários de perfil CORRETOR, ou até mesmo acessar a plataforma como um COMPRADOR. Todas as regras de negócio foram baseadas em ROLES.
+
+
+## Tecnologias utilizadas
+
+
+## Stack utilizada
+
+**Front-end:** React, Next Js, TailwindCSS
+
+**Back-end:** Node, Prisma, Fastify, JWT
+
+**Cloudinary:** Upload de imagens
+
+
+## Criando container Docker
+
+Para criação do container no docker para o banco de dados Postgres, rode o seguinte comando
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+  docker compose up
+```
+## Criando migrations
+
+Após a criação do container execute as migrations, rode o seguinte comando
+
+```bash
+  npx prisma migrate dev
+```
+## Para Executar o programa pela primeira vez
+
+ Instale as depêndencias do projeto, rode o seguinte comando
+
+```bash
+  npm ci
+```
+Iniciando o projeto, rode o seguinte comando
+```bash
+  npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Variáveis de Ambiente
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de ambiente no seu .env
 
-## Learn More
+`NODE_ENV`
 
-To learn more about Next.js, take a look at the following resources:
+`NEXT_PUBLIC_BASE_API`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+`NEXT_PUBLIC_BASE_FRONT`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+`NEXT_PUBLIC_BASE_FRONT_PROD`
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Demonstração
+
+https://real-state-front-blue.vercel.app/
+
+
+## Licença
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
