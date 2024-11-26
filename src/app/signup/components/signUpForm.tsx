@@ -11,14 +11,12 @@ import { useRouter } from "next/navigation"
 import { registerUsers } from "@/services/user/registerUsers"
 import { toast } from "react-toastify"
 import { isAxiosError } from "axios"
-import Swal from "sweetalert2"
 import Loading from "@/components/loading"
 import { formatPhoneNumber } from "@/utils/phoneMask"
 
 
 export const SignUpForm = () => {
     const [loading, setLoading] = useState<boolean>(false);
-    const isAuthenticated = useAuthContext();
 
     const router = useRouter();
 
@@ -26,7 +24,6 @@ export const SignUpForm = () => {
         handleSubmit,
         register,
         formState: { errors },
-        reset,
         setValue,
     } = useForm<FormData>({
         resolver,

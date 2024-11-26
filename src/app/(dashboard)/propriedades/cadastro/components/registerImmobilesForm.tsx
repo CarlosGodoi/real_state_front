@@ -97,8 +97,10 @@ export const RegisterImmobilesForm = () => {
     };
 
     useEffect(() => {
-        console.log("Watched Value (preco):", watch("preco")); // Valor bruto no estado
-    }, [watch("preco")]);
+        const preco = watch("preco");
+        console.log("Watched Value (preco):", preco);
+    }, [watch, watch("preco")]);
+
 
 
 
